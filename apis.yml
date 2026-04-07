@@ -1,6 +1,7 @@
 aid: telegram
 name: Telegram
-description: 'a new era of messaging '
+description: >-
+  a new era of messaging.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -15,7 +16,8 @@ specificationVersion: '0.19'
 apis:
   - aid: telegram:telegram
     name: Telegram
-    description: 'a new era of messaging '
+    description: >-
+      a new era of messaging.
     humanURL: ' https://telegram.org/'
     tags:
       - API
