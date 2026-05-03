@@ -1,0 +1,245 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://core.telegram.org/schema/update",
+  "title": "Telegram Update",
+  "description": "Represents an incoming update from Telegram. At most one of the optional parameters can be present in any given update.",
+  "type": "object",
+  "required": ["update_id"],
+  "properties": {
+    "update_id": {
+      "type": "integer",
+      "description": "The update's unique identifier. Update identifiers start from a certain positive number and increase sequentially."
+    },
+    "message": {
+      "description": "New incoming message of any kind — text, photo, sticker, etc.",
+      "$ref": "#/definitions/Message"
+    },
+    "edited_message": {
+      "description": "New version of a message that is known to the bot and was edited.",
+      "$ref": "#/definitions/Message"
+    },
+    "channel_post": {
+      "description": "New incoming channel post of any kind — text, photo, sticker, etc.",
+      "$ref": "#/definitions/Message"
+    },
+    "edited_channel_post": {
+      "description": "New version of a channel post that is known to the bot and was edited.",
+      "$ref": "#/definitions/Message"
+    },
+    "callback_query": {
+      "description": "New incoming callback query from an inline keyboard button.",
+      "$ref": "#/definitions/CallbackQuery"
+    },
+    "inline_query": {
+      "description": "New incoming inline query.",
+      "$ref": "#/definitions/InlineQuery"
+    },
+    "poll": {
+      "description": "New poll state. Bots receive only updates about stopped polls and polls which are sent by the bot.",
+      "$ref": "#/definitions/Poll"
+    },
+    "my_chat_member": {
+      "description": "The bot's chat member status was updated in a chat.",
+      "$ref": "#/definitions/ChatMemberUpdated"
+    },
+    "chat_member": {
+      "description": "A chat member's status was updated in a chat.",
+      "$ref": "#/definitions/ChatMemberUpdated"
+    },
+    "chat_join_request": {
+      "description": "A request to join the chat has been sent.",
+      "$ref": "#/definitions/ChatJoinRequest"
+    }
+  },
+  "definitions": {
+    "Message": {
+      "type": "object",
+      "required": ["message_id", "date", "chat"],
+      "properties": {
+        "message_id": {
+          "type": "integer",
+          "description": "Unique message identifier inside the chat"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date the message was sent in Unix time"
+        },
+        "chat": {
+          "type": "object",
+          "description": "Conversation the message belongs to",
+          "required": ["id", "type"],
+          "properties": {
+            "id": { "type": "integer" },
+            "type": { "type": "string", "enum": ["private", "group", "supergroup", "channel"] }
+          }
+        },
+        "text": {
+          "type": "string",
+          "description": "For text messages, the actual UTF-8 text of the message"
+        }
+      }
+    },
+    "CallbackQuery": {
+      "type": "object",
+      "required": ["id", "from", "chat_instance"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this query"
+        },
+        "from": {
+          "type": "object",
+          "description": "Sender"
+        },
+        "message": {
+          "description": "Message sent by the bot with the callback button that originated the query"
+        },
+        "inline_message_id": {
+          "type": "string",
+          "description": "Identifier of the message sent via the bot in inline mode"
+        },
+        "chat_instance": {
+          "type": "string",
+          "description": "Global identifier of the chat that triggered the callback"
+        },
+        "data": {
+          "type": "string",
+          "description": "Data associated with the callback button (0-64 bytes)"
+        }
+      }
+    },
+    "InlineQuery": {
+      "type": "object",
+      "required": ["id", "from", "query", "offset"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this query"
+        },
+        "from": {
+          "type": "object",
+          "description": "Sender"
+        },
+        "query": {
+          "type": "string",
+          "maxLength": 256,
+          "description": "Text of the query (up to 256 characters)"
+        },
+        "offset": {
+          "type": "string",
+          "description": "Offset of the results to be returned, can be controlled by the bot"
+        },
+        "chat_type": {
+          "type": "string",
+          "description": "Type of the chat from which the inline query was sent"
+        }
+      }
+    },
+    "Poll": {
+      "type": "object",
+      "required": ["id", "question", "options", "total_voter_count", "is_closed", "is_anonymous", "type", "allows_multiple_answers"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique poll identifier"
+        },
+        "question": {
+          "type": "string",
+          "description": "Poll question (1-300 characters)"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "voter_count": { "type": "integer" }
+            }
+          },
+          "description": "List of poll options"
+        },
+        "total_voter_count": {
+          "type": "integer",
+          "description": "Total number of users that voted in the poll"
+        },
+        "is_closed": {
+          "type": "boolean",
+          "description": "True if the poll is closed"
+        },
+        "is_anonymous": {
+          "type": "boolean",
+          "description": "True if the poll is anonymous"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["regular", "quiz"],
+          "description": "Poll type"
+        },
+        "allows_multiple_answers": {
+          "type": "boolean",
+          "description": "True if the poll allows multiple answers"
+        }
+      }
+    },
+    "ChatMemberUpdated": {
+      "type": "object",
+      "required": ["chat", "from", "date", "old_chat_member", "new_chat_member"],
+      "properties": {
+        "chat": {
+          "type": "object",
+          "description": "Chat the user belongs to"
+        },
+        "from": {
+          "type": "object",
+          "description": "Performer of the action"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date the change was done in Unix time"
+        },
+        "old_chat_member": {
+          "type": "object",
+          "description": "Previous information about the chat member"
+        },
+        "new_chat_member": {
+          "type": "object",
+          "description": "New information about the chat member"
+        },
+        "invite_link": {
+          "type": "object",
+          "description": "Chat invite link used to join the chat"
+        }
+      }
+    },
+    "ChatJoinRequest": {
+      "type": "object",
+      "required": ["chat", "from", "user_chat_id", "date"],
+      "properties": {
+        "chat": {
+          "type": "object",
+          "description": "Chat to which the request was sent"
+        },
+        "from": {
+          "type": "object",
+          "description": "User that sent the join request"
+        },
+        "user_chat_id": {
+          "type": "integer",
+          "description": "Identifier of a private chat with the user"
+        },
+        "date": {
+          "type": "integer",
+          "description": "Date the request was sent in Unix time"
+        },
+        "bio": {
+          "type": "string",
+          "description": "Bio of the user"
+        },
+        "invite_link": {
+          "type": "object",
+          "description": "Chat invite link that was used by the user to send the join request"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "name": "Telegram Message",
+  "description": "Structure of a Telegram Message object returned by the Bot API",
+  "fields": [
+    {
+      "name": "message_id",
+      "type": "integer",
+      "required": true,
+      "description": "Unique message identifier inside the chat"
+    },
+    {
+      "name": "from",
+      "type": "User",
+      "required": false,
+      "description": "Sender of the message; empty for messages sent to channels",
+      "fields": [
+        { "name": "id", "type": "integer", "required": true },
+        { "name": "is_bot", "type": "boolean", "required": true },
+        { "name": "first_name", "type": "string", "required": true },
+        { "name": "last_name", "type": "string", "required": false },
+        { "name": "username", "type": "string", "required": false },
+        { "name": "language_code", "type": "string", "required": false },
+        { "name": "is_premium", "type": "boolean", "required": false }
+      ]
+    },
+    {
+      "name": "chat",
+      "type": "Chat",
+      "required": true,
+      "description": "Conversation the message belongs to",
+      "fields": [
+        { "name": "id", "type": "integer", "required": true },
+        { "name": "type", "type": "string", "required": true, "enum": ["private", "group", "supergroup", "channel"] },
+        { "name": "title", "type": "string", "required": false },
+        { "name": "username", "type": "string", "required": false },
+        { "name": "first_name", "type": "string", "required": false },
+        { "name": "last_name", "type": "string", "required": false },
+        { "name": "description", "type": "string", "required": false }
+      ]
+    },
+    {
+      "name": "date",
+      "type": "integer",
+      "required": true,
+      "description": "Date the message was sent in Unix time"
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "required": false,
+      "description": "For text messages, the actual UTF-8 text (max 4096 characters)"
+    },
+    {
+      "name": "entities",
+      "type": "array<MessageEntity>",
+      "required": false,
+      "description": "Special entities like usernames, URLs, bot commands in the text"
+    },
+    {
+      "name": "caption",
+      "type": "string",
+      "required": false,
+      "description": "Caption for animation, audio, document, photo, video or voice (max 1024 characters)"
+    },
+    {
+      "name": "reply_to_message",
+      "type": "Message",
+      "required": false,
+      "description": "For replies, the original message"
+    },
+    {
+      "name": "edit_date",
+      "type": "integer",
+      "required": false,
+      "description": "Date the message was last edited in Unix time"
+    },
+    {
+      "name": "forward_from",
+      "type": "User",
+      "required": false,
+      "description": "For forwarded messages, sender of the original message"
+    },
+    {
+      "name": "new_chat_members",
+      "type": "array<User>",
+      "required": false,
+      "description": "New members added to the group or supergroup"
+    },
+    {
+      "name": "left_chat_member",
+      "type": "User",
+      "required": false,
+      "description": "A member removed from the group"
+    },
+    {
+      "name": "pinned_message",
+      "type": "Message",
+      "required": false,
+      "description": "Specified message was pinned"
+    }
+  ]
+}

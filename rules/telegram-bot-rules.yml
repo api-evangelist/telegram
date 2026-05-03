@@ -1,0 +1,111 @@
+extends: spectral:oas
+rules:
+  telegram-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    message: "Operation summary '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-z0-9]*([ ][A-Z][a-z0-9]*)*|[A-Z]+)$"
+
+  telegram-operation-must-have-tag:
+    description: All operations must have at least one tag
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  telegram-operation-must-have-description:
+    description: All operations should have a description
+    severity: info
+    given: "$.paths[*][*]"
+    then:
+      field: description
+      function: truthy
+
+  telegram-operation-must-have-operationid:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+
+  telegram-operationid-camelcase:
+    description: Operation IDs must use camelCase (Telegram method naming convention)
+    message: "OperationId '{{value}}' must use camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  telegram-response-200-required:
+    description: All operations must define a 200 response
+    severity: error
+    given: "$.paths[*][*].responses"
+    then:
+      field: "200"
+      function: truthy
+
+  telegram-response-must-have-schema:
+    description: All 200 responses must have a content schema
+    severity: warn
+    given: "$.paths[*][*].responses.200"
+    then:
+      field: content
+      function: truthy
+
+  telegram-schema-must-have-description:
+    description: All schema properties should have descriptions
+    severity: info
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy
+
+  telegram-request-body-must-have-schema:
+    description: All request bodies must have a schema
+    severity: error
+    given: "$.paths[*][*].requestBody.content[*]"
+    then:
+      field: schema
+      function: truthy
+
+  telegram-no-empty-descriptions:
+    description: Descriptions must not be empty strings
+    message: "Description cannot be empty"
+    severity: warn
+    given: "$..description"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".+"
+
+  telegram-info-title-required:
+    description: API info must have a title
+    severity: error
+    given: "$.info"
+    then:
+      field: title
+      function: truthy
+
+  telegram-info-version-required:
+    description: API info must have a version
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  telegram-servers-required:
+    description: API must define at least one server
+    severity: warn
+    given: "$"
+    then:
+      field: servers
+      function: truthy

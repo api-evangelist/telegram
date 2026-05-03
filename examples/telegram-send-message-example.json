@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.telegram.org/bot{token}/sendMessage",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "chat_id": 123456789,
+      "text": "Hello from the Telegram Bot API! This message supports *bold* and _italic_ text.",
+      "parse_mode": "Markdown",
+      "disable_notification": false
+    }
+  },
+  "response": {
+    "ok": true,
+    "result": {
+      "message_id": 42,
+      "from": {
+        "id": 987654321,
+        "is_bot": true,
+        "first_name": "MyBot",
+        "username": "my_example_bot"
+      },
+      "chat": {
+        "id": 123456789,
+        "first_name": "John",
+        "last_name": "Doe",
+        "username": "johndoe",
+        "type": "private"
+      },
+      "date": 1746268800,
+      "text": "Hello from the Telegram Bot API! This message supports bold and italic text.",
+      "entities": [
+        {
+          "offset": 48,
+          "length": 4,
+          "type": "bold"
+        },
+        {
+          "offset": 57,
+          "length": 6,
+          "type": "italic"
+        }
+      ]
+    }
+  }
+}

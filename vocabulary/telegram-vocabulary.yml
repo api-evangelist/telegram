@@ -1,0 +1,347 @@
+name: Telegram Vocabulary
+description: >-
+  Vocabulary and taxonomy for the Telegram platform and Bot API. Covers core
+  messaging concepts, bot capabilities, chat types, update types, and Telegram-
+  specific terminology used throughout the platform and developer ecosystem.
+version: '1.0'
+created: '2026-05-03'
+modified: '2026-05-03'
+url: https://core.telegram.org/bots/api
+
+categories:
+  - name: Core Entities
+    description: Fundamental objects in the Telegram data model
+    terms:
+      - term: Update
+        definition: >-
+          The top-level object representing an incoming event on Telegram.
+          At most one optional field is present per update (message, callback_query, etc.).
+        tags:
+          - Core
+          - Data Model
+      - term: Message
+        definition: >-
+          Represents a message sent in a Telegram chat. Can contain text, media,
+          files, stickers, locations, contacts, polls, or service information.
+        tags:
+          - Core
+          - Data Model
+      - term: User
+        definition: >-
+          Represents a Telegram user or bot account with a unique numeric ID,
+          name, username, and optional language code.
+        tags:
+          - Core
+          - Data Model
+      - term: Chat
+        definition: >-
+          Represents a private conversation, group, supergroup, or channel.
+          Identified by a unique integer ID.
+        tags:
+          - Core
+          - Data Model
+      - term: ChatMember
+        definition: >-
+          Contains information about a member of a chat including their status
+          (creator, administrator, member, restricted, left, kicked).
+        tags:
+          - Core
+          - Data Model
+      - term: File
+        definition: >-
+          Represents a file hosted on Telegram servers. Identified by file_id
+          (for reuse) and file_unique_id (stable identifier).
+        tags:
+          - Core
+          - Data Model
+
+  - name: Chat Types
+    description: Different types of conversations on Telegram
+    terms:
+      - term: Private Chat
+        definition: >-
+          A one-on-one conversation between two users or between a user and a bot.
+          Chat type value: "private".
+        tags:
+          - Chat Types
+      - term: Group
+        definition: >-
+          A chat with multiple members (up to 200,000 in supergroups). Original
+          groups have type "group"; promoted groups become type "supergroup".
+        tags:
+          - Chat Types
+      - term: Supergroup
+        definition: >-
+          An advanced group chat with up to 200,000 members, supporting topics,
+          admin rights, join requests, and message history. Type: "supergroup".
+        tags:
+          - Chat Types
+      - term: Channel
+        definition: >-
+          A broadcast medium for sending messages to large audiences. Channels
+          can be public (searchable by username) or private (invite link only).
+        tags:
+          - Chat Types
+      - term: Forum
+        definition: >-
+          A supergroup with topics enabled, allowing conversations to be
+          organized into separate discussion threads.
+        tags:
+          - Chat Types
+
+  - name: Bot Concepts
+    description: Concepts specific to Telegram bot development
+    terms:
+      - term: Bot
+        definition: >-
+          A Telegram account operated by software, not a human. Created via
+          @BotFather. Identified by a numeric user ID and a username ending in "bot".
+        tags:
+          - Bot Development
+      - term: BotFather
+        definition: >-
+          The official Telegram bot for creating and managing bot accounts.
+          Used to generate bot tokens, set names, descriptions, and commands.
+        tags:
+          - Bot Development
+      - term: Bot Token
+        definition: >-
+          A unique authentication string in the format "123456789:ABCdef..."
+          that identifies a bot and authorizes API requests.
+        tags:
+          - Bot Development
+          - Authentication
+      - term: Bot Command
+        definition: >-
+          A text command starting with "/" that triggers bot functionality.
+          Commands are registered via setMyCommands and shown in the command menu.
+        tags:
+          - Bot Development
+      - term: Long Polling
+        definition: >-
+          A method for receiving updates where the bot repeatedly calls getUpdates
+          and waits for new updates to arrive. Alternative to webhooks.
+        tags:
+          - Bot Development
+          - Updates
+      - term: Webhook
+        definition: >-
+          A method for receiving updates where Telegram pushes new events to a
+          specified HTTPS URL in real-time. Set via setWebhook.
+        tags:
+          - Bot Development
+          - Updates
+      - term: Inline Keyboard
+        definition: >-
+          A keyboard with clickable buttons attached to a message. Each button
+          triggers a callback_query update when pressed.
+        tags:
+          - Bot Development
+          - UI
+      - term: Reply Keyboard
+        definition: >-
+          A custom keyboard shown at the bottom of the chat. Buttons send predefined
+          text messages when tapped.
+        tags:
+          - Bot Development
+          - UI
+      - term: Inline Query
+        definition: >-
+          Triggered when a user types "@bot_username query" in any chat. Allows
+          bots to provide results in any conversation without being a member.
+        tags:
+          - Bot Development
+      - term: Callback Query
+        definition: >-
+          An update triggered when a user presses an inline keyboard button.
+          Contains the button's data and must be answered via answerCallbackQuery.
+        tags:
+          - Bot Development
+
+  - name: Message Types
+    description: Different content types that can be sent in messages
+    terms:
+      - term: Text Message
+        definition: A message containing UTF-8 text up to 4096 characters.
+        tags:
+          - Message Types
+      - term: Photo
+        definition: An image sent via sendPhoto. Stored in up to 4 sizes by Telegram.
+        tags:
+          - Message Types
+          - Media
+      - term: Document
+        definition: A general file sent via sendDocument. Not compressed by Telegram.
+        tags:
+          - Message Types
+          - Media
+      - term: Audio
+        definition: >-
+          An audio file intended to be played as music, sent via sendAudio.
+          Supports duration, performer, and title metadata.
+        tags:
+          - Message Types
+          - Media
+      - term: Video
+        definition: A video file sent via sendVideo. Supports duration, width, height.
+        tags:
+          - Message Types
+          - Media
+      - term: Voice
+        definition: >-
+          An audio file intended as a voice message (OGG format), sent via
+          sendVoice. Played inline in the chat.
+        tags:
+          - Message Types
+          - Media
+      - term: Sticker
+        definition: >-
+          An image or animation from a sticker set. Stickers have an associated
+          emoji and belong to a named sticker set.
+        tags:
+          - Message Types
+          - Media
+      - term: Poll
+        definition: >-
+          A native Telegram poll with options and optional correct answer for quizzes.
+          Can be regular (multiple choice) or quiz (single correct answer).
+        tags:
+          - Message Types
+      - term: Location
+        definition: >-
+          A geographic coordinate (latitude/longitude) sent via sendLocation.
+          Can be a live location that updates in real-time.
+        tags:
+          - Message Types
+      - term: Contact
+        definition: A phone contact with name and phone number, sent via sendContact.
+        tags:
+          - Message Types
+      - term: Dice
+        definition: >-
+          An animated emoji showing a random value. Available emoji types include
+          dice, dartboard, basketball, soccer ball, slot machine, bowling.
+        tags:
+          - Message Types
+
+  - name: Message Entities
+    description: Special formatting and embedded objects in message text
+    terms:
+      - term: MessageEntity
+        definition: >-
+          A special entity in message text such as a mention, hashtag, URL,
+          bot_command, bold, italic, code, pre, or text_link.
+        tags:
+          - Message Formatting
+      - term: Parse Mode
+        definition: >-
+          Controls how text formatting is interpreted. Options: Markdown, MarkdownV2,
+          HTML. Determines how bold, italic, code blocks are parsed.
+        tags:
+          - Message Formatting
+      - term: Mention
+        definition: >-
+          A @username entity in text that links to a Telegram user or channel.
+          Entity type: "mention".
+        tags:
+          - Message Formatting
+
+  - name: Payments
+    description: Telegram Payments API concepts
+    terms:
+      - term: Invoice
+        definition: >-
+          A payment request sent via sendInvoice. Contains product title, description,
+          price breakdown, and currency. Required for Telegram Payments.
+        tags:
+          - Payments
+      - term: LabeledPrice
+        definition: >-
+          A portion of a total price in Telegram Payments. Contains a label string
+          and amount in the smallest currency units (e.g., cents).
+        tags:
+          - Payments
+      - term: Telegram Stars
+        definition: >-
+          Telegram's virtual currency for in-app purchases and digital goods.
+          Used in payments by passing empty string as provider_token.
+        tags:
+          - Payments
+      - term: Pre-Checkout Query
+        definition: >-
+          An update triggered before a payment is finalized. Bots must answer with
+          answerPreCheckoutQuery to confirm or cancel the order.
+        tags:
+          - Payments
+
+  - name: Administration
+    description: Chat moderation and administration terms
+    terms:
+      - term: Chat Administrator
+        definition: >-
+          A user with elevated privileges in a group or channel. Admins can have
+          granular permissions such as can_delete_messages or can_restrict_members.
+        tags:
+          - Administration
+      - term: Ban
+        definition: >-
+          Removing a user from a chat and preventing them from rejoining.
+          Applied via banChatMember. Can be time-limited.
+        tags:
+          - Administration
+          - Moderation
+      - term: Restriction
+        definition: >-
+          Limiting a user's permissions in a supergroup (e.g., can only read,
+          cannot send media). Applied via restrictChatMember.
+        tags:
+          - Administration
+          - Moderation
+      - term: Join Request
+        definition: >-
+          A request from a user to join a private chat when the chat requires admin
+          approval. Approved or declined via approveChatJoinRequest / declineChatJoinRequest.
+        tags:
+          - Administration
+      - term: Invite Link
+        definition: >-
+          A URL that allows users to join a chat. Can be the primary link or
+          additional custom links with expiry dates and member limits.
+        tags:
+          - Administration
+
+  - name: Technical
+    description: Technical implementation terms
+    terms:
+      - term: Update ID
+        definition: >-
+          A sequential integer identifier for each incoming update. Used to
+          acknowledge processed updates by passing offset = update_id + 1.
+        tags:
+          - Technical
+      - term: Chat ID
+        definition: >-
+          A unique integer (or @username string) identifying a chat. Negative
+          integers typically indicate groups/channels.
+        tags:
+          - Technical
+      - term: File ID
+        definition: >-
+          A base64-encoded string identifying a file on Telegram servers.
+          Can be reused to send the same file multiple times without re-uploading.
+        tags:
+          - Technical
+      - term: MTProto
+        definition: >-
+          Telegram's custom secure communication protocol used by the full Telegram
+          client API (TDLib). The Bot API abstracts this behind simple HTTPS calls.
+        tags:
+          - Technical
+          - Protocol
+      - term: TDLib
+        definition: >-
+          Telegram Database Library — a cross-platform C++ library for building
+          full Telegram clients with MTProto support. Open source on GitHub.
+        tags:
+          - Technical
+          - SDK

@@ -1,0 +1,146 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "telegram": "https://core.telegram.org/schema/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Message": "telegram:Message",
+    "Update": "telegram:Update",
+    "User": "telegram:User",
+    "Chat": "telegram:Chat",
+    "Bot": "telegram:Bot",
+    "ChatMember": "telegram:ChatMember",
+    "BotCommand": "telegram:BotCommand",
+    "InlineQuery": "telegram:InlineQuery",
+    "CallbackQuery": "telegram:CallbackQuery",
+    "Poll": "telegram:Poll",
+    "Invoice": "telegram:Invoice",
+    "StickerSet": "telegram:StickerSet",
+
+    "message_id": {
+      "@id": "telegram:messageId",
+      "@type": "xsd:integer"
+    },
+    "update_id": {
+      "@id": "telegram:updateId",
+      "@type": "xsd:integer"
+    },
+    "chat_id": {
+      "@id": "telegram:chatId",
+      "@type": "xsd:integer"
+    },
+    "user_id": {
+      "@id": "telegram:userId",
+      "@type": "xsd:integer"
+    },
+    "from": {
+      "@id": "telegram:from",
+      "@type": "@id"
+    },
+    "chat": {
+      "@id": "telegram:chat",
+      "@type": "@id"
+    },
+    "date": {
+      "@id": "telegram:date",
+      "@type": "xsd:integer"
+    },
+    "text": {
+      "@id": "telegram:text",
+      "@type": "xsd:string"
+    },
+    "caption": {
+      "@id": "telegram:caption",
+      "@type": "xsd:string"
+    },
+    "first_name": {
+      "@id": "schema:givenName",
+      "@type": "xsd:string"
+    },
+    "last_name": {
+      "@id": "schema:familyName",
+      "@type": "xsd:string"
+    },
+    "username": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "is_bot": {
+      "@id": "telegram:isBot",
+      "@type": "xsd:boolean"
+    },
+    "language_code": {
+      "@id": "schema:inLanguage",
+      "@type": "xsd:string"
+    },
+    "is_premium": {
+      "@id": "telegram:isPremium",
+      "@type": "xsd:boolean"
+    },
+    "title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "invite_link": {
+      "@id": "telegram:inviteLink",
+      "@type": "xsd:string"
+    },
+    "is_anonymous": {
+      "@id": "telegram:isAnonymous",
+      "@type": "xsd:boolean"
+    },
+    "command": {
+      "@id": "telegram:command",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "telegram:memberStatus",
+      "@type": "xsd:string"
+    },
+    "member_count": {
+      "@id": "schema:numberOfMembers",
+      "@type": "xsd:integer"
+    },
+    "currency": {
+      "@id": "schema:currency",
+      "@type": "xsd:string"
+    },
+    "total_amount": {
+      "@id": "schema:totalPrice",
+      "@type": "xsd:integer"
+    },
+    "file_id": {
+      "@id": "telegram:fileId",
+      "@type": "xsd:string"
+    },
+    "file_path": {
+      "@id": "telegram:filePath",
+      "@type": "xsd:string"
+    },
+    "file_size": {
+      "@id": "telegram:fileSize",
+      "@type": "xsd:integer"
+    },
+    "type": {
+      "@id": "telegram:chatType",
+      "@type": "xsd:string"
+    },
+    "question": {
+      "@id": "schema:question",
+      "@type": "xsd:string"
+    },
+    "options": {
+      "@id": "telegram:pollOptions",
+      "@type": "@id"
+    },
+    "total_voter_count": {
+      "@id": "telegram:totalVoterCount",
+      "@type": "xsd:integer"
+    }
+  }
+}

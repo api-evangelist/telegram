@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.telegram.org/bot{token}/sendPoll",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "chat_id": -1001234567890,
+      "question": "What is your favorite programming language?",
+      "options": ["Python", "JavaScript", "Go", "Rust", "Other"],
+      "is_anonymous": false,
+      "type": "regular",
+      "allows_multiple_answers": false
+    }
+  },
+  "response": {
+    "ok": true,
+    "result": {
+      "message_id": 203,
+      "from": {
+        "id": 987654321,
+        "is_bot": true,
+        "first_name": "PollBot",
+        "username": "my_poll_bot"
+      },
+      "chat": {
+        "id": -1001234567890,
+        "title": "Developer Community",
+        "type": "supergroup",
+        "username": "dev_community"
+      },
+      "date": 1746268800,
+      "poll": {
+        "id": "5377525701832658",
+        "question": "What is your favorite programming language?",
+        "options": [
+          { "text": "Python", "voter_count": 0 },
+          { "text": "JavaScript", "voter_count": 0 },
+          { "text": "Go", "voter_count": 0 },
+          { "text": "Rust", "voter_count": 0 },
+          { "text": "Other", "voter_count": 0 }
+        ],
+        "total_voter_count": 0,
+        "is_closed": false,
+        "is_anonymous": false,
+        "type": "regular",
+        "allows_multiple_answers": false
+      }
+    }
+  }
+}

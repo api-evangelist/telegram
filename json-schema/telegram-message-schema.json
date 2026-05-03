@@ -1,0 +1,266 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://core.telegram.org/schema/message",
+  "title": "Telegram Message",
+  "description": "Represents a message sent in a Telegram chat. Can contain text, media, files, stickers, locations, contacts, or service information.",
+  "type": "object",
+  "required": ["message_id", "date", "chat"],
+  "properties": {
+    "message_id": {
+      "type": "integer",
+      "description": "Unique message identifier inside the chat"
+    },
+    "message_thread_id": {
+      "type": "integer",
+      "description": "Unique identifier of a message thread to which the message belongs; for supergroups only"
+    },
+    "from": {
+      "$ref": "#/definitions/User",
+      "description": "Sender of the message; empty for messages sent to channels"
+    },
+    "sender_chat": {
+      "$ref": "#/definitions/Chat",
+      "description": "Sender of the message when sent on behalf of a chat"
+    },
+    "date": {
+      "type": "integer",
+      "description": "Date the message was sent in Unix time"
+    },
+    "chat": {
+      "$ref": "#/definitions/Chat",
+      "description": "Conversation the message belongs to"
+    },
+    "forward_from": {
+      "$ref": "#/definitions/User",
+      "description": "For forwarded messages, sender of the original message"
+    },
+    "forward_from_chat": {
+      "$ref": "#/definitions/Chat",
+      "description": "For messages forwarded from channels or anonymous admin messages, information about the original sender chat"
+    },
+    "forward_date": {
+      "type": "integer",
+      "description": "For forwarded messages, date the original message was sent in Unix time"
+    },
+    "reply_to_message": {
+      "$ref": "#",
+      "description": "For replies in the same chat and message thread, the original message"
+    },
+    "edit_date": {
+      "type": "integer",
+      "description": "Date the message was last edited in Unix time"
+    },
+    "text": {
+      "type": "string",
+      "maxLength": 4096,
+      "description": "For text messages, the actual UTF-8 text of the message"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/MessageEntity"
+      },
+      "description": "For text messages, special entities like usernames, URLs, bot commands etc."
+    },
+    "caption": {
+      "type": "string",
+      "maxLength": 1024,
+      "description": "Caption for the animation, audio, document, photo, video or voice"
+    },
+    "caption_entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/MessageEntity"
+      },
+      "description": "Special entities like usernames, URLs, bot commands in the caption"
+    },
+    "new_chat_members": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/User"
+      },
+      "description": "New members that were added to the group or supergroup"
+    },
+    "left_chat_member": {
+      "$ref": "#/definitions/User",
+      "description": "A member was removed from the group"
+    },
+    "new_chat_title": {
+      "type": "string",
+      "description": "A chat title was changed to this value"
+    },
+    "pinned_message": {
+      "$ref": "#",
+      "description": "Specified message was pinned"
+    },
+    "successful_payment": {
+      "$ref": "#/definitions/SuccessfulPayment",
+      "description": "Message is a service message about a successful payment"
+    },
+    "via_bot": {
+      "$ref": "#/definitions/User",
+      "description": "Bot through which the message was sent"
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": ["id", "is_bot", "first_name"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier for this user or bot"
+        },
+        "is_bot": {
+          "type": "boolean",
+          "description": "True if this user is a bot"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "User's or bot's first name"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "User's or bot's last name"
+        },
+        "username": {
+          "type": "string",
+          "description": "User's or bot's username"
+        },
+        "language_code": {
+          "type": "string",
+          "description": "IETF language tag of the user's language"
+        },
+        "is_premium": {
+          "type": "boolean",
+          "description": "True if this user is a Telegram Premium user"
+        },
+        "can_join_groups": {
+          "type": "boolean",
+          "description": "True if the bot can be invited to groups"
+        },
+        "can_read_all_group_messages": {
+          "type": "boolean",
+          "description": "True if privacy mode is disabled for the bot"
+        },
+        "supports_inline_queries": {
+          "type": "boolean",
+          "description": "True if the bot supports inline queries"
+        }
+      }
+    },
+    "Chat": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier for this chat"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["private", "group", "supergroup", "channel"],
+          "description": "Type of chat"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title for supergroups, channels and group chats"
+        },
+        "username": {
+          "type": "string",
+          "description": "Username for private chats, supergroups and channels"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "First name of the other party in a private chat"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Last name of the other party in a private chat"
+        },
+        "is_forum": {
+          "type": "boolean",
+          "description": "True if the supergroup chat is a forum"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description, for groups, supergroups and channel chats"
+        },
+        "invite_link": {
+          "type": "string",
+          "description": "Primary invite link, for groups, supergroups and channels"
+        },
+        "member_count": {
+          "type": "integer",
+          "description": "Number of members in the chat"
+        }
+      }
+    },
+    "MessageEntity": {
+      "type": "object",
+      "required": ["type", "offset", "length"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "mention", "hashtag", "cashtag", "bot_command", "url", "email",
+            "phone_number", "bold", "italic", "underline", "strikethrough",
+            "spoiler", "blockquote", "code", "pre", "text_link", "text_mention",
+            "custom_emoji"
+          ],
+          "description": "Type of the entity"
+        },
+        "offset": {
+          "type": "integer",
+          "description": "Offset in UTF-16 code units to the start of the entity"
+        },
+        "length": {
+          "type": "integer",
+          "description": "Length of the entity in UTF-16 code units"
+        },
+        "url": {
+          "type": "string",
+          "description": "For text_link only, URL that will be opened after user taps on the text"
+        },
+        "user": {
+          "$ref": "#/definitions/User",
+          "description": "For text_mention only, the mentioned user"
+        },
+        "language": {
+          "type": "string",
+          "description": "For pre only, the programming language of the entity text"
+        }
+      }
+    },
+    "SuccessfulPayment": {
+      "type": "object",
+      "required": ["currency", "total_amount", "invoice_payload", "telegram_payment_charge_id", "provider_payment_charge_id"],
+      "properties": {
+        "currency": {
+          "type": "string",
+          "description": "Three-letter ISO 4217 currency code"
+        },
+        "total_amount": {
+          "type": "integer",
+          "description": "Total price in the smallest units of the currency"
+        },
+        "invoice_payload": {
+          "type": "string",
+          "description": "Bot-specified invoice payload"
+        },
+        "shipping_option_id": {
+          "type": "string",
+          "description": "Identifier of the shipping option chosen by the user"
+        },
+        "telegram_payment_charge_id": {
+          "type": "string",
+          "description": "Telegram payment identifier"
+        },
+        "provider_payment_charge_id": {
+          "type": "string",
+          "description": "Provider payment identifier"
+        }
+      }
+    }
+  }
+}
