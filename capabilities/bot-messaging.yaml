@@ -1,376 +1,624 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Telegram Bot Messaging"
-  description: >-
-    Unified capability for Telegram bot messaging workflows. Covers sending messages,
-    media, polls, and managing updates via webhooks or long polling. Designed for
-    developers building notification systems, chatbots, and interactive experiences
-    on Telegram.
+  label: Telegram Bot Messaging
+  description: Unified capability for Telegram bot messaging workflows. Covers sending messages, media, polls, and managing
+    updates via webhooks or long polling. Designed for developers building notification systems, chatbots, and interactive
+    experiences on Telegram.
   tags:
-    - Bots
-    - Chat
-    - Messaging
-    - Notifications
-    - Telegram
-    - Webhooks
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Bots
+  - Chat
+  - Messaging
+  - Notifications
+  - Telegram
+  - Webhooks
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      TELEGRAM_BOT_TOKEN: TELEGRAM_BOT_TOKEN
-
+- namespace: env
+  keys:
+    TELEGRAM_BOT_TOKEN: TELEGRAM_BOT_TOKEN
 capability:
   consumes:
-    - import: telegram-bot
-      location: ./shared/telegram-bot.yaml
-
+  - type: http
+    namespace: telegram-bot
+    baseUri: https://api.telegram.org/bot{token}
+    description: Telegram Bot API - interact with bots, chats, users, and messages on the Telegram platform.
+    authentication:
+      type: apikey
+      key: token
+      value: '{{TELEGRAM_BOT_TOKEN}}'
+      placement: path
+    resources:
+    - name: bot-info
+      path: /getMe
+      description: Bot identity and configuration
+      operations:
+      - name: get-me
+        method: POST
+        description: Get basic bot information and authentication test
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: updates
+      path: /getUpdates
+      description: Receive incoming updates via long polling
+      operations:
+      - name: get-updates
+        method: POST
+        description: Receive incoming updates using long polling
+        inputParameters:
+        - name: offset
+          in: body
+          type: integer
+          required: false
+          description: Identifier of the first update to be returned
+        - name: limit
+          in: body
+          type: integer
+          required: false
+          description: Limits number of updates to retrieve (1-100)
+        - name: timeout
+          in: body
+          type: integer
+          required: false
+          description: Timeout in seconds for long polling
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.result
+    - name: webhook
+      path: /setWebhook
+      description: Configure incoming webhook for updates
+      operations:
+      - name: set-webhook
+        method: POST
+        description: Specify URL for incoming webhook updates
+        inputParameters:
+        - name: url
+          in: body
+          type: string
+          required: true
+          description: HTTPS URL to send updates to
+        - name: max_connections
+          in: body
+          type: integer
+          required: false
+          description: Maximum simultaneous HTTPS connections (1-100)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: boolean
+          value: $.result
+      - name: delete-webhook
+        method: POST
+        description: Remove webhook integration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: boolean
+          value: $.result
+      - name: get-webhook-info
+        method: POST
+        description: Get current webhook status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+    - name: messages
+      path: /sendMessage
+      description: Send various types of messages
+      operations:
+      - name: send-message
+        method: POST
+        description: Send a text message to a chat
+        inputParameters:
+        - name: chat_id
+          in: body
+          type: string
+          required: true
+          description: Unique identifier for the target chat
+        - name: text
+          in: body
+          type: string
+          required: true
+          description: Text of the message to be sent
+        - name: parse_mode
+          in: body
+          type: string
+          required: false
+          description: Markdown, MarkdownV2, or HTML
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+    - name: send-photo
+      path: /sendPhoto
+      description: Send photos
+      operations:
+      - name: send-photo
+        method: POST
+        description: Send a photo to a chat
+        inputParameters:
+        - name: chat_id
+          in: body
+          type: string
+          required: true
+          description: Unique identifier for the target chat
+        - name: photo
+          in: body
+          type: string
+          required: true
+          description: Photo to send (file_id or URL)
+        - name: caption
+          in: body
+          type: string
+          required: false
+          description: Photo caption
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+    - name: send-document
+      path: /sendDocument
+      description: Send documents and files
+      operations:
+      - name: send-document
+        method: POST
+        description: Send a document file to a chat
+        inputParameters:
+        - name: chat_id
+          in: body
+          type: string
+          required: true
+          description: Unique identifier for the target chat
+        - name: document
+          in: body
+          type: string
+          required: true
+          description: File to send (file_id or URL)
+        - name: caption
+          in: body
+          type: string
+          required: false
+          description: Document caption
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+    - name: send-poll
+      path: /sendPoll
+      description: Create and send polls
+      operations:
+      - name: send-poll
+        method: POST
+        description: Send a native poll to a chat
+        inputParameters:
+        - name: chat_id
+          in: body
+          type: string
+          required: true
+          description: Unique identifier for the target chat
+        - name: question
+          in: body
+          type: string
+          required: true
+          description: Poll question (1-300 characters)
+        - name: options
+          in: body
+          type: array
+          required: true
+          description: List of answer options (2-10)
+        - name: is_anonymous
+          in: body
+          type: boolean
+          required: false
+          description: True if the poll needs to be anonymous
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+    - name: chat-management
+      path: /getChat
+      description: Manage chat settings, members, and permissions
+      operations:
+      - name: get-chat
+        method: POST
+        description: Get up-to-date information about a chat
+        inputParameters:
+        - name: chat_id
+          in: body
+          type: string
+          required: true
+          description: Unique identifier for the target chat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+      - name: get-chat-administrators
+        method: POST
+        description: Get list of administrators in a chat
+        inputParameters:
+        - name: chat_id
+          in: body
+          type: string
+          required: true
+          description: Unique identifier for the target chat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.result
+      - name: get-chat-member-count
+        method: POST
+        description: Get the number of members in a chat
+        inputParameters:
+        - name: chat_id
+          in: body
+          type: string
+          required: true
+          description: Unique identifier for the target chat
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: integer
+          value: $.result
+    - name: bot-commands
+      path: /setMyCommands
+      description: Manage bot command menus
+      operations:
+      - name: set-my-commands
+        method: POST
+        description: Set the list of bot commands
+        inputParameters:
+        - name: commands
+          in: body
+          type: array
+          required: true
+          description: List of bot commands (max 100)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: boolean
+          value: $.result
+      - name: get-my-commands
+        method: POST
+        description: Get the current list of bot commands
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.result
   exposes:
-    - type: rest
-      port: 8080
-      namespace: telegram-messaging-api
-      description: "Unified REST API for Telegram bot messaging and chat management."
-      resources:
-        - path: /v1/bot
-          name: bot
-          description: "Bot information and status"
-          operations:
-            - method: GET
-              name: get-bot-info
-              description: "Get bot information and verify authentication"
-              call: "telegram-bot.get-me"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/updates
-          name: updates
-          description: "Incoming updates from Telegram users"
-          operations:
-            - method: GET
-              name: get-updates
-              description: "Poll for incoming messages, callbacks, and other updates"
-              call: "telegram-bot.get-updates"
-              with:
-                offset: "rest.offset"
-                limit: "rest.limit"
-                timeout: "rest.timeout"
-              outputParameters:
-                - type: array
-                  mapping: "$.result"
-
-        - path: /v1/webhook
-          name: webhook
-          description: "Webhook configuration for real-time updates"
-          operations:
-            - method: GET
-              name: get-webhook-info
-              description: "Get current webhook status and configuration"
-              call: "telegram-bot.get-webhook-info"
-              outputParameters:
-                - type: object
-                  mapping: "$.result"
-            - method: POST
-              name: set-webhook
-              description: "Configure a webhook URL to receive real-time updates"
-              call: "telegram-bot.set-webhook"
-              with:
-                url: "rest.url"
-              outputParameters:
-                - type: boolean
-                  mapping: "$.result"
-            - method: DELETE
-              name: delete-webhook
-              description: "Remove the webhook integration and switch to long polling"
-              call: "telegram-bot.delete-webhook"
-              outputParameters:
-                - type: boolean
-                  mapping: "$.result"
-
-        - path: /v1/messages
-          name: messages
-          description: "Send messages and media to chats"
-          operations:
-            - method: POST
-              name: send-message
-              description: "Send a text message to a chat or user"
-              call: "telegram-bot.send-message"
-              with:
-                chat_id: "rest.chat_id"
-                text: "rest.text"
-                parse_mode: "rest.parse_mode"
-              outputParameters:
-                - type: object
-                  mapping: "$.result"
-
-        - path: /v1/photos
-          name: photos
-          description: "Send photos to chats"
-          operations:
-            - method: POST
-              name: send-photo
-              description: "Send a photo to a chat"
-              call: "telegram-bot.send-photo"
-              with:
-                chat_id: "rest.chat_id"
-                photo: "rest.photo"
-                caption: "rest.caption"
-              outputParameters:
-                - type: object
-                  mapping: "$.result"
-
-        - path: /v1/documents
-          name: documents
-          description: "Send documents and files to chats"
-          operations:
-            - method: POST
-              name: send-document
-              description: "Send a document or file to a chat"
-              call: "telegram-bot.send-document"
-              with:
-                chat_id: "rest.chat_id"
-                document: "rest.document"
-                caption: "rest.caption"
-              outputParameters:
-                - type: object
-                  mapping: "$.result"
-
-        - path: /v1/polls
-          name: polls
-          description: "Create polls in chats"
-          operations:
-            - method: POST
-              name: send-poll
-              description: "Send a native poll to a chat"
-              call: "telegram-bot.send-poll"
-              with:
-                chat_id: "rest.chat_id"
-                question: "rest.question"
-                options: "rest.options"
-              outputParameters:
-                - type: object
-                  mapping: "$.result"
-
-        - path: /v1/chats/{chat_id}
-          name: chat
-          description: "Chat information and management"
-          operations:
-            - method: GET
-              name: get-chat
-              description: "Get information about a chat"
-              call: "telegram-bot.get-chat"
-              with:
-                chat_id: "rest.chat_id"
-              outputParameters:
-                - type: object
-                  mapping: "$.result"
-
-        - path: /v1/chats/{chat_id}/administrators
-          name: chat-administrators
-          description: "Chat administrator list"
-          operations:
-            - method: GET
-              name: get-chat-administrators
-              description: "List all administrators in a chat"
-              call: "telegram-bot.get-chat-administrators"
-              with:
-                chat_id: "rest.chat_id"
-              outputParameters:
-                - type: array
-                  mapping: "$.result"
-
-        - path: /v1/commands
-          name: commands
-          description: "Bot command menu"
-          operations:
-            - method: GET
-              name: get-commands
-              description: "Get the current bot command menu"
-              call: "telegram-bot.get-my-commands"
-              outputParameters:
-                - type: array
-                  mapping: "$.result"
-            - method: PUT
-              name: set-commands
-              description: "Update the bot command menu"
-              call: "telegram-bot.set-my-commands"
-              with:
-                commands: "rest.commands"
-              outputParameters:
-                - type: boolean
-                  mapping: "$.result"
-
-    - type: mcp
-      port: 9090
-      namespace: telegram-messaging-mcp
-      transport: http
-      description: "MCP server for AI-assisted Telegram bot messaging, chat management, and automation."
-      tools:
-        - name: get-bot-info
-          description: "Get basic information about the Telegram bot including name, username, and capabilities"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "telegram-bot.get-me"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-updates
-          description: "Poll Telegram for new incoming messages, button clicks, and other updates via long polling"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "telegram-bot.get-updates"
-          with:
-            offset: "tools.offset"
-            limit: "tools.limit"
-            timeout: "tools.timeout"
-          outputParameters:
-            - type: array
-              mapping: "$.result"
-
-        - name: get-webhook-info
-          description: "Get the current webhook configuration and status including last error and pending update count"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "telegram-bot.get-webhook-info"
-          outputParameters:
-            - type: object
-              mapping: "$.result"
-
-        - name: set-webhook
-          description: "Configure a webhook URL so Telegram pushes updates in real-time instead of requiring polling"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "telegram-bot.set-webhook"
-          with:
-            url: "tools.url"
-          outputParameters:
-            - type: boolean
-              mapping: "$.result"
-
-        - name: send-text-message
-          description: "Send a text message to a Telegram chat, group, or channel. Supports Markdown and HTML formatting."
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "telegram-bot.send-message"
-          with:
-            chat_id: "tools.chat_id"
-            text: "tools.text"
-            parse_mode: "tools.parse_mode"
-          outputParameters:
-            - type: object
-              mapping: "$.result"
-
-        - name: send-photo
-          description: "Send a photo to a Telegram chat with an optional caption"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "telegram-bot.send-photo"
-          with:
-            chat_id: "tools.chat_id"
-            photo: "tools.photo"
-            caption: "tools.caption"
-          outputParameters:
-            - type: object
-              mapping: "$.result"
-
-        - name: send-document
-          description: "Send a document or file to a Telegram chat"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "telegram-bot.send-document"
-          with:
-            chat_id: "tools.chat_id"
-            document: "tools.document"
-            caption: "tools.caption"
-          outputParameters:
-            - type: object
-              mapping: "$.result"
-
-        - name: create-poll
-          description: "Create and send a native Telegram poll to gather opinions from chat members"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "telegram-bot.send-poll"
-          with:
-            chat_id: "tools.chat_id"
-            question: "tools.question"
-            options: "tools.options"
-            is_anonymous: "tools.is_anonymous"
-          outputParameters:
-            - type: object
-              mapping: "$.result"
-
-        - name: get-chat-info
-          description: "Get detailed information about a chat including title, description, member count, and invite link"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "telegram-bot.get-chat"
-          with:
-            chat_id: "tools.chat_id"
-          outputParameters:
-            - type: object
-              mapping: "$.result"
-
-        - name: list-chat-admins
-          description: "List all administrators in a Telegram chat with their admin permissions"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "telegram-bot.get-chat-administrators"
-          with:
-            chat_id: "tools.chat_id"
-          outputParameters:
-            - type: array
-              mapping: "$.result"
-
-        - name: get-member-count
-          description: "Get the total number of members in a Telegram chat"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "telegram-bot.get-chat-member-count"
-          with:
-            chat_id: "tools.chat_id"
-          outputParameters:
-            - type: integer
-              mapping: "$.result"
-
-        - name: set-bot-commands
-          description: "Set the list of commands shown in the bot's command menu that users see when they type /"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "telegram-bot.set-my-commands"
-          with:
-            commands: "tools.commands"
-          outputParameters:
-            - type: boolean
-              mapping: "$.result"
-
-        - name: get-bot-commands
-          description: "Get the current list of commands in the bot's command menu"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "telegram-bot.get-my-commands"
-          outputParameters:
-            - type: array
-              mapping: "$.result"
+  - type: rest
+    port: 8080
+    namespace: telegram-messaging-api
+    description: Unified REST API for Telegram bot messaging and chat management.
+    resources:
+    - path: /v1/bot
+      name: bot
+      description: Bot information and status
+      operations:
+      - method: GET
+        name: get-bot-info
+        description: Get bot information and verify authentication
+        call: telegram-bot.get-me
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/updates
+      name: updates
+      description: Incoming updates from Telegram users
+      operations:
+      - method: GET
+        name: get-updates
+        description: Poll for incoming messages, callbacks, and other updates
+        call: telegram-bot.get-updates
+        with:
+          offset: rest.offset
+          limit: rest.limit
+          timeout: rest.timeout
+        outputParameters:
+        - type: array
+          mapping: $.result
+    - path: /v1/webhook
+      name: webhook
+      description: Webhook configuration for real-time updates
+      operations:
+      - method: GET
+        name: get-webhook-info
+        description: Get current webhook status and configuration
+        call: telegram-bot.get-webhook-info
+        outputParameters:
+        - type: object
+          mapping: $.result
+      - method: POST
+        name: set-webhook
+        description: Configure a webhook URL to receive real-time updates
+        call: telegram-bot.set-webhook
+        with:
+          url: rest.url
+        outputParameters:
+        - type: boolean
+          mapping: $.result
+      - method: DELETE
+        name: delete-webhook
+        description: Remove the webhook integration and switch to long polling
+        call: telegram-bot.delete-webhook
+        outputParameters:
+        - type: boolean
+          mapping: $.result
+    - path: /v1/messages
+      name: messages
+      description: Send messages and media to chats
+      operations:
+      - method: POST
+        name: send-message
+        description: Send a text message to a chat or user
+        call: telegram-bot.send-message
+        with:
+          chat_id: rest.chat_id
+          text: rest.text
+          parse_mode: rest.parse_mode
+        outputParameters:
+        - type: object
+          mapping: $.result
+    - path: /v1/photos
+      name: photos
+      description: Send photos to chats
+      operations:
+      - method: POST
+        name: send-photo
+        description: Send a photo to a chat
+        call: telegram-bot.send-photo
+        with:
+          chat_id: rest.chat_id
+          photo: rest.photo
+          caption: rest.caption
+        outputParameters:
+        - type: object
+          mapping: $.result
+    - path: /v1/documents
+      name: documents
+      description: Send documents and files to chats
+      operations:
+      - method: POST
+        name: send-document
+        description: Send a document or file to a chat
+        call: telegram-bot.send-document
+        with:
+          chat_id: rest.chat_id
+          document: rest.document
+          caption: rest.caption
+        outputParameters:
+        - type: object
+          mapping: $.result
+    - path: /v1/polls
+      name: polls
+      description: Create polls in chats
+      operations:
+      - method: POST
+        name: send-poll
+        description: Send a native poll to a chat
+        call: telegram-bot.send-poll
+        with:
+          chat_id: rest.chat_id
+          question: rest.question
+          options: rest.options
+        outputParameters:
+        - type: object
+          mapping: $.result
+    - path: /v1/chats/{chat_id}
+      name: chat
+      description: Chat information and management
+      operations:
+      - method: GET
+        name: get-chat
+        description: Get information about a chat
+        call: telegram-bot.get-chat
+        with:
+          chat_id: rest.chat_id
+        outputParameters:
+        - type: object
+          mapping: $.result
+    - path: /v1/chats/{chat_id}/administrators
+      name: chat-administrators
+      description: Chat administrator list
+      operations:
+      - method: GET
+        name: get-chat-administrators
+        description: List all administrators in a chat
+        call: telegram-bot.get-chat-administrators
+        with:
+          chat_id: rest.chat_id
+        outputParameters:
+        - type: array
+          mapping: $.result
+    - path: /v1/commands
+      name: commands
+      description: Bot command menu
+      operations:
+      - method: GET
+        name: get-commands
+        description: Get the current bot command menu
+        call: telegram-bot.get-my-commands
+        outputParameters:
+        - type: array
+          mapping: $.result
+      - method: PUT
+        name: set-commands
+        description: Update the bot command menu
+        call: telegram-bot.set-my-commands
+        with:
+          commands: rest.commands
+        outputParameters:
+        - type: boolean
+          mapping: $.result
+  - type: mcp
+    port: 9090
+    namespace: telegram-messaging-mcp
+    transport: http
+    description: MCP server for AI-assisted Telegram bot messaging, chat management, and automation.
+    tools:
+    - name: get-bot-info
+      description: Get basic information about the Telegram bot including name, username, and capabilities
+      hints:
+        readOnly: true
+        openWorld: false
+      call: telegram-bot.get-me
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-updates
+      description: Poll Telegram for new incoming messages, button clicks, and other updates via long polling
+      hints:
+        readOnly: true
+        openWorld: true
+      call: telegram-bot.get-updates
+      with:
+        offset: tools.offset
+        limit: tools.limit
+        timeout: tools.timeout
+      outputParameters:
+      - type: array
+        mapping: $.result
+    - name: get-webhook-info
+      description: Get the current webhook configuration and status including last error and pending update count
+      hints:
+        readOnly: true
+        openWorld: false
+      call: telegram-bot.get-webhook-info
+      outputParameters:
+      - type: object
+        mapping: $.result
+    - name: set-webhook
+      description: Configure a webhook URL so Telegram pushes updates in real-time instead of requiring polling
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: telegram-bot.set-webhook
+      with:
+        url: tools.url
+      outputParameters:
+      - type: boolean
+        mapping: $.result
+    - name: send-text-message
+      description: Send a text message to a Telegram chat, group, or channel. Supports Markdown and HTML formatting.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: telegram-bot.send-message
+      with:
+        chat_id: tools.chat_id
+        text: tools.text
+        parse_mode: tools.parse_mode
+      outputParameters:
+      - type: object
+        mapping: $.result
+    - name: send-photo
+      description: Send a photo to a Telegram chat with an optional caption
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: telegram-bot.send-photo
+      with:
+        chat_id: tools.chat_id
+        photo: tools.photo
+        caption: tools.caption
+      outputParameters:
+      - type: object
+        mapping: $.result
+    - name: send-document
+      description: Send a document or file to a Telegram chat
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: telegram-bot.send-document
+      with:
+        chat_id: tools.chat_id
+        document: tools.document
+        caption: tools.caption
+      outputParameters:
+      - type: object
+        mapping: $.result
+    - name: create-poll
+      description: Create and send a native Telegram poll to gather opinions from chat members
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: telegram-bot.send-poll
+      with:
+        chat_id: tools.chat_id
+        question: tools.question
+        options: tools.options
+        is_anonymous: tools.is_anonymous
+      outputParameters:
+      - type: object
+        mapping: $.result
+    - name: get-chat-info
+      description: Get detailed information about a chat including title, description, member count, and invite link
+      hints:
+        readOnly: true
+        openWorld: false
+      call: telegram-bot.get-chat
+      with:
+        chat_id: tools.chat_id
+      outputParameters:
+      - type: object
+        mapping: $.result
+    - name: list-chat-admins
+      description: List all administrators in a Telegram chat with their admin permissions
+      hints:
+        readOnly: true
+        openWorld: false
+      call: telegram-bot.get-chat-administrators
+      with:
+        chat_id: tools.chat_id
+      outputParameters:
+      - type: array
+        mapping: $.result
+    - name: get-member-count
+      description: Get the total number of members in a Telegram chat
+      hints:
+        readOnly: true
+        openWorld: false
+      call: telegram-bot.get-chat-member-count
+      with:
+        chat_id: tools.chat_id
+      outputParameters:
+      - type: integer
+        mapping: $.result
+    - name: set-bot-commands
+      description: Set the list of commands shown in the bot's command menu that users see when they type /
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: telegram-bot.set-my-commands
+      with:
+        commands: tools.commands
+      outputParameters:
+      - type: boolean
+        mapping: $.result
+    - name: get-bot-commands
+      description: Get the current list of commands in the bot's command menu
+      hints:
+        readOnly: true
+        openWorld: false
+      call: telegram-bot.get-my-commands
+      outputParameters:
+      - type: array
+        mapping: $.result
