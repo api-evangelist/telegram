@@ -55,7 +55,7 @@ apis:
         url: https://github.com/tdlib/telegram-bot-api
       - type: Authentication
         url: https://core.telegram.org/bots/api#authorizing-your-bot
-      - type: Changelog
+      - type: ChangeLog
         url: https://core.telegram.org/bots/api-changelog
       - type: FAQ
         url: https://core.telegram.org/bots/faq
@@ -94,13 +94,13 @@ apis:
 common:
   - type: Authentication
     url: https://core.telegram.org/bots/api#authorizing-your-bot
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://telegram.org/tos
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://telegram.org/privacy
   - type: Developer Portal
     url: https://core.telegram.org
-  - type: Status
+  - type: StatusPage
     url: https://downdetector.com/status/telegram/
   - type: Blog
     url: https://telegram.org/blog
