@@ -1,0 +1,166 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Telegram Bot API — Message Editing
+  description: 'Telegram Bot API — Message Editing. 3 operations. Lead operation: Delete Message. Self-contained Naftiko capability
+    covering one Telegram business surface.'
+  tags:
+  - Telegram
+  - Message Editing
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELEGRAM_API_KEY: TELEGRAM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bot-message-editing
+    baseUri: https://api.telegram.org/bot{token}
+    description: Telegram Bot API — Message Editing business capability. Self-contained, no shared references.
+    resources:
+    - name: deleteMessage
+      path: /deleteMessage
+      operations:
+      - name: deletemessage
+        method: POST
+        description: Delete Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: editMessageCaption
+      path: /editMessageCaption
+      operations:
+      - name: editmessagecaption
+        method: POST
+        description: Edit Message Caption
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: editMessageText
+      path: /editMessageText
+      operations:
+      - name: editmessagetext
+        method: POST
+        description: Edit Message Text
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.TELEGRAM_API_KEY}}'
+      placement: path
+  exposes:
+  - type: rest
+    namespace: bot-message-editing-rest
+    port: 8080
+    description: REST adapter for Telegram Bot API — Message Editing. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/deletemessage
+      name: deletemessage
+      description: REST surface for deleteMessage.
+      operations:
+      - method: POST
+        name: deletemessage
+        description: Delete Message
+        call: bot-message-editing.deletemessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/editmessagecaption
+      name: editmessagecaption
+      description: REST surface for editMessageCaption.
+      operations:
+      - method: POST
+        name: editmessagecaption
+        description: Edit Message Caption
+        call: bot-message-editing.editmessagecaption
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/editmessagetext
+      name: editmessagetext
+      description: REST surface for editMessageText.
+      operations:
+      - method: POST
+        name: editmessagetext
+        description: Edit Message Text
+        call: bot-message-editing.editmessagetext
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bot-message-editing-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Telegram Bot API — Message Editing. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: delete-message
+      description: Delete Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bot-message-editing.deletemessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: edit-message-caption
+      description: Edit Message Caption
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bot-message-editing.editmessagecaption
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: edit-message-text
+      description: Edit Message Text
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bot-message-editing.editmessagetext
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

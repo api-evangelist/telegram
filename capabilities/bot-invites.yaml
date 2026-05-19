@@ -1,0 +1,166 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Telegram Bot API — Invites
+  description: 'Telegram Bot API — Invites. 3 operations. Lead operation: Create Chat Invite Link. Self-contained Naftiko
+    capability covering one Telegram business surface.'
+  tags:
+  - Telegram
+  - Invites
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELEGRAM_API_KEY: TELEGRAM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bot-invites
+    baseUri: https://api.telegram.org/bot{token}
+    description: Telegram Bot API — Invites business capability. Self-contained, no shared references.
+    resources:
+    - name: createChatInviteLink
+      path: /createChatInviteLink
+      operations:
+      - name: createchatinvitelink
+        method: POST
+        description: Create Chat Invite Link
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: exportChatInviteLink
+      path: /exportChatInviteLink
+      operations:
+      - name: exportchatinvitelink
+        method: POST
+        description: Export Chat Invite Link
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: revokeChatInviteLink
+      path: /revokeChatInviteLink
+      operations:
+      - name: revokechatinvitelink
+        method: POST
+        description: Revoke Chat Invite Link
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.TELEGRAM_API_KEY}}'
+      placement: path
+  exposes:
+  - type: rest
+    namespace: bot-invites-rest
+    port: 8080
+    description: REST adapter for Telegram Bot API — Invites. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/createchatinvitelink
+      name: createchatinvitelink
+      description: REST surface for createChatInviteLink.
+      operations:
+      - method: POST
+        name: createchatinvitelink
+        description: Create Chat Invite Link
+        call: bot-invites.createchatinvitelink
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/exportchatinvitelink
+      name: exportchatinvitelink
+      description: REST surface for exportChatInviteLink.
+      operations:
+      - method: POST
+        name: exportchatinvitelink
+        description: Export Chat Invite Link
+        call: bot-invites.exportchatinvitelink
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/revokechatinvitelink
+      name: revokechatinvitelink
+      description: REST surface for revokeChatInviteLink.
+      operations:
+      - method: POST
+        name: revokechatinvitelink
+        description: Revoke Chat Invite Link
+        call: bot-invites.revokechatinvitelink
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bot-invites-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Telegram Bot API — Invites. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-chat-invite-link
+      description: Create Chat Invite Link
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bot-invites.createchatinvitelink
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-chat-invite-link
+      description: Export Chat Invite Link
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bot-invites.exportchatinvitelink
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: revoke-chat-invite-link
+      description: Revoke Chat Invite Link
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bot-invites.revokechatinvitelink
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

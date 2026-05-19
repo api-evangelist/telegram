@@ -1,11 +1,11 @@
 naftiko: 1.0.0-alpha2
 info:
-  label: Telegram Bot API — Messaging
-  description: 'Telegram Bot API — Messaging. 13 operations. Lead operation: Answer Callback Query. Self-contained Naftiko
+  label: Telegram Bot API — Chat Management
+  description: 'Telegram Bot API — Chat Management. 11 operations. Lead operation: Delete Chat Photo. Self-contained Naftiko
     capability covering one Telegram business surface.'
   tags:
   - Telegram
-  - Messaging
+  - Chat Management
   created: '2026-05-19'
   modified: '2026-05-19'
 binds:
@@ -15,16 +15,16 @@ binds:
 capability:
   consumes:
   - type: http
-    namespace: bot-messaging
+    namespace: bot-chat-management
     baseUri: https://api.telegram.org/bot{token}
-    description: Telegram Bot API — Messaging business capability. Self-contained, no shared references.
+    description: Telegram Bot API — Chat Management business capability. Self-contained, no shared references.
     resources:
-    - name: answerCallbackQuery
-      path: /answerCallbackQuery
+    - name: deleteChatPhoto
+      path: /deleteChatPhoto
       operations:
-      - name: answercallbackquery
+      - name: deletechatphoto
         method: POST
-        description: Answer Callback Query
+        description: Delete Chat Photo
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -36,12 +36,12 @@ capability:
           type: object
           description: Request body (JSON).
           required: true
-    - name: copyMessage
-      path: /copyMessage
+    - name: getChat
+      path: /getChat
       operations:
-      - name: copymessage
+      - name: getchat
         method: POST
-        description: Copy Message
+        description: Get Chat
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -53,12 +53,12 @@ capability:
           type: object
           description: Request body (JSON).
           required: true
-    - name: forwardMessage
-      path: /forwardMessage
+    - name: getChatAdministrators
+      path: /getChatAdministrators
       operations:
-      - name: forwardmessage
+      - name: getchatadministrators
         method: POST
-        description: Forward Message
+        description: Get Chat Administrators
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -70,12 +70,12 @@ capability:
           type: object
           description: Request body (JSON).
           required: true
-    - name: sendAudio
-      path: /sendAudio
+    - name: getChatMember
+      path: /getChatMember
       operations:
-      - name: sendaudio
+      - name: getchatmember
         method: POST
-        description: Send Audio
+        description: Get Chat Member
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -87,12 +87,12 @@ capability:
           type: object
           description: Request body (JSON).
           required: true
-    - name: sendContact
-      path: /sendContact
+    - name: getChatMemberCount
+      path: /getChatMemberCount
       operations:
-      - name: sendcontact
+      - name: getchatmembercount
         method: POST
-        description: Send Contact
+        description: Get Chat Member Count
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -104,12 +104,12 @@ capability:
           type: object
           description: Request body (JSON).
           required: true
-    - name: sendDice
-      path: /sendDice
+    - name: leaveChat
+      path: /leaveChat
       operations:
-      - name: senddice
+      - name: leavechat
         method: POST
-        description: Send Dice
+        description: Leave Chat
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -121,12 +121,12 @@ capability:
           type: object
           description: Request body (JSON).
           required: true
-    - name: sendDocument
-      path: /sendDocument
+    - name: pinChatMessage
+      path: /pinChatMessage
       operations:
-      - name: senddocument
+      - name: pinchatmessage
         method: POST
-        description: Send Document
+        description: Pin Chat Message
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -138,12 +138,12 @@ capability:
           type: object
           description: Request body (JSON).
           required: true
-    - name: sendLocation
-      path: /sendLocation
+    - name: setChatDescription
+      path: /setChatDescription
       operations:
-      - name: sendlocation
+      - name: setchatdescription
         method: POST
-        description: Send Location
+        description: Set Chat Description
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -155,12 +155,12 @@ capability:
           type: object
           description: Request body (JSON).
           required: true
-    - name: sendMessage
-      path: /sendMessage
+    - name: setChatPhoto
+      path: /setChatPhoto
       operations:
-      - name: sendmessage
+      - name: setchatphoto
         method: POST
-        description: Send Message
+        description: Set Chat Photo
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -172,12 +172,12 @@ capability:
           type: object
           description: Request body (JSON).
           required: true
-    - name: sendPhoto
-      path: /sendPhoto
+    - name: setChatTitle
+      path: /setChatTitle
       operations:
-      - name: sendphoto
+      - name: setchattitle
         method: POST
-        description: Send Photo
+        description: Set Chat Title
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -189,46 +189,12 @@ capability:
           type: object
           description: Request body (JSON).
           required: true
-    - name: sendPoll
-      path: /sendPoll
+    - name: unpinChatMessage
+      path: /unpinChatMessage
       operations:
-      - name: sendpoll
+      - name: unpinchatmessage
         method: POST
-        description: Send Poll
-        outputRawFormat: json
-        outputParameters:
-        - name: result
-          type: object
-          value: $.
-        inputParameters:
-        - name: body
-          in: body
-          type: object
-          description: Request body (JSON).
-          required: true
-    - name: sendVideo
-      path: /sendVideo
-      operations:
-      - name: sendvideo
-        method: POST
-        description: Send Video
-        outputRawFormat: json
-        outputParameters:
-        - name: result
-          type: object
-          value: $.
-        inputParameters:
-        - name: body
-          in: body
-          type: object
-          description: Request body (JSON).
-          required: true
-    - name: sendVoice
-      path: /sendVoice
-      operations:
-      - name: sendvoice
-        method: POST
-        description: Send Voice
+        description: Unpin Chat Message
         outputRawFormat: json
         outputParameters:
         - name: result
@@ -247,338 +213,288 @@ capability:
       placement: path
   exposes:
   - type: rest
-    namespace: bot-messaging-rest
+    namespace: bot-chat-management-rest
     port: 8080
-    description: REST adapter for Telegram Bot API — Messaging. One Spectral-compliant resource per consumed operation, prefixed
-      with /v1.
+    description: REST adapter for Telegram Bot API — Chat Management. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
     resources:
-    - path: /v1/answercallbackquery
-      name: answercallbackquery
-      description: REST surface for answerCallbackQuery.
+    - path: /v1/deletechatphoto
+      name: deletechatphoto
+      description: REST surface for deleteChatPhoto.
       operations:
       - method: POST
-        name: answercallbackquery
-        description: Answer Callback Query
-        call: bot-messaging.answercallbackquery
+        name: deletechatphoto
+        description: Delete Chat Photo
+        call: bot-chat-management.deletechatphoto
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/copymessage
-      name: copymessage
-      description: REST surface for copyMessage.
+    - path: /v1/getchat
+      name: getchat
+      description: REST surface for getChat.
       operations:
       - method: POST
-        name: copymessage
-        description: Copy Message
-        call: bot-messaging.copymessage
+        name: getchat
+        description: Get Chat
+        call: bot-chat-management.getchat
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/forwardmessage
-      name: forwardmessage
-      description: REST surface for forwardMessage.
+    - path: /v1/getchatadministrators
+      name: getchatadministrators
+      description: REST surface for getChatAdministrators.
       operations:
       - method: POST
-        name: forwardmessage
-        description: Forward Message
-        call: bot-messaging.forwardmessage
+        name: getchatadministrators
+        description: Get Chat Administrators
+        call: bot-chat-management.getchatadministrators
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/sendaudio
-      name: sendaudio
-      description: REST surface for sendAudio.
+    - path: /v1/getchatmember
+      name: getchatmember
+      description: REST surface for getChatMember.
       operations:
       - method: POST
-        name: sendaudio
-        description: Send Audio
-        call: bot-messaging.sendaudio
+        name: getchatmember
+        description: Get Chat Member
+        call: bot-chat-management.getchatmember
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/sendcontact
-      name: sendcontact
-      description: REST surface for sendContact.
+    - path: /v1/getchatmembercount
+      name: getchatmembercount
+      description: REST surface for getChatMemberCount.
       operations:
       - method: POST
-        name: sendcontact
-        description: Send Contact
-        call: bot-messaging.sendcontact
+        name: getchatmembercount
+        description: Get Chat Member Count
+        call: bot-chat-management.getchatmembercount
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/senddice
-      name: senddice
-      description: REST surface for sendDice.
+    - path: /v1/leavechat
+      name: leavechat
+      description: REST surface for leaveChat.
       operations:
       - method: POST
-        name: senddice
-        description: Send Dice
-        call: bot-messaging.senddice
+        name: leavechat
+        description: Leave Chat
+        call: bot-chat-management.leavechat
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/senddocument
-      name: senddocument
-      description: REST surface for sendDocument.
+    - path: /v1/pinchatmessage
+      name: pinchatmessage
+      description: REST surface for pinChatMessage.
       operations:
       - method: POST
-        name: senddocument
-        description: Send Document
-        call: bot-messaging.senddocument
+        name: pinchatmessage
+        description: Pin Chat Message
+        call: bot-chat-management.pinchatmessage
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/sendlocation
-      name: sendlocation
-      description: REST surface for sendLocation.
+    - path: /v1/setchatdescription
+      name: setchatdescription
+      description: REST surface for setChatDescription.
       operations:
       - method: POST
-        name: sendlocation
-        description: Send Location
-        call: bot-messaging.sendlocation
+        name: setchatdescription
+        description: Set Chat Description
+        call: bot-chat-management.setchatdescription
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/sendmessage
-      name: sendmessage
-      description: REST surface for sendMessage.
+    - path: /v1/setchatphoto
+      name: setchatphoto
+      description: REST surface for setChatPhoto.
       operations:
       - method: POST
-        name: sendmessage
-        description: Send Message
-        call: bot-messaging.sendmessage
+        name: setchatphoto
+        description: Set Chat Photo
+        call: bot-chat-management.setchatphoto
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/sendphoto
-      name: sendphoto
-      description: REST surface for sendPhoto.
+    - path: /v1/setchattitle
+      name: setchattitle
+      description: REST surface for setChatTitle.
       operations:
       - method: POST
-        name: sendphoto
-        description: Send Photo
-        call: bot-messaging.sendphoto
+        name: setchattitle
+        description: Set Chat Title
+        call: bot-chat-management.setchattitle
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
-    - path: /v1/sendpoll
-      name: sendpoll
-      description: REST surface for sendPoll.
+    - path: /v1/unpinchatmessage
+      name: unpinchatmessage
+      description: REST surface for unpinChatMessage.
       operations:
       - method: POST
-        name: sendpoll
-        description: Send Poll
-        call: bot-messaging.sendpoll
-        with:
-          body: rest.body
-        outputParameters:
-        - type: object
-          mapping: $.
-    - path: /v1/sendvideo
-      name: sendvideo
-      description: REST surface for sendVideo.
-      operations:
-      - method: POST
-        name: sendvideo
-        description: Send Video
-        call: bot-messaging.sendvideo
-        with:
-          body: rest.body
-        outputParameters:
-        - type: object
-          mapping: $.
-    - path: /v1/sendvoice
-      name: sendvoice
-      description: REST surface for sendVoice.
-      operations:
-      - method: POST
-        name: sendvoice
-        description: Send Voice
-        call: bot-messaging.sendvoice
+        name: unpinchatmessage
+        description: Unpin Chat Message
+        call: bot-chat-management.unpinchatmessage
         with:
           body: rest.body
         outputParameters:
         - type: object
           mapping: $.
   - type: mcp
-    namespace: bot-messaging-mcp
+    namespace: bot-chat-management-mcp
     port: 9090
     transport: http
-    description: MCP adapter for Telegram Bot API — Messaging. One tool per consumed operation, routed inline through this
-      capability's consumes block.
+    description: MCP adapter for Telegram Bot API — Chat Management. One tool per consumed operation, routed inline through
+      this capability's consumes block.
     tools:
-    - name: answer-callback-query
-      description: Answer Callback Query
+    - name: delete-chat-photo
+      description: Delete Chat Photo
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bot-chat-management.deletechatphoto
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-chat
+      description: Get Chat
       hints:
         readOnly: true
         destructive: false
         idempotent: false
-      call: bot-messaging.answercallbackquery
+      call: bot-chat-management.getchat
       with:
         body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: copy-message
-      description: Copy Message
+    - name: get-chat-administrators
+      description: Get Chat Administrators
       hints:
-        readOnly: false
+        readOnly: true
         destructive: false
         idempotent: false
-      call: bot-messaging.copymessage
+      call: bot-chat-management.getchatadministrators
       with:
         body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: forward-message
-      description: Forward Message
+    - name: get-chat-member
+      description: Get Chat Member
       hints:
-        readOnly: false
+        readOnly: true
         destructive: false
         idempotent: false
-      call: bot-messaging.forwardmessage
+      call: bot-chat-management.getchatmember
       with:
         body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: send-audio
-      description: Send Audio
+    - name: get-chat-member-count
+      description: Get Chat Member Count
       hints:
-        readOnly: false
+        readOnly: true
         destructive: false
         idempotent: false
-      call: bot-messaging.sendaudio
+      call: bot-chat-management.getchatmembercount
       with:
         body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: send-contact
-      description: Send Contact
+    - name: leave-chat
+      description: Leave Chat
       hints:
         readOnly: false
         destructive: false
         idempotent: false
-      call: bot-messaging.sendcontact
+      call: bot-chat-management.leavechat
       with:
         body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: send-dice
-      description: Send Dice
+    - name: pin-chat-message
+      description: Pin Chat Message
       hints:
         readOnly: false
         destructive: false
         idempotent: false
-      call: bot-messaging.senddice
+      call: bot-chat-management.pinchatmessage
       with:
         body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: send-document
-      description: Send Document
+    - name: set-chat-description
+      description: Set Chat Description
       hints:
         readOnly: false
         destructive: false
         idempotent: false
-      call: bot-messaging.senddocument
+      call: bot-chat-management.setchatdescription
       with:
         body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: send-location
-      description: Send Location
+    - name: set-chat-photo
+      description: Set Chat Photo
       hints:
         readOnly: false
         destructive: false
         idempotent: false
-      call: bot-messaging.sendlocation
+      call: bot-chat-management.setchatphoto
       with:
         body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: send-message
-      description: Send Message
+    - name: set-chat-title
+      description: Set Chat Title
       hints:
         readOnly: false
         destructive: false
         idempotent: false
-      call: bot-messaging.sendmessage
+      call: bot-chat-management.setchattitle
       with:
         body: tools.body
       outputParameters:
       - type: object
         mapping: $.
-    - name: send-photo
-      description: Send Photo
+    - name: unpin-chat-message
+      description: Unpin Chat Message
       hints:
         readOnly: false
         destructive: false
         idempotent: false
-      call: bot-messaging.sendphoto
-      with:
-        body: tools.body
-      outputParameters:
-      - type: object
-        mapping: $.
-    - name: send-poll
-      description: Send Poll
-      hints:
-        readOnly: false
-        destructive: false
-        idempotent: false
-      call: bot-messaging.sendpoll
-      with:
-        body: tools.body
-      outputParameters:
-      - type: object
-        mapping: $.
-    - name: send-video
-      description: Send Video
-      hints:
-        readOnly: false
-        destructive: false
-        idempotent: false
-      call: bot-messaging.sendvideo
-      with:
-        body: tools.body
-      outputParameters:
-      - type: object
-        mapping: $.
-    - name: send-voice
-      description: Send Voice
-      hints:
-        readOnly: false
-        destructive: false
-        idempotent: false
-      call: bot-messaging.sendvoice
+      call: bot-chat-management.unpinchatmessage
       with:
         body: tools.body
       outputParameters:

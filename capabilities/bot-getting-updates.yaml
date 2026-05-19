@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Telegram Bot API — Getting Updates
+  description: 'Telegram Bot API — Getting Updates. 4 operations. Lead operation: Delete Webhook. Self-contained Naftiko capability
+    covering one Telegram business surface.'
+  tags:
+  - Telegram
+  - Getting Updates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELEGRAM_API_KEY: TELEGRAM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bot-getting-updates
+    baseUri: https://api.telegram.org/bot{token}
+    description: Telegram Bot API — Getting Updates business capability. Self-contained, no shared references.
+    resources:
+    - name: deleteWebhook
+      path: /deleteWebhook
+      operations:
+      - name: deletewebhook
+        method: POST
+        description: Delete Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: getUpdates
+      path: /getUpdates
+      operations:
+      - name: getupdates
+        method: POST
+        description: Get Updates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: getWebhookInfo
+      path: /getWebhookInfo
+      operations:
+      - name: getwebhookinfo
+        method: POST
+        description: Get Webhook Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: setWebhook
+      path: /setWebhook
+      operations:
+      - name: setwebhook
+        method: POST
+        description: Set Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.TELEGRAM_API_KEY}}'
+      placement: path
+  exposes:
+  - type: rest
+    namespace: bot-getting-updates-rest
+    port: 8080
+    description: REST adapter for Telegram Bot API — Getting Updates. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/deletewebhook
+      name: deletewebhook
+      description: REST surface for deleteWebhook.
+      operations:
+      - method: POST
+        name: deletewebhook
+        description: Delete Webhook
+        call: bot-getting-updates.deletewebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/getupdates
+      name: getupdates
+      description: REST surface for getUpdates.
+      operations:
+      - method: POST
+        name: getupdates
+        description: Get Updates
+        call: bot-getting-updates.getupdates
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/getwebhookinfo
+      name: getwebhookinfo
+      description: REST surface for getWebhookInfo.
+      operations:
+      - method: POST
+        name: getwebhookinfo
+        description: Get Webhook Info
+        call: bot-getting-updates.getwebhookinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/setwebhook
+      name: setwebhook
+      description: REST surface for setWebhook.
+      operations:
+      - method: POST
+        name: setwebhook
+        description: Set Webhook
+        call: bot-getting-updates.setwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bot-getting-updates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Telegram Bot API — Getting Updates. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: delete-webhook
+      description: Delete Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bot-getting-updates.deletewebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-updates
+      description: Get Updates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: bot-getting-updates.getupdates
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-webhook-info
+      description: Get Webhook Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: bot-getting-updates.getwebhookinfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-webhook
+      description: Set Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bot-getting-updates.setwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
