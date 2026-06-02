@@ -1,0 +1,169 @@
+aid: telegram
+name: Telegram (MTProto / TDLib push surface)
+review_type: asyncapi-feasibility
+verdict: not-a-clean-fit
+spec_produced: false
+reviewed_on: '2026-05-29'
+reviewer: Kin Lane <kin@apievangelist.com>
+
+scope: >-
+  Evaluate whether Telegram's user-tier push surface — MTProto (the wire
+  protocol) and TDLib (the official client library that wraps it) — can be
+  honestly described as an AsyncAPI 2.6 document, given that AsyncAPI 2.6
+  has no MTProto binding and the on-the-wire payloads are TL-serialized
+  binary, not JSON/Avro/Protobuf.
+
+summary: >-
+  MTProto is a publicly documented wire protocol and TDLib's td_api Update
+  hierarchy is a publicly documented push surface, so the raw material for
+  a spec exists and would not have to be fabricated. However, AsyncAPI 2.6
+  is not the right container for it. AsyncAPI's official binding set covers
+  AMQP, HTTP, JMS, Kafka, MQTT/MQTT5, NATS, Redis, SNS, SQS, STOMP, WebSockets,
+  Mercure, IBM MQ, Solace, Pulsar, Anypoint MQ, and Google Cloud Pub/Sub —
+  there is no MTProto binding. The on-the-wire transport is a custom framed,
+  AES-256-encrypted, TL-serialized binary stream (optionally tunneled inside
+  TCP, WebSocket, or HTTP), with obfuscation, per-message auth keys, and
+  PFS rekeying. The message payloads are TL constructors, not JSON Schema /
+  Avro / Protobuf objects that AsyncAPI's message.payload field is built to
+  carry. And the production endpoints are not static — clients call
+  help.getConfig at runtime to learn current DC IPs/ports, which cannot be
+  represented faithfully in AsyncAPI's servers block. Producing an AsyncAPI
+  2.6 document would either (a) lie about the transport by claiming a plain
+  "ws" binding that hides MTProto's framing/encryption, or (b) invent a
+  non-standard binding that no AsyncAPI tooling understands. Neither is
+  acceptable under the no-fabrication rule.
+
+public_documentation_confirmed:
+  - probe: GET https://core.telegram.org/mtproto
+    status: 200
+    observed_on: '2026-05-29'
+    note: >-
+      MTProto wire protocol is publicly specified. Documents external header
+      (64-bit auth_key_id + 128-bit msg_key), AES-256 IGE message body
+      encryption, message_id, seq_no, length, and supported transports
+      (TCP, WebSocket, WebSocket-over-HTTPS, HTTP/HTTPS, UDP) plus transport
+      obfuscation and quick acks.
+  - probe: GET https://core.telegram.org/schema
+    status: 200
+    observed_on: '2026-05-29'
+    note: >-
+      Canonical TL schema is published. Current layer at time of review is
+      layer 214 ("Chat Themes with collectible gifts"). JSON projection at
+      https://core.telegram.org/schema/json and end-to-end schema at
+      https://core.telegram.org/schema/end-to-end.
+  - probe: GET https://core.telegram.org/api/updates
+    status: 200
+    observed_on: '2026-05-29'
+    note: >-
+      Push surface is documented. Updates type has constructors updatesTooLong,
+      updateShort, updateShortMessage, updateShortChatMessage,
+      updateShortSentMessage, updates, updatesCombined. Sequencing fields
+      seq, pts/pts_count, qts are documented. Clients receive TL-serialized
+      Updates objects (optionally gzipped) over an already-initialized
+      MTProto connection.
+  - probe: GET https://core.telegram.org/api/datacenter
+    status: 200
+    observed_on: '2026-05-29'
+    note: >-
+      DCs are not exposed as static hostnames. Page explicitly states the
+      proxy access points are obtained via help.getConfig and that ip/port
+      change frequently. Cannot be honestly hardcoded in an AsyncAPI
+      servers block.
+  - probe: GET https://core.telegram.org/tdlib/docs/classtd_1_1td__api_1_1_update.html
+    status: 200
+    observed_on: '2026-05-29'
+    note: >-
+      TDLib td_api::Update is the documented public push surface for client
+      apps. Hundreds of concrete update subclasses are published, covering
+      chat / message / user / file / call / story / business / settings /
+      notification domains. This is what a TDLib-based client subscribes to
+      in practice.
+
+asyncapi_fit_analysis:
+  transport:
+    issue: no-mtproto-binding
+    detail: >-
+      AsyncAPI 2.6's official binding set (amqp, amqp1, http, jms, kafka,
+      mqtt, mqtt5, nats, redis, sns, sqs, stomp, ws, mercure, ibmmq, solace,
+      pulsar, anypoint-mq, googlepubsub) does not include MTProto. The
+      closest binding is ws, but plain ws does not describe MTProto's
+      framing (abridged / intermediate / padded / full), obfuscation
+      preface, auth_key handshake, or AES-IGE payload encryption. A ws
+      binding would misrepresent the wire.
+  servers:
+    issue: dynamic-endpoint-discovery
+    detail: >-
+      Production DC addresses are not static and are obtained at runtime
+      via the help.getConfig RPC. AsyncAPI servers entries require concrete
+      URLs. Pinning yesterday's DC IPs would publish stale, unverifiable
+      data.
+  payloads:
+    issue: tl-binary-not-json-schema
+    detail: >-
+      MTProto / td_api payloads are TL constructors serialized to a custom
+      binary format (32-bit constructor id + typed fields, with bare/boxed
+      semantics, gzip_packed wrapping, and vector encoding). AsyncAPI 2.6
+      messages expect a payload describable by JSON Schema (default), Avro,
+      Protobuf, or another registered schema format. Translating ~200 td_api
+      Update subclasses or the full TL Updates tree into JSON Schema would
+      be a derivative re-modeling, not a description of the protocol — and
+      it would lose the constructor-id and bare-vs-boxed semantics that
+      define the wire.
+  channels:
+    issue: no-channel-or-topic-model
+    detail: >-
+      MTProto multiplexes RPC calls and server-pushed Updates over a single
+      authenticated session keyed by auth_key_id. There is no topic, queue,
+      exchange, or channel namespace to map onto AsyncAPI's channels
+      object. Every Update arrives on the same logical stream.
+  conclusion: >-
+    AsyncAPI 2.6 can describe Telegram's Bot API webhook (already covered by
+    the bot OpenAPI) and could describe a thin WebSocket front-door if
+    Telegram ever published one — but it cannot honestly describe MTProto
+    itself or TDLib's td_api::Update surface.
+
+decision: >-
+  Do not publish an AsyncAPI 2.6 spec for the MTProto / TDLib push surface.
+  The wire protocol and update surface are public and well-documented, so
+  the obstacle is not fabrication risk on the content side — it is that
+  AsyncAPI 2.6 has no MTProto binding, no honest way to represent TL
+  binary payloads in its payload model, no way to represent dynamic DC
+  discovery in its servers block, and no channel concept that matches
+  MTProto's single multiplexed session. Forcing the surface into a ws +
+  JSON-Schema shape would misrepresent the protocol.
+
+apis_yml_action: untouched
+apis_yml_reason: >-
+  Per the task's hard rule, apis.yml is only updated when a spec is
+  produced. No spec was produced, so apis.yml is left as-is. The existing
+  telegram:telegram-tdlib entry already links the TDLib documentation,
+  getting-started page, and tdlib/td GitHub repo, which is the correct
+  reference path for consumers who actually need this surface.
+
+followups:
+  - >-
+    If a future AsyncAPI version (3.x or later) ships an MTProto binding,
+    or if Telegram publishes a JSON projection of td_api Updates that is
+    stable and citable, revisit this decision.
+  - >-
+    Consider modeling specific TDLib JSON interface surfaces (the JSON
+    interface that td_json_client exposes for language bindings) as
+    JSON Schema artifacts under json-schema/ rather than as AsyncAPI —
+    that matches the actual shape developers consume and avoids
+    pretending the wire is something it is not.
+  - >-
+    The Telegram Bot API (already linked from apis.yml as an OpenAPI) is
+    the appropriate surface for REST-style integration; webhooks from the
+    Bot API are the realistic push surface for non-TDLib consumers and
+    could be modeled as AsyncAPI in a future pass if desired.
+
+references:
+  mtproto_protocol: https://core.telegram.org/mtproto
+  tl_schema_index: https://core.telegram.org/schema
+  tl_schema_json: https://core.telegram.org/schema/json
+  end_to_end_schema: https://core.telegram.org/schema/end-to-end
+  updates_mechanism: https://core.telegram.org/api/updates
+  datacenter_discovery: https://core.telegram.org/api/datacenter
+  tdlib_update_class: https://core.telegram.org/tdlib/docs/classtd_1_1td__api_1_1_update.html
+  tdlib_repo: https://github.com/tdlib/td
+  asyncapi_2_6_spec: https://www.asyncapi.com/docs/reference/specification/v2.6.0
