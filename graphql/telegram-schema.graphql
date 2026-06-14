@@ -1,0 +1,962 @@
+"""
+Telegram Bot API - Conceptual GraphQL Schema
+Based on https://core.telegram.org/bots/api
+Covers core types from the Telegram Bot API including messages, chats, users,
+media, keyboards, payments, and webhooks.
+"""
+
+scalar DateTime
+scalar JSON
+
+# ─────────────────────────────────────────────
+# Root types
+# ─────────────────────────────────────────────
+
+type Query {
+  me: User
+  chat(id: ID!): Chat
+  file(fileId: ID!): File
+  webhookInfo: WebhookInfo
+  stickerSet(name: String!): StickerSet
+  userProfilePhotos(userId: ID!, offset: Int, limit: Int): [PhotoSize!]
+}
+
+type Mutation {
+  sendMessage(chatId: ID!, text: String!, replyMarkup: JSON): Message
+  sendPhoto(chatId: ID!, photo: String!, caption: String): Message
+  sendVideo(chatId: ID!, video: String!, caption: String): Message
+  sendAudio(chatId: ID!, audio: String!, caption: String): Message
+  sendDocument(chatId: ID!, document: String!, caption: String): Message
+  sendVoice(chatId: ID!, voice: String!): Message
+  sendVideoNote(chatId: ID!, videoNote: String!): Message
+  sendSticker(chatId: ID!, sticker: String!): Message
+  sendAnimation(chatId: ID!, animation: String!, caption: String): Message
+  sendContact(chatId: ID!, phoneNumber: String!, firstName: String!): Message
+  sendLocation(chatId: ID!, latitude: Float!, longitude: Float!): Message
+  sendPoll(chatId: ID!, question: String!, options: [String!]!): Message
+  sendDice(chatId: ID!, emoji: String): Message
+  sendInvoice(chatId: ID!, title: String!, description: String!, payload: String!, providerToken: String!, currency: String!, prices: [LabeledPrice!]!): Message
+  forwardMessage(chatId: ID!, fromChatId: ID!, messageId: ID!): Message
+  editMessageText(chatId: ID!, messageId: ID!, text: String!): Message
+  deleteMessage(chatId: ID!, messageId: ID!): Boolean
+  answerCallbackQuery(callbackQueryId: ID!, text: String, showAlert: Boolean): Boolean
+  answerInlineQuery(inlineQueryId: ID!, results: [JSON!]!): Boolean
+  answerShippingQuery(shippingQueryId: ID!, ok: Boolean!, shippingOptions: [JSON!]): Boolean
+  answerPreCheckoutQuery(preCheckoutQueryId: ID!, ok: Boolean!, errorMessage: String): Boolean
+  setWebhook(url: String!, maxConnections: Int): Boolean
+  deleteWebhook: Boolean
+  banChatMember(chatId: ID!, userId: ID!): Boolean
+  unbanChatMember(chatId: ID!, userId: ID!): Boolean
+  promoteChatMember(chatId: ID!, userId: ID!, canManageChat: Boolean): Boolean
+  createChatInviteLink(chatId: ID!, expireDate: DateTime, memberLimit: Int): ChatInviteLink
+  revokeChatInviteLink(chatId: ID!, inviteLink: String!): ChatInviteLink
+  leaveChat(chatId: ID!): Boolean
+  pinChatMessage(chatId: ID!, messageId: ID!): Boolean
+  unpinChatMessage(chatId: ID!, messageId: ID!): Boolean
+  setMyCommands(commands: [BotCommand!]!): Boolean
+  deleteMyCommands: Boolean
+}
+
+type Subscription {
+  updates: Update
+}
+
+# ─────────────────────────────────────────────
+# Update types
+# ─────────────────────────────────────────────
+
+"""A Telegram update object — the top-level event dispatched to bots."""
+type Update {
+  updateId: ID!
+  message: Message
+  editedMessage: Message
+  channelPost: Message
+  editedChannelPost: Message
+  inlineQuery: InlineQuery
+  chosenInlineResult: ChosenInlineResult
+  callbackQuery: CallbackQuery
+  shippingQuery: ShippingQuery
+  preCheckoutQuery: PreCheckoutQuery
+  poll: Poll
+  pollAnswer: PollAnswer
+  myChatMember: ChatMemberUpdated
+  chatMember: ChatMemberUpdated
+}
+
+# ─────────────────────────────────────────────
+# Message and content types
+# ─────────────────────────────────────────────
+
+"""A Telegram message in any chat."""
+type Message {
+  messageId: ID!
+  from: User
+  senderChat: Chat
+  date: DateTime!
+  chat: Chat!
+  forwardOrigin: MessageOrigin
+  replyToMessage: Message
+  viaBot: User
+  editDate: DateTime
+  mediaGroupId: String
+  authorSignature: String
+  text: String
+  entities: [MessageEntity!]
+  animation: Animation
+  audio: Audio
+  document: Document
+  photo: [PhotoSize!]
+  sticker: Sticker
+  video: Video
+  videoNote: VideoNote
+  voice: Voice
+  caption: String
+  captionEntities: [MessageEntity!]
+  contact: Contact
+  dice: MessageDice
+  location: Location
+  venue: Venue
+  poll: Poll
+  invoice: Invoice
+  successfulPayment: SuccessfulPayment
+  passportData: PassportData
+  replyMarkup: InlineKeyboardMarkup
+  newChatMembers: [User!]
+  leftChatMember: User
+  newChatTitle: String
+  newChatPhoto: [PhotoSize!]
+  deleteChatPhoto: Boolean
+  groupChatCreated: Boolean
+  supergroupChatCreated: Boolean
+  channelChatCreated: Boolean
+  pinnedMessage: Message
+}
+
+"""Plain text message payload."""
+type MessageText {
+  text: String!
+  entities: [MessageEntity!]
+}
+
+"""Photo message payload."""
+type MessagePhoto {
+  photo: [PhotoSize!]!
+  caption: String
+  captionEntities: [MessageEntity!]
+}
+
+"""Video message payload."""
+type MessageVideo {
+  video: Video!
+  caption: String
+  captionEntities: [MessageEntity!]
+}
+
+"""Document message payload."""
+type MessageDocument {
+  document: Document!
+  caption: String
+  captionEntities: [MessageEntity!]
+}
+
+"""Audio message payload."""
+type MessageAudio {
+  audio: Audio!
+  caption: String
+}
+
+"""Voice note message payload."""
+type MessageVoice {
+  voice: Voice!
+  caption: String
+}
+
+"""Video note (round video) message payload."""
+type MessageVideoNote {
+  videoNote: VideoNote!
+}
+
+"""Sticker message payload."""
+type MessageSticker {
+  sticker: Sticker!
+}
+
+"""Animation (GIF) message payload."""
+type MessageAnimation {
+  animation: Animation!
+  caption: String
+}
+
+"""Contact message payload."""
+type MessageContact {
+  contact: Contact!
+}
+
+"""Live-location or static location message payload."""
+type MessageLocation {
+  location: Location!
+  livePeriod: Int
+  heading: Int
+  proximityAlertRadius: Int
+}
+
+"""Poll message payload."""
+type MessagePoll {
+  poll: Poll!
+}
+
+"""Dice animation message payload."""
+type MessageDice {
+  emoji: String!
+  value: Int!
+}
+
+"""A special entity found in message text."""
+type MessageEntity {
+  type: MessageEntityType!
+  offset: Int!
+  length: Int!
+  url: String
+  user: User
+  language: String
+  customEmojiId: String
+}
+
+enum MessageEntityType {
+  MENTION
+  HASHTAG
+  CASHTAG
+  BOT_COMMAND
+  URL
+  EMAIL
+  PHONE_NUMBER
+  BOLD
+  ITALIC
+  UNDERLINE
+  STRIKETHROUGH
+  SPOILER
+  CODE
+  PRE
+  TEXT_LINK
+  TEXT_MENTION
+  CUSTOM_EMOJI
+}
+
+# ─────────────────────────────────────────────
+# Forward / origin types
+# ─────────────────────────────────────────────
+
+"""Describes the original source of a forwarded message."""
+interface MessageOrigin {
+  type: MessageOriginType!
+  date: DateTime!
+}
+
+enum MessageOriginType {
+  USER
+  HIDDEN_USER
+  CHAT
+  CHANNEL
+}
+
+type ForwardOriginUser implements MessageOrigin {
+  type: MessageOriginType!
+  date: DateTime!
+  senderUser: User!
+}
+
+type ForwardOriginHiddenUser implements MessageOrigin {
+  type: MessageOriginType!
+  date: DateTime!
+  senderUserName: String!
+}
+
+type ForwardOriginChat implements MessageOrigin {
+  type: MessageOriginType!
+  date: DateTime!
+  senderChat: Chat!
+  authorSignature: String
+}
+
+type ForwardOriginChannel implements MessageOrigin {
+  type: MessageOriginType!
+  date: DateTime!
+  chat: Chat!
+  messageId: ID!
+  authorSignature: String
+}
+
+# Convenience union so resolvers can return any origin type
+union ForwardOrigin = ForwardOriginUser | ForwardOriginHiddenUser | ForwardOriginChat | ForwardOriginChannel
+
+# ─────────────────────────────────────────────
+# Chat types
+# ─────────────────────────────────────────────
+
+"""A Telegram chat (private, group, supergroup, or channel)."""
+type Chat {
+  id: ID!
+  type: ChatType!
+  title: String
+  username: String
+  firstName: String
+  lastName: String
+  isForum: Boolean
+  photo: ChatPhoto
+  activeUsernames: [String!]
+  bio: String
+  description: String
+  inviteLink: String
+  pinnedMessage: Message
+  permissions: ChatPermissions
+  slowModeDelay: Int
+  messageAutoDeleteTime: Int
+  hasProtectedContent: Boolean
+  stickerSetName: String
+  canSetStickerSet: Boolean
+  linkedChatId: ID
+  location: ChatLocation
+  memberCount: Int
+}
+
+enum ChatType {
+  PRIVATE
+  GROUP
+  SUPERGROUP
+  CHANNEL
+}
+
+"""Detailed chat member info when a member status changes."""
+type ChatMemberUpdated {
+  chat: Chat!
+  from: User!
+  date: DateTime!
+  oldChatMember: ChatMember!
+  newChatMember: ChatMember!
+  inviteLink: ChatInviteLink
+}
+
+"""Represents a chat member with their status and permissions."""
+type ChatMember {
+  status: ChatMemberStatus!
+  user: User!
+  isAnonymous: Boolean
+  customTitle: String
+  canBeEdited: Boolean
+  canManageChat: Boolean
+  canDeleteMessages: Boolean
+  canManageVideoChats: Boolean
+  canRestrictMembers: Boolean
+  canPromoteMembers: Boolean
+  canChangeInfo: Boolean
+  canInviteUsers: Boolean
+  canPostMessages: Boolean
+  canEditMessages: Boolean
+  canPinMessages: Boolean
+  canManageTopics: Boolean
+  isMember: Boolean
+  canSendMessages: Boolean
+  canSendAudios: Boolean
+  canSendDocuments: Boolean
+  canSendPhotos: Boolean
+  canSendVideos: Boolean
+  canSendVideoNotes: Boolean
+  canSendVoiceNotes: Boolean
+  canSendPolls: Boolean
+  canSendOtherMessages: Boolean
+  canAddWebPagePreviews: Boolean
+  untilDate: DateTime
+}
+
+enum ChatMemberStatus {
+  CREATOR
+  ADMINISTRATOR
+  MEMBER
+  RESTRICTED
+  LEFT
+  KICKED
+}
+
+"""Describes what actions members of a chat are permitted to perform."""
+type ChatPermissions {
+  canSendMessages: Boolean
+  canSendAudios: Boolean
+  canSendDocuments: Boolean
+  canSendPhotos: Boolean
+  canSendVideos: Boolean
+  canSendVideoNotes: Boolean
+  canSendVoiceNotes: Boolean
+  canSendPolls: Boolean
+  canSendOtherMessages: Boolean
+  canAddWebPagePreviews: Boolean
+  canChangeInfo: Boolean
+  canInviteUsers: Boolean
+  canPinMessages: Boolean
+  canManageTopics: Boolean
+}
+
+"""A chat's profile photo (small and big thumbnails)."""
+type ChatPhoto {
+  smallFileId: ID!
+  smallFileUniqueId: ID!
+  bigFileId: ID!
+  bigFileUniqueId: ID!
+}
+
+"""An invite link for a chat."""
+type ChatInviteLink {
+  inviteLink: String!
+  creator: User!
+  createsJoinRequest: Boolean!
+  isPrimary: Boolean!
+  isRevoked: Boolean!
+  name: String
+  expireDate: DateTime
+  memberLimit: Int
+  pendingJoinRequestCount: Int
+}
+
+"""Geographic location of a supergroup."""
+type ChatLocation {
+  location: Location!
+  address: String!
+}
+
+# ─────────────────────────────────────────────
+# User types
+# ─────────────────────────────────────────────
+
+"""A Telegram user or bot account."""
+type User {
+  id: ID!
+  isBot: Boolean!
+  firstName: String!
+  lastName: String
+  username: String
+  languageCode: String
+  isPremium: Boolean
+  addedToAttachmentMenu: Boolean
+  canJoinGroups: Boolean
+  canReadAllGroupMessages: Boolean
+  supportsInlineQueries: Boolean
+}
+
+"""Extended profile information for a user (returned by getChat for private chats)."""
+type UserFullInfo {
+  id: ID!
+  isBot: Boolean!
+  firstName: String!
+  lastName: String
+  username: String
+  bio: String
+  hasPrivateForwards: Boolean
+  hasRestrictedVoiceAndVideoMessages: Boolean
+  profilePhoto: ProfilePhoto
+}
+
+"""A user's profile photo set."""
+type ProfilePhoto {
+  totalCount: Int!
+  photos: [[PhotoSize!]!]!
+}
+
+# ─────────────────────────────────────────────
+# Bot types
+# ─────────────────────────────────────────────
+
+"""A bot command."""
+type BotCommand {
+  command: String!
+  description: String!
+}
+
+"""The full description of a bot."""
+type BotDescription {
+  description: String!
+}
+
+"""The short description of a bot shown on the start screen."""
+type BotShortDescription {
+  shortDescription: String!
+}
+
+# ─────────────────────────────────────────────
+# Inline query types
+# ─────────────────────────────────────────────
+
+"""An incoming inline query from a user."""
+type InlineQuery {
+  id: ID!
+  from: User!
+  query: String!
+  offset: String!
+  chatType: String
+  location: Location
+}
+
+"""One result item returned for an inline query."""
+interface InlineQueryResult {
+  type: String!
+  id: ID!
+}
+
+type InlineQueryResultArticle implements InlineQueryResult {
+  type: String!
+  id: ID!
+  title: String!
+  inputMessageContent: JSON!
+  replyMarkup: InlineKeyboardMarkup
+  url: String
+  hideUrl: Boolean
+  description: String
+  thumbnailUrl: String
+}
+
+type InlineQueryResultPhoto implements InlineQueryResult {
+  type: String!
+  id: ID!
+  photoUrl: String!
+  thumbnailUrl: String!
+  photoWidth: Int
+  photoHeight: Int
+  title: String
+  description: String
+  caption: String
+}
+
+"""Describes the result of an inline query chosen by the user."""
+type ChosenInlineResult {
+  resultId: ID!
+  from: User!
+  location: Location
+  inlineMessageId: String
+  query: String!
+}
+
+# ─────────────────────────────────────────────
+# Callback / payment query types
+# ─────────────────────────────────────────────
+
+"""An incoming callback query from an inline keyboard button."""
+type CallbackQuery {
+  id: ID!
+  from: User!
+  message: Message
+  inlineMessageId: String
+  chatInstance: String!
+  data: String
+  gameShortName: String
+}
+
+"""An incoming shipping query (physical goods)."""
+type ShippingQuery {
+  id: ID!
+  from: User!
+  invoicePayload: String!
+  shippingAddress: ShippingAddress!
+}
+
+"""An incoming pre-checkout query."""
+type PreCheckoutQuery {
+  id: ID!
+  from: User!
+  currency: String!
+  totalAmount: Int!
+  invoicePayload: String!
+  shippingOptionId: String
+  orderInfo: OrderInfo
+}
+
+# ─────────────────────────────────────────────
+# Media / file types
+# ─────────────────────────────────────────────
+
+"""A file available for download from Telegram servers."""
+type File {
+  fileId: ID!
+  fileUniqueId: ID!
+  fileSize: Int
+  filePath: String
+}
+
+"""An animation (GIF or MPEG4 without sound)."""
+type Animation {
+  fileId: ID!
+  fileUniqueId: ID!
+  width: Int!
+  height: Int!
+  duration: Int!
+  thumbnail: PhotoSize
+  fileName: String
+  mimeType: String
+  fileSize: Int
+}
+
+"""An audio file."""
+type Audio {
+  fileId: ID!
+  fileUniqueId: ID!
+  duration: Int!
+  performer: String
+  title: String
+  fileName: String
+  mimeType: String
+  fileSize: Int
+  thumbnail: PhotoSize
+}
+
+"""A generic document / file."""
+type Document {
+  fileId: ID!
+  fileUniqueId: ID!
+  thumbnail: PhotoSize
+  fileName: String
+  mimeType: String
+  fileSize: Int
+}
+
+"""One size of a photo or thumbnail."""
+type PhotoSize {
+  fileId: ID!
+  fileUniqueId: ID!
+  width: Int!
+  height: Int!
+  fileSize: Int
+}
+
+"""A video file."""
+type Video {
+  fileId: ID!
+  fileUniqueId: ID!
+  width: Int!
+  height: Int!
+  duration: Int!
+  thumbnail: PhotoSize
+  fileName: String
+  mimeType: String
+  fileSize: Int
+}
+
+"""A video note (round video message)."""
+type VideoNote {
+  fileId: ID!
+  fileUniqueId: ID!
+  length: Int!
+  duration: Int!
+  thumbnail: PhotoSize
+  fileSize: Int
+}
+
+"""A voice recording."""
+type Voice {
+  fileId: ID!
+  fileUniqueId: ID!
+  duration: Int!
+  mimeType: String
+  fileSize: Int
+}
+
+"""A sticker."""
+type Sticker {
+  fileId: ID!
+  fileUniqueId: ID!
+  type: StickerType!
+  width: Int!
+  height: Int!
+  isAnimated: Boolean!
+  isVideo: Boolean!
+  thumbnail: PhotoSize
+  emoji: String
+  setName: String
+  premiumAnimation: File
+  maskPosition: MaskPosition
+  customEmojiId: String
+  needsRepainting: Boolean
+  fileSize: Int
+}
+
+enum StickerType {
+  REGULAR
+  MASK
+  CUSTOM_EMOJI
+}
+
+"""A sticker set."""
+type StickerSet {
+  name: String!
+  title: String!
+  stickerType: StickerType!
+  stickers: [Sticker!]!
+  thumbnail: PhotoSize
+}
+
+"""The position on a face where a mask sticker should be placed."""
+type MaskPosition {
+  point: MaskPoint!
+  xShift: Float!
+  yShift: Float!
+  scale: Float!
+}
+
+enum MaskPoint {
+  FOREHEAD
+  EYES
+  MOUTH
+  CHIN
+}
+
+# ─────────────────────────────────────────────
+# Location, venue, contact
+# ─────────────────────────────────────────────
+
+"""A geographic point."""
+type Location {
+  longitude: Float!
+  latitude: Float!
+  horizontalAccuracy: Float
+  livePeriod: Int
+  heading: Int
+  proximityAlertRadius: Int
+}
+
+"""A venue (location with name and address)."""
+type Venue {
+  location: Location!
+  title: String!
+  address: String!
+  foursquareId: String
+  foursquareType: String
+  googlePlaceId: String
+  googlePlaceType: String
+}
+
+"""A phone contact."""
+type Contact {
+  phoneNumber: String!
+  firstName: String!
+  lastName: String
+  userId: ID
+  vcard: String
+}
+
+# ─────────────────────────────────────────────
+# Keyboard types
+# ─────────────────────────────────────────────
+
+"""A button in a reply keyboard."""
+type KeyboardButton {
+  text: String!
+  requestUsers: JSON
+  requestChat: JSON
+  requestContact: Boolean
+  requestLocation: Boolean
+  requestPoll: KeyboardButtonPollType
+  webApp: WebAppInfo
+}
+
+"""Criteria for the poll type requested via KeyboardButton."""
+type KeyboardButtonPollType {
+  type: String
+}
+
+"""A button in an inline keyboard."""
+type InlineKeyboardButton {
+  text: String!
+  url: String
+  callbackData: String
+  webApp: WebAppInfo
+  loginUrl: LoginUrl
+  switchInlineQuery: String
+  switchInlineQueryCurrentChat: String
+  switchInlineQueryChosenChat: JSON
+  callbackGame: JSON
+  pay: Boolean
+}
+
+"""A custom reply keyboard with regular buttons."""
+type ReplyKeyboardMarkup {
+  keyboard: [[KeyboardButton!]!]!
+  isPersistent: Boolean
+  resizeKeyboard: Boolean
+  oneTimeKeyboard: Boolean
+  inputFieldPlaceholder: String
+  selective: Boolean
+}
+
+"""An inline keyboard attached to a message."""
+type InlineKeyboardMarkup {
+  inlineKeyboard: [[InlineKeyboardButton!]!]!
+}
+
+"""Describes a Web App."""
+type WebAppInfo {
+  url: String!
+}
+
+"""A login URL for Telegram Login Widget."""
+type LoginUrl {
+  url: String!
+  forwardText: String
+  botUsername: String
+  requestWriteAccess: Boolean
+}
+
+# ─────────────────────────────────────────────
+# Poll types
+# ─────────────────────────────────────────────
+
+"""A poll."""
+type Poll {
+  id: ID!
+  question: String!
+  options: [PollOption!]!
+  totalVoterCount: Int!
+  isClosed: Boolean!
+  isAnonymous: Boolean!
+  type: PollType!
+  allowsMultipleAnswers: Boolean!
+  correctOptionId: Int
+  explanation: String
+  explanationEntities: [MessageEntity!]
+  openPeriod: Int
+  closeDate: DateTime
+}
+
+enum PollType {
+  REGULAR
+  QUIZ
+}
+
+"""A single poll answer option."""
+type PollOption {
+  text: String!
+  voterCount: Int!
+}
+
+"""A user's answer to a non-anonymous poll."""
+type PollAnswer {
+  pollId: ID!
+  voterChat: Chat
+  user: User
+  optionIds: [Int!]!
+}
+
+# ─────────────────────────────────────────────
+# Payment types
+# ─────────────────────────────────────────────
+
+"""A product invoice."""
+type Invoice {
+  title: String!
+  description: String!
+  startParameter: String!
+  currency: String!
+  totalAmount: Int!
+}
+
+"""A shipping address."""
+type ShippingAddress {
+  countryCode: String!
+  state: String!
+  city: String!
+  streetLine1: String!
+  streetLine2: String!
+  postCode: String!
+}
+
+"""Information about an order."""
+type OrderInfo {
+  name: String
+  phoneNumber: String
+  email: String
+  shippingAddress: ShippingAddress
+}
+
+"""One item in a labeled price list."""
+type LabeledPrice {
+  label: String!
+  amount: Int!
+}
+
+"""A successful payment confirmation."""
+type SuccessfulPayment {
+  currency: String!
+  totalAmount: Int!
+  invoicePayload: String!
+  shippingOptionId: String
+  orderInfo: OrderInfo
+  telegramPaymentChargeId: String!
+  providerPaymentChargeId: String!
+}
+
+# ─────────────────────────────────────────────
+# Webhook info
+# ─────────────────────────────────────────────
+
+"""Information about the current webhook status."""
+type WebhookInfo {
+  url: String!
+  hasCustomCertificate: Boolean!
+  pendingUpdateCount: Int!
+  ipAddress: String
+  lastErrorDate: DateTime
+  lastErrorMessage: String
+  lastSynchronizationErrorDate: DateTime
+  maxConnections: Int
+  allowedUpdates: [String!]
+}
+
+# ─────────────────────────────────────────────
+# Passport types
+# ─────────────────────────────────────────────
+
+"""Telegram Passport data attached to a message."""
+type PassportData {
+  data: [EncryptedPassportElement!]!
+  credentials: EncryptedCredentials!
+}
+
+"""An encrypted element of Telegram Passport data."""
+type EncryptedPassportElement {
+  type: PassportElementType!
+  data: String
+  phoneNumber: String
+  email: String
+  files: [PassportFile!]
+  frontSide: PassportFile
+  reverseSide: PassportFile
+  selfie: PassportFile
+  translation: [PassportFile!]
+  hash: String!
+}
+
+enum PassportElementType {
+  PERSONAL_DETAILS
+  PASSPORT
+  DRIVER_LICENSE
+  IDENTITY_CARD
+  INTERNAL_PASSPORT
+  ADDRESS
+  UTILITY_BILL
+  BANK_STATEMENT
+  RENTAL_AGREEMENT
+  PASSPORT_REGISTRATION
+  TEMPORARY_REGISTRATION
+  PHONE_NUMBER
+  EMAIL
+}
+
+"""A file uploaded to Telegram Passport."""
+type PassportFile {
+  fileId: ID!
+  fileUniqueId: ID!
+  fileSize: Int!
+  fileDate: DateTime!
+}
+
+"""Credentials needed to decrypt Telegram Passport data."""
+type EncryptedCredentials {
+  data: String!
+  hash: String!
+  secret: String!
+}
