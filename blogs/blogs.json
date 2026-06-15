@@ -2,10 +2,17 @@
   "repo": "telegram",
   "feeds": [
     {
+      "source": "https://telegram.org/blog",
+      "feed_url": "https://telegram.org/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://downdetector.com/status/telegram/",
       "error": "HTTPError"
     }
   ],
-  "fetched": "2026-06-01T23:35:02Z",
+  "fetched": "2026-06-14T20:42:17Z",
   "post_count": 0
 }

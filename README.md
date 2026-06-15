@@ -1,84 +1,96 @@
-# Telegram
+# Telegram (telegram)
 
-Telegram is a cloud-based instant messaging and voice-over-IP service with a comprehensive Bot API for developers. Bots can send and receive messages, manage chats, handle payments, work with stickers, and integrate with any external service. The platform supports over 900 million users worldwide.
+Telegram is a cloud-based instant messaging and voice-over-IP service that provides a comprehensive Bot API for developers to build bots, automate workflows, send notifications, and create interactive experiences on the Telegram platform. The platform supports text messages, media sharing, payments, inline keyboards, inline queries, webhooks, and live location sharing.
 
-**Human URL:** [https://telegram.org](https://telegram.org)
-**Developer URL:** [https://core.telegram.org](https://core.telegram.org)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/telegram/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/telegram/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+
+## Tags
+
+- Bots
+- Chat
+- Messaging
+- Notifications
+- Payments
+- Telegram
+
+## Timestamps
+
+- **Created:** 2025-02-12
+- **Modified:** 2026-05-19
 
 ## APIs
 
-### Telegram Bot API (v9.5)
-HTTP-based interface for building Telegram bots. All methods use HTTPS POST requests to `https://api.telegram.org/bot{token}/METHOD_NAME`.
+### Telegram Bot API
 
-- **Documentation:** [https://core.telegram.org/bots/api](https://core.telegram.org/bots/api)
-- **Getting Started:** [https://core.telegram.org/bots](https://core.telegram.org/bots)
-- **Changelog:** [https://core.telegram.org/bots/api-changelog](https://core.telegram.org/bots/api-changelog)
-- **OpenAPI Spec:** [openapi/telegram-bot-openapi.yml](openapi/telegram-bot-openapi.yml)
+The Telegram Bot API is an HTTP-based interface for building bots on Telegram. Bots are small programs that run inside Telegram and can do virtually anything — teach, play, search, broadcast, remind, connect, integrate with other services, or serve as front ends for businesses and services of all kinds. The Bot API provides methods for sending messages, managing chats, handling payments, working with stickers, managing webhooks, and much more.
 
-**Key capabilities:** Receive updates (long polling or webhooks), send text/photos/documents/audio/video/voice/locations/contacts/polls, manage chats and members, handle payments with Telegram Stars, create sticker sets, and set bot command menus.
+- **Human URL:** [https://core.telegram.org/bots/api](https://core.telegram.org/bots/api)
+- **Base URL:** `https://api.telegram.org/bot{token}`
 
-### Telegram TDLib
-Cross-platform Telegram client library for building full-featured Telegram apps with MTProto.
+#### Tags
 
-- **Documentation:** [https://core.telegram.org/tdlib](https://core.telegram.org/tdlib)
-- **GitHub:** [https://github.com/tdlib/td](https://github.com/tdlib/td)
+- Bot Development
+- Bots
+- Chat Management
+- Messaging
+- Notifications
+- Payments
+- Telegram
+- Webhooks
 
-## Artifacts
+#### Properties
 
-### OpenAPI Specifications
-| File | Description |
-|---|---|
-| [openapi/telegram-bot-openapi.yml](openapi/telegram-bot-openapi.yml) | Telegram Bot API v9.5 — 40+ methods covering messaging, chat management, members, payments, stickers |
+- [Documentation](https://core.telegram.org/bots/api)
+- [Getting Started](https://core.telegram.org/bots)
+- [OpenAPI](openapi/telegram-bot-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telegram-bot.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telegram-bot.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [GitHub Repository](https://github.com/tdlib/telegram-bot-api)
+- [Authentication](https://core.telegram.org/bots/api#authorizing-your-bot)
+- [Changelog](https://core.telegram.org/bots/api-changelog)
+- [F A Q](https://core.telegram.org/bots/faq)
 
-### JSON Schemas
-| File | Description |
-|---|---|
-| [json-schema/telegram-message-schema.json](json-schema/telegram-message-schema.json) | Telegram Message object JSON Schema |
-| [json-schema/telegram-update-schema.json](json-schema/telegram-update-schema.json) | Telegram Update object JSON Schema |
+### Telegram TDLib (Telegram Database Library)
 
-### JSON Structure
-| File | Description |
-|---|---|
-| [json-structure/telegram-message-structure.json](json-structure/telegram-message-structure.json) | Telegram Message field structure documentation |
+TDLib is a cross-platform, fully functional Telegram client library for third-party developers. TDLib takes care of all network implementation details, encryption and local data storage, allowing developers to build custom Telegram clients. It is open source, written in C++, and compatible with virtually any programming language through bindings.
 
-### JSON-LD
-| File | Description |
-|---|---|
-| [json-ld/telegram-context.jsonld](json-ld/telegram-context.jsonld) | JSON-LD context mapping Telegram types to schema.org |
+- **Human URL:** [https://core.telegram.org/tdlib](https://core.telegram.org/tdlib)
+- **Base URL:** `https://core.telegram.org/tdlib`
 
-### Examples
-| File | Description |
-|---|---|
-| [examples/telegram-send-message-example.json](examples/telegram-send-message-example.json) | sendMessage request/response example |
-| [examples/telegram-get-updates-example.json](examples/telegram-get-updates-example.json) | getUpdates long polling example |
-| [examples/telegram-send-poll-example.json](examples/telegram-send-poll-example.json) | sendPoll request/response example |
+#### Tags
 
-### Spectral Rules
-| File | Description |
-|---|---|
-| [rules/telegram-bot-rules.yml](rules/telegram-bot-rules.yml) | Spectral ruleset enforcing Telegram Bot API conventions |
+- Client Library
+- Cross-Platform
+- MTProto
+- Open Source
+- Telegram
 
-### Naftiko Capabilities
-| File | Description |
-|---|---|
-| [capabilities/shared/telegram-bot.yaml](capabilities/shared/telegram-bot.yaml) | Shared Telegram Bot API capability definition |
-| [capabilities/bot-messaging.yaml](capabilities/bot-messaging.yaml) | Bot messaging workflow (REST port 8080, MCP port 9090) |
+#### Properties
 
-### Vocabulary
-| File | Description |
-|---|---|
-| [vocabulary/telegram-vocabulary.yml](vocabulary/telegram-vocabulary.yml) | Telegram platform vocabulary — 50+ terms across messaging, bots, payments, admin |
+- [Documentation](https://core.telegram.org/tdlib)
+- [Getting Started](https://core.telegram.org/tdlib/getting-started)
+- [GitHub Repository](https://github.com/tdlib/td)
+- [Postman Collection](collections/telegram-bot.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telegram-bot.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
-| Property | URL |
-|---|---|
-| Developer Portal | https://core.telegram.org |
-| Authentication | https://core.telegram.org/bots/api#authorizing-your-bot |
-| Terms of Service | https://telegram.org/tos |
-| Privacy Policy | https://telegram.org/privacy |
-| Blog | https://telegram.org/blog |
-| GitHub | https://github.com/tdlib |
+- [LinkedIn](https://www.linkedin.com/company/telegram-messenger)
+- [Authentication](https://core.telegram.org/bots/api#authorizing-your-bot)
+- [Terms of Service](https://telegram.org/tos)
+- [Privacy Policy](https://telegram.org/privacy)
+- [Developer  Portal](https://core.telegram.org)
+- [Status Page](https://downdetector.com/status/telegram/)
+- [Blog](https://telegram.org/blog)
+- [Git Hub](https://github.com/tdlib)
 
 ## Maintainers
-- **Kin Lane** — kin@apievangelist.com
+
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
