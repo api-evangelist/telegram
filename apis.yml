@@ -98,7 +98,7 @@ common:
   url: https://telegram.org/tos
 - type: PrivacyPolicy
   url: https://telegram.org/privacy
-- type: Developer Portal
+- type: DeveloperPortal
   url: https://core.telegram.org
 - type: StatusPage
   url: https://downdetector.com/status/telegram/

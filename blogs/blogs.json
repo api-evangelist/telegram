@@ -3,16 +3,12 @@
   "feeds": [
     {
       "source": "https://telegram.org/blog",
-      "feed_url": "https://telegram.org/blog",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://downdetector.com/status/telegram/",
-      "error": "HTTPError"
+      "method": "agent-scrape"
     }
   ],
-  "fetched": "2026-06-14T20:42:17Z",
-  "post_count": 0
+  "fetched": "2026-06-27T13:15:32Z",
+  "post_count": 0,
+  "agent_pulled": "2026-06-27"
 }
