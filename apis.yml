@@ -90,6 +90,10 @@ apis:
   - type: GitHub
     url: https://github.com/tdlib/td
 common:
+- type: DomainSecurity
+  url: security/telegram-domain-security.yml
+- type: Authentication
+  url: authentication/telegram-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/telegram-messenger
 - type: Authentication

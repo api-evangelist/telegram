@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/telegram-bot-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - path
+schemes:
+- name: BotToken
+  type: apiKey
+  in: path
+  parameter: token
+  description: Bot authentication token obtained from @BotFather (embedded in URL path)
+  sources:
+  - openapi/telegram-bot-openapi.yml
