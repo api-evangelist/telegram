@@ -2,13 +2,11 @@
   "repo": "telegram",
   "feeds": [
     {
-      "source": "https://telegram.org/blog",
-      "feed_url": "",
-      "saved": 0,
-      "method": "agent-scrape"
+      "source": "https://downdetector.com/status/telegram/",
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-06-27T13:15:32Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 0,
-  "agent_pulled": "2026-06-27"
+  "agent_pulled": "2026-07-04"
 }
