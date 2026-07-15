@@ -90,6 +90,8 @@ apis:
   - type: GitHub
     url: https://github.com/tdlib/td
 common:
+- type: AgenticAccess
+  url: agentic-access/telegram-agentic-access.yml
 - type: DomainSecurity
   url: security/telegram-domain-security.yml
 - type: Authentication
