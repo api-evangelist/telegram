@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: Telegram Bot Bot Info Stickers API
+  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.
+  version: '9.5'
+  contact:
+    name: Telegram Support
+    url: https://core.telegram.org/bots/api
+  license:
+    name: Terms of Service
+    url: https://telegram.org/tos
+  termsOfService: https://telegram.org/tos
+servers:
+- url: https://api.telegram.org/bot{token}
+  description: Telegram Bot API Server
+  variables:
+    token:
+      default: YOUR_BOT_TOKEN
+      description: Bot authentication token obtained from @BotFather
+security:
+- BotToken: []
+tags:
+- name: Stickers
+  description: Methods for working with sticker sets
+paths:
+  /createNewStickerSet:
+    post:
+      operationId: createNewStickerSet
+      summary: Create New Sticker Set
+      description: Create a new sticker set owned by a user.
+      tags:
+      - Stickers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user_id
+              - name
+              - title
+              - stickers
+              properties:
+                user_id:
+                  type: integer
+                  description: User identifier of created sticker set owner
+                name:
+                  type: string
+                  description: Short name of sticker set (1-64 characters)
+                title:
+                  type: string
+                  description: Sticker set title (1-64 characters)
+                stickers:
+                  type: array
+                  items:
+                    type: object
+                  description: List of 1-50 initial stickers to be added
+                sticker_type:
+                  type: string
+                  enum:
+                  - regular
+                  - mask
+                  - custom_emoji
+                  description: Type of stickers in the set
+      responses:
+        '200':
+          description: Sticker set created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanResponse'
+  /addStickerToSet:
+    post:
+      operationId: addStickerToSet
+      summary: Add Sticker to Set
+      description: Add a new sticker to a set created by the bot.
+      tags:
+      - Stickers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user_id
+              - name
+              - sticker
+              properties:
+                user_id:
+                  type: integer
+                  description: User identifier of sticker set owner
+                name:
+                  type: string
+                  description: Sticker set name
+                sticker:
+                  type: object
+                  description: Sticker object with emoji list and optional keywords
+      responses:
+        '200':
+          description: Sticker added to set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanResponse'
+components:
+  schemas:
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
+  securitySchemes:
+    BotToken:
+      type: apiKey
+      in: path
+      name: token
+      description: Bot authentication token obtained from @BotFather (embedded in URL path)
+externalDocs:
+  description: Official Telegram Bot API Documentation
+  url: https://core.telegram.org/bots/api

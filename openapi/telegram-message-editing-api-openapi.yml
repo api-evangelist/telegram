@@ -1,0 +1,246 @@
+openapi: 3.0.3
+info:
+  title: Telegram Bot Bot Info Message Editing API
+  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.
+  version: '9.5'
+  contact:
+    name: Telegram Support
+    url: https://core.telegram.org/bots/api
+  license:
+    name: Terms of Service
+    url: https://telegram.org/tos
+  termsOfService: https://telegram.org/tos
+servers:
+- url: https://api.telegram.org/bot{token}
+  description: Telegram Bot API Server
+  variables:
+    token:
+      default: YOUR_BOT_TOKEN
+      description: Bot authentication token obtained from @BotFather
+security:
+- BotToken: []
+tags:
+- name: Message Editing
+  description: Methods for editing and deleting messages
+paths:
+  /editMessageText:
+    post:
+      operationId: editMessageText
+      summary: Edit Message Text
+      description: Edit text and game messages.
+      tags:
+      - Message Editing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - text
+              properties:
+                chat_id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Required if inline_message_id is not specified
+                message_id:
+                  type: integer
+                  description: Required if inline_message_id is not specified
+                inline_message_id:
+                  type: string
+                  description: Required if chat_id and message_id are not specified
+                text:
+                  type: string
+                  description: New text of the message
+                parse_mode:
+                  type: string
+                  description: Mode for parsing entities in the message text
+      responses:
+        '200':
+          description: Edited message object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+  /editMessageCaption:
+    post:
+      operationId: editMessageCaption
+      summary: Edit Message Caption
+      description: Edit captions of messages.
+      tags:
+      - Message Editing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chat_id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Required if inline_message_id is not specified
+                message_id:
+                  type: integer
+                  description: Required if inline_message_id is not specified
+                caption:
+                  type: string
+                  description: New caption of the message
+                parse_mode:
+                  type: string
+                  description: Mode for parsing entities in the caption
+      responses:
+        '200':
+          description: Edited message object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+  /deleteMessage:
+    post:
+      operationId: deleteMessage
+      summary: Delete Message
+      description: Delete a message, including service messages.
+      tags:
+      - Message Editing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - chat_id
+              - message_id
+              properties:
+                chat_id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Unique identifier for the target chat
+                message_id:
+                  type: integer
+                  description: Identifier of the message to delete
+      responses:
+        '200':
+          description: Message deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanResponse'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this user or bot
+        is_bot:
+          type: boolean
+          description: True if this user is a bot
+        first_name:
+          type: string
+          description: User's or bot's first name
+        last_name:
+          type: string
+          description: User's or bot's last name
+        username:
+          type: string
+          description: User's or bot's username
+        language_code:
+          type: string
+          description: IETF language tag of the user's language
+        is_premium:
+          type: boolean
+          description: True if this user is a Telegram Premium user
+      required:
+      - id
+      - is_bot
+      - first_name
+    Chat:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this chat
+        type:
+          type: string
+          enum:
+          - private
+          - group
+          - supergroup
+          - channel
+          description: Type of chat
+        title:
+          type: string
+          description: Title for supergroups, channels and group chats
+        username:
+          type: string
+          description: Username for private chats, supergroups and channels
+        first_name:
+          type: string
+          description: First name of the other party in a private chat
+        last_name:
+          type: string
+          description: Last name of the other party in a private chat
+        description:
+          type: string
+          description: Description for groups, supergroups and channel chats
+        invite_link:
+          type: string
+          description: Primary invite link for the chat
+        member_count:
+          type: integer
+          description: Number of members in a chat
+      required:
+      - id
+      - type
+    MessageResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/Message'
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
+    Message:
+      type: object
+      properties:
+        message_id:
+          type: integer
+          description: Unique message identifier inside a chat
+        from:
+          $ref: '#/components/schemas/User'
+        chat:
+          $ref: '#/components/schemas/Chat'
+        date:
+          type: integer
+          description: Date the message was sent in Unix time
+        text:
+          type: string
+          description: For text messages, the actual UTF-8 text of the message
+        caption:
+          type: string
+          description: Caption for the animation, audio, document, photo, video or voice
+      required:
+      - message_id
+      - date
+      - chat
+  securitySchemes:
+    BotToken:
+      type: apiKey
+      in: path
+      name: token
+      description: Bot authentication token obtained from @BotFather (embedded in URL path)
+externalDocs:
+  description: Official Telegram Bot API Documentation
+  url: https://core.telegram.org/bots/api

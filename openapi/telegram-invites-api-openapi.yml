@@ -1,0 +1,213 @@
+openapi: 3.0.3
+info:
+  title: Telegram Bot Bot Info Invites API
+  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.
+  version: '9.5'
+  contact:
+    name: Telegram Support
+    url: https://core.telegram.org/bots/api
+  license:
+    name: Terms of Service
+    url: https://telegram.org/tos
+  termsOfService: https://telegram.org/tos
+servers:
+- url: https://api.telegram.org/bot{token}
+  description: Telegram Bot API Server
+  variables:
+    token:
+      default: YOUR_BOT_TOKEN
+      description: Bot authentication token obtained from @BotFather
+security:
+- BotToken: []
+tags:
+- name: Invites
+  description: Methods for managing chat invite links
+paths:
+  /exportChatInviteLink:
+    post:
+      operationId: exportChatInviteLink
+      summary: Export Chat Invite Link
+      description: Generate a new primary invite link for a chat.
+      tags:
+      - Invites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - chat_id
+              properties:
+                chat_id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Unique identifier for the target chat
+      responses:
+        '200':
+          description: New invite link as string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponse'
+  /createChatInviteLink:
+    post:
+      operationId: createChatInviteLink
+      summary: Create Chat Invite Link
+      description: Create an additional invite link for a chat.
+      tags:
+      - Invites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - chat_id
+              properties:
+                chat_id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Unique identifier for the target chat
+                name:
+                  type: string
+                  description: Invite link name (0-32 characters)
+                expire_date:
+                  type: integer
+                  description: Point in time when the link will expire
+                member_limit:
+                  type: integer
+                  description: Maximum number of users that can be chat members via this link
+                creates_join_request:
+                  type: boolean
+                  description: True if users joining via this link need approval
+      responses:
+        '200':
+          description: New invite link object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatInviteLinkResponse'
+  /revokeChatInviteLink:
+    post:
+      operationId: revokeChatInviteLink
+      summary: Revoke Chat Invite Link
+      description: Revoke an invite link created by the bot.
+      tags:
+      - Invites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - chat_id
+              - invite_link
+              properties:
+                chat_id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Unique identifier for the target chat
+                invite_link:
+                  type: string
+                  description: The invite link to revoke
+      responses:
+        '200':
+          description: Revoked invite link object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatInviteLinkResponse'
+components:
+  schemas:
+    StringResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this user or bot
+        is_bot:
+          type: boolean
+          description: True if this user is a bot
+        first_name:
+          type: string
+          description: User's or bot's first name
+        last_name:
+          type: string
+          description: User's or bot's last name
+        username:
+          type: string
+          description: User's or bot's username
+        language_code:
+          type: string
+          description: IETF language tag of the user's language
+        is_premium:
+          type: boolean
+          description: True if this user is a Telegram Premium user
+      required:
+      - id
+      - is_bot
+      - first_name
+    ChatInviteLink:
+      type: object
+      properties:
+        invite_link:
+          type: string
+          description: The invite link
+        creator:
+          $ref: '#/components/schemas/User'
+        creates_join_request:
+          type: boolean
+          description: True if users joining via the link need to be approved
+        is_primary:
+          type: boolean
+          description: True if the link is primary
+        is_revoked:
+          type: boolean
+          description: True if the link is revoked
+        name:
+          type: string
+          description: Invite link name
+        expire_date:
+          type: integer
+          description: Point in time when the link will expire or has been expired
+        member_limit:
+          type: integer
+          description: Maximum number of users that can be chat members
+        pending_join_request_count:
+          type: integer
+          description: Number of pending join requests
+      required:
+      - invite_link
+      - creator
+      - creates_join_request
+      - is_primary
+      - is_revoked
+    ChatInviteLinkResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/ChatInviteLink'
+  securitySchemes:
+    BotToken:
+      type: apiKey
+      in: path
+      name: token
+      description: Bot authentication token obtained from @BotFather (embedded in URL path)
+externalDocs:
+  description: Official Telegram Bot API Documentation
+  url: https://core.telegram.org/bots/api

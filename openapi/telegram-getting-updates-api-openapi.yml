@@ -1,0 +1,314 @@
+openapi: 3.0.3
+info:
+  title: Telegram Bot Bot Info Getting Updates API
+  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.
+  version: '9.5'
+  contact:
+    name: Telegram Support
+    url: https://core.telegram.org/bots/api
+  license:
+    name: Terms of Service
+    url: https://telegram.org/tos
+  termsOfService: https://telegram.org/tos
+servers:
+- url: https://api.telegram.org/bot{token}
+  description: Telegram Bot API Server
+  variables:
+    token:
+      default: YOUR_BOT_TOKEN
+      description: Bot authentication token obtained from @BotFather
+security:
+- BotToken: []
+tags:
+- name: Getting Updates
+  description: Methods for receiving incoming updates from Telegram
+paths:
+  /getUpdates:
+    post:
+      operationId: getUpdates
+      summary: Get Updates
+      description: 'Receive incoming updates using long polling. Returns an array of Update objects. Notes: this method will not work if an outgoing webhook is set up.'
+      tags:
+      - Getting Updates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                offset:
+                  type: integer
+                  description: Identifier of the first update to be returned
+                limit:
+                  type: integer
+                  description: Limits the number of updates to be retrieved (1-100)
+                  minimum: 1
+                  maximum: 100
+                timeout:
+                  type: integer
+                  description: Timeout in seconds for long polling
+                allowed_updates:
+                  type: array
+                  items:
+                    type: string
+                  description: List of update types the bot should receive
+      responses:
+        '200':
+          description: Array of Update objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatesResponse'
+  /setWebhook:
+    post:
+      operationId: setWebhook
+      summary: Set Webhook
+      description: Specify a URL and receive incoming updates via an outgoing webhook.
+      tags:
+      - Getting Updates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - url
+              properties:
+                url:
+                  type: string
+                  description: HTTPS URL to send updates to
+                ip_address:
+                  type: string
+                  description: Fixed IP address to send webhook requests to
+                max_connections:
+                  type: integer
+                  description: Maximum allowed number of simultaneous HTTPS connections
+                  minimum: 1
+                  maximum: 100
+                allowed_updates:
+                  type: array
+                  items:
+                    type: string
+                  description: List of update types the bot should receive
+                drop_pending_updates:
+                  type: boolean
+                  description: Pass true to drop all pending updates
+                secret_token:
+                  type: string
+                  description: A secret token to be sent in a header in every webhook request
+      responses:
+        '200':
+          description: Webhook set successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanResponse'
+  /deleteWebhook:
+    post:
+      operationId: deleteWebhook
+      summary: Delete Webhook
+      description: Remove webhook integration.
+      tags:
+      - Getting Updates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                drop_pending_updates:
+                  type: boolean
+                  description: Pass true to drop all pending updates
+      responses:
+        '200':
+          description: Webhook deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanResponse'
+  /getWebhookInfo:
+    post:
+      operationId: getWebhookInfo
+      summary: Get Webhook Info
+      description: Get current webhook status.
+      tags:
+      - Getting Updates
+      responses:
+        '200':
+          description: Webhook info object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookInfoResponse'
+components:
+  schemas:
+    UpdatesResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Update'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this user or bot
+        is_bot:
+          type: boolean
+          description: True if this user is a bot
+        first_name:
+          type: string
+          description: User's or bot's first name
+        last_name:
+          type: string
+          description: User's or bot's last name
+        username:
+          type: string
+          description: User's or bot's username
+        language_code:
+          type: string
+          description: IETF language tag of the user's language
+        is_premium:
+          type: boolean
+          description: True if this user is a Telegram Premium user
+      required:
+      - id
+      - is_bot
+      - first_name
+    Chat:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this chat
+        type:
+          type: string
+          enum:
+          - private
+          - group
+          - supergroup
+          - channel
+          description: Type of chat
+        title:
+          type: string
+          description: Title for supergroups, channels and group chats
+        username:
+          type: string
+          description: Username for private chats, supergroups and channels
+        first_name:
+          type: string
+          description: First name of the other party in a private chat
+        last_name:
+          type: string
+          description: Last name of the other party in a private chat
+        description:
+          type: string
+          description: Description for groups, supergroups and channel chats
+        invite_link:
+          type: string
+          description: Primary invite link for the chat
+        member_count:
+          type: integer
+          description: Number of members in a chat
+      required:
+      - id
+      - type
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
+    WebhookInfoResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/WebhookInfo'
+    Message:
+      type: object
+      properties:
+        message_id:
+          type: integer
+          description: Unique message identifier inside a chat
+        from:
+          $ref: '#/components/schemas/User'
+        chat:
+          $ref: '#/components/schemas/Chat'
+        date:
+          type: integer
+          description: Date the message was sent in Unix time
+        text:
+          type: string
+          description: For text messages, the actual UTF-8 text of the message
+        caption:
+          type: string
+          description: Caption for the animation, audio, document, photo, video or voice
+      required:
+      - message_id
+      - date
+      - chat
+    WebhookInfo:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Webhook URL, may be empty if webhook is not set up
+        has_custom_certificate:
+          type: boolean
+          description: True if a custom certificate was provided
+        pending_update_count:
+          type: integer
+          description: Number of updates awaiting delivery
+        ip_address:
+          type: string
+          description: Currently used webhook IP address
+        last_error_date:
+          type: integer
+          description: Unix time for the most recent error
+        last_error_message:
+          type: string
+          description: Error message in human-readable format for the most recent webhook error
+        max_connections:
+          type: integer
+          description: Maximum allowed number of simultaneous HTTPS connections
+        allowed_updates:
+          type: array
+          items:
+            type: string
+          description: List of update types the bot is subscribed to
+      required:
+      - url
+      - has_custom_certificate
+      - pending_update_count
+    Update:
+      type: object
+      properties:
+        update_id:
+          type: integer
+          description: The update's unique identifier
+        message:
+          $ref: '#/components/schemas/Message'
+        edited_message:
+          $ref: '#/components/schemas/Message'
+        callback_query:
+          type: object
+          description: New incoming callback query
+      required:
+      - update_id
+  securitySchemes:
+    BotToken:
+      type: apiKey
+      in: path
+      name: token
+      description: Bot authentication token obtained from @BotFather (embedded in URL path)
+externalDocs:
+  description: Official Telegram Bot API Documentation
+  url: https://core.telegram.org/bots/api

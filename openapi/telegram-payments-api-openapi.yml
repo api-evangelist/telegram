@@ -1,0 +1,275 @@
+openapi: 3.0.3
+info:
+  title: Telegram Bot Bot Info Payments API
+  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.
+  version: '9.5'
+  contact:
+    name: Telegram Support
+    url: https://core.telegram.org/bots/api
+  license:
+    name: Terms of Service
+    url: https://telegram.org/tos
+  termsOfService: https://telegram.org/tos
+servers:
+- url: https://api.telegram.org/bot{token}
+  description: Telegram Bot API Server
+  variables:
+    token:
+      default: YOUR_BOT_TOKEN
+      description: Bot authentication token obtained from @BotFather
+security:
+- BotToken: []
+tags:
+- name: Payments
+  description: Methods for handling Telegram Payments
+paths:
+  /sendInvoice:
+    post:
+      operationId: sendInvoice
+      summary: Send Invoice
+      description: Send invoices.
+      tags:
+      - Payments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - chat_id
+              - title
+              - description
+              - payload
+              - currency
+              - prices
+              properties:
+                chat_id:
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  description: Unique identifier for the target chat
+                title:
+                  type: string
+                  description: Product name (1-32 characters)
+                description:
+                  type: string
+                  description: Product description (1-255 characters)
+                payload:
+                  type: string
+                  description: Bot-defined invoice payload (1-128 bytes)
+                currency:
+                  type: string
+                  description: Three-letter ISO 4217 currency code
+                prices:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/LabeledPrice'
+                  description: Price breakdown (list of components)
+                provider_token:
+                  type: string
+                  description: Payment provider token (use empty string for Telegram Stars)
+      responses:
+        '200':
+          description: Invoice message sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+  /answerShippingQuery:
+    post:
+      operationId: answerShippingQuery
+      summary: Answer Shipping Query
+      description: Reply to shipping queries.
+      tags:
+      - Payments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shipping_query_id
+              - ok
+              properties:
+                shipping_query_id:
+                  type: string
+                  description: Unique identifier for the query to be answered
+                ok:
+                  type: boolean
+                  description: Pass true if delivery to the specified address is possible
+                shipping_options:
+                  type: array
+                  items:
+                    type: object
+                  description: Required if ok is true. Array of available shipping options
+                error_message:
+                  type: string
+                  description: Required if ok is false. Error message
+      responses:
+        '200':
+          description: Shipping query answered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanResponse'
+  /answerPreCheckoutQuery:
+    post:
+      operationId: answerPreCheckoutQuery
+      summary: Answer Pre-Checkout Query
+      description: Respond to pre-checkout queries.
+      tags:
+      - Payments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - pre_checkout_query_id
+              - ok
+              properties:
+                pre_checkout_query_id:
+                  type: string
+                  description: Unique identifier for the query to be answered
+                ok:
+                  type: boolean
+                  description: Specify true if everything is alright for the order to proceed
+                error_message:
+                  type: string
+                  description: Required if ok is false. Error message
+      responses:
+        '200':
+          description: Pre-checkout query answered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BooleanResponse'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this user or bot
+        is_bot:
+          type: boolean
+          description: True if this user is a bot
+        first_name:
+          type: string
+          description: User's or bot's first name
+        last_name:
+          type: string
+          description: User's or bot's last name
+        username:
+          type: string
+          description: User's or bot's username
+        language_code:
+          type: string
+          description: IETF language tag of the user's language
+        is_premium:
+          type: boolean
+          description: True if this user is a Telegram Premium user
+      required:
+      - id
+      - is_bot
+      - first_name
+    Chat:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this chat
+        type:
+          type: string
+          enum:
+          - private
+          - group
+          - supergroup
+          - channel
+          description: Type of chat
+        title:
+          type: string
+          description: Title for supergroups, channels and group chats
+        username:
+          type: string
+          description: Username for private chats, supergroups and channels
+        first_name:
+          type: string
+          description: First name of the other party in a private chat
+        last_name:
+          type: string
+          description: Last name of the other party in a private chat
+        description:
+          type: string
+          description: Description for groups, supergroups and channel chats
+        invite_link:
+          type: string
+          description: Primary invite link for the chat
+        member_count:
+          type: integer
+          description: Number of members in a chat
+      required:
+      - id
+      - type
+    MessageResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/Message'
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
+    LabeledPrice:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Portion label
+        amount:
+          type: integer
+          description: Price of the product in the smallest units of the currency
+      required:
+      - label
+      - amount
+    Message:
+      type: object
+      properties:
+        message_id:
+          type: integer
+          description: Unique message identifier inside a chat
+        from:
+          $ref: '#/components/schemas/User'
+        chat:
+          $ref: '#/components/schemas/Chat'
+        date:
+          type: integer
+          description: Date the message was sent in Unix time
+        text:
+          type: string
+          description: For text messages, the actual UTF-8 text of the message
+        caption:
+          type: string
+          description: Caption for the animation, audio, document, photo, video or voice
+      required:
+      - message_id
+      - date
+      - chat
+  securitySchemes:
+    BotToken:
+      type: apiKey
+      in: path
+      name: token
+      description: Bot authentication token obtained from @BotFather (embedded in URL path)
+externalDocs:
+  description: Official Telegram Bot API Documentation
+  url: https://core.telegram.org/bots/api
