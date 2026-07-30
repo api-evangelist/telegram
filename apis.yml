@@ -6,6 +6,19 @@ description: Telegram is a cloud-based instant messaging and voice-over-IP servi
   The platform supports text messages, media sharing, payments, inline keyboards,
   inline queries, webhooks, and live location sharing.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
 image: https://telegram.org/img/t_logo.png
@@ -21,55 +34,13 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/telegram/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-- aid: telegram:telegram-bot-api
-  name: Telegram Bot API
-  description: The Telegram Bot API is an HTTP-based interface for building bots on
-    Telegram. Bots are small programs that run inside Telegram and can do virtually
-    anything — teach, play, search, broadcast, remind, connect, integrate with other
-    services, or serve as front ends for businesses and services of all kinds. The
-    Bot API provides methods for sending messages, managing chats, handling payments,
-    working with stickers, managing webhooks, and much more.
-  humanURL: https://core.telegram.org/bots/api
-  baseURL: https://api.telegram.org/bot{token}
-  version: '9.5'
-  tags:
-  - Bot Development
-  - Bots
-  - Chat Management
-  - Messaging
-  - Notifications
-  - Payments
-  - Telegram
-  - Webhooks
-  properties:
-  - type: Documentation
-    url: https://core.telegram.org/bots/api
-  - type: GettingStarted
-    url: https://core.telegram.org/bots
-  - type: OpenAPI
-    url: openapi/telegram-bot-openapi.yml
-  - type: GitHubRepository
-    url: https://github.com/tdlib/telegram-bot-api
-  - type: Authentication
-    url: https://core.telegram.org/bots/api#authorizing-your-bot
-  - type: ChangeLog
-    url: https://core.telegram.org/bots/api-changelog
-  - type: FAQ
-    url: https://core.telegram.org/bots/faq
-  - url: graphql/telegram-graphql.md
-    type: GraphQL
-  contact:
-  - type: Support
-    url: https://t.me/BotSupport
-  - type: GitHub
-    url: https://github.com/tdlib/telegram-bot-api
 - aid: telegram:telegram-tdlib
   name: Telegram TDLib (Telegram Database Library)
-  description: TDLib is a cross-platform, fully functional Telegram client library
-    for third-party developers. TDLib takes care of all network implementation details,
-    encryption and local data storage, allowing developers to build custom Telegram
-    clients. It is open source, written in C++, and compatible with virtually any
-    programming language through bindings.
+  description: >-
+    TDLib is a cross-platform, fully functional Telegram client library for third-party developers. TDLib
+    takes care of all network implementation details, encryption and local data storage, allowing developers
+    to build custom Telegram clients. It is open source, written in C++, and compatible with virtually
+    any programming language through bindings.
   humanURL: https://core.telegram.org/tdlib
   baseURL: https://core.telegram.org/tdlib
   version: '1.8'
@@ -89,6 +60,222 @@ apis:
   contact:
   - type: GitHub
     url: https://github.com/tdlib/td
+- aid: telegram:telegram-bot-info-api
+  name: Telegram Bot Info API
+  description: Methods for getting and setting bot information
+  humanURL: https://core.telegram.org/bots/api
+  baseURL: https://api.telegram.org/bot{token}
+  tags:
+  - Bot Info
+  properties:
+  - type: OpenAPI
+    url: openapi/telegram-bot-info-api-openapi.yml
+  - type: Documentation
+    url: https://core.telegram.org/bots/api
+  - type: GettingStarted
+    url: https://core.telegram.org/bots
+  - type: GitHubRepository
+    url: https://github.com/tdlib/telegram-bot-api
+  - type: Authentication
+    url: https://core.telegram.org/bots/api#authorizing-your-bot
+  - type: ChangeLog
+    url: https://core.telegram.org/bots/api-changelog
+  - type: FAQ
+    url: https://core.telegram.org/bots/faq
+  - type: GraphQL
+    url: graphql/telegram-graphql.md
+- aid: telegram:telegram-chat-management-api
+  name: Telegram Chat Management API
+  description: Methods for managing chats and chat settings
+  humanURL: https://core.telegram.org/bots/api
+  baseURL: https://api.telegram.org/bot{token}
+  tags:
+  - Chat Management
+  properties:
+  - type: OpenAPI
+    url: openapi/telegram-chat-management-api-openapi.yml
+  - type: Documentation
+    url: https://core.telegram.org/bots/api
+  - type: GettingStarted
+    url: https://core.telegram.org/bots
+  - type: GitHubRepository
+    url: https://github.com/tdlib/telegram-bot-api
+  - type: Authentication
+    url: https://core.telegram.org/bots/api#authorizing-your-bot
+  - type: ChangeLog
+    url: https://core.telegram.org/bots/api-changelog
+  - type: FAQ
+    url: https://core.telegram.org/bots/faq
+  - type: GraphQL
+    url: graphql/telegram-graphql.md
+- aid: telegram:telegram-getting-updates-api
+  name: Telegram Getting Updates API
+  description: Methods for receiving incoming updates from Telegram
+  humanURL: https://core.telegram.org/bots/api
+  baseURL: https://api.telegram.org/bot{token}
+  tags:
+  - Getting Updates
+  properties:
+  - type: OpenAPI
+    url: openapi/telegram-getting-updates-api-openapi.yml
+  - type: Documentation
+    url: https://core.telegram.org/bots/api
+  - type: GettingStarted
+    url: https://core.telegram.org/bots
+  - type: GitHubRepository
+    url: https://github.com/tdlib/telegram-bot-api
+  - type: Authentication
+    url: https://core.telegram.org/bots/api#authorizing-your-bot
+  - type: ChangeLog
+    url: https://core.telegram.org/bots/api-changelog
+  - type: FAQ
+    url: https://core.telegram.org/bots/faq
+  - type: GraphQL
+    url: graphql/telegram-graphql.md
+- aid: telegram:telegram-invites-api
+  name: Telegram Invites API
+  description: Methods for managing chat invite links
+  humanURL: https://core.telegram.org/bots/api
+  baseURL: https://api.telegram.org/bot{token}
+  tags:
+  - Invites
+  properties:
+  - type: OpenAPI
+    url: openapi/telegram-invites-api-openapi.yml
+  - type: Documentation
+    url: https://core.telegram.org/bots/api
+  - type: GettingStarted
+    url: https://core.telegram.org/bots
+  - type: GitHubRepository
+    url: https://github.com/tdlib/telegram-bot-api
+  - type: Authentication
+    url: https://core.telegram.org/bots/api#authorizing-your-bot
+  - type: ChangeLog
+    url: https://core.telegram.org/bots/api-changelog
+  - type: FAQ
+    url: https://core.telegram.org/bots/faq
+  - type: GraphQL
+    url: graphql/telegram-graphql.md
+- aid: telegram:telegram-member-management-api
+  name: Telegram Member Management API
+  description: Methods for managing chat members and administrators
+  humanURL: https://core.telegram.org/bots/api
+  baseURL: https://api.telegram.org/bot{token}
+  tags:
+  - Member Management
+  properties:
+  - type: OpenAPI
+    url: openapi/telegram-member-management-api-openapi.yml
+  - type: Documentation
+    url: https://core.telegram.org/bots/api
+  - type: GettingStarted
+    url: https://core.telegram.org/bots
+  - type: GitHubRepository
+    url: https://github.com/tdlib/telegram-bot-api
+  - type: Authentication
+    url: https://core.telegram.org/bots/api#authorizing-your-bot
+  - type: ChangeLog
+    url: https://core.telegram.org/bots/api-changelog
+  - type: FAQ
+    url: https://core.telegram.org/bots/faq
+  - type: GraphQL
+    url: graphql/telegram-graphql.md
+- aid: telegram:telegram-message-editing-api
+  name: Telegram Message Editing API
+  description: Methods for editing and deleting messages
+  humanURL: https://core.telegram.org/bots/api
+  baseURL: https://api.telegram.org/bot{token}
+  tags:
+  - Message Editing
+  properties:
+  - type: OpenAPI
+    url: openapi/telegram-message-editing-api-openapi.yml
+  - type: Documentation
+    url: https://core.telegram.org/bots/api
+  - type: GettingStarted
+    url: https://core.telegram.org/bots
+  - type: GitHubRepository
+    url: https://github.com/tdlib/telegram-bot-api
+  - type: Authentication
+    url: https://core.telegram.org/bots/api#authorizing-your-bot
+  - type: ChangeLog
+    url: https://core.telegram.org/bots/api-changelog
+  - type: FAQ
+    url: https://core.telegram.org/bots/faq
+  - type: GraphQL
+    url: graphql/telegram-graphql.md
+- aid: telegram:telegram-messaging-api
+  name: Telegram Messaging API
+  description: Methods for sending messages and media
+  humanURL: https://core.telegram.org/bots/api
+  baseURL: https://api.telegram.org/bot{token}
+  tags:
+  - Messaging
+  properties:
+  - type: OpenAPI
+    url: openapi/telegram-messaging-api-openapi.yml
+  - type: Documentation
+    url: https://core.telegram.org/bots/api
+  - type: GettingStarted
+    url: https://core.telegram.org/bots
+  - type: GitHubRepository
+    url: https://github.com/tdlib/telegram-bot-api
+  - type: Authentication
+    url: https://core.telegram.org/bots/api#authorizing-your-bot
+  - type: ChangeLog
+    url: https://core.telegram.org/bots/api-changelog
+  - type: FAQ
+    url: https://core.telegram.org/bots/faq
+  - type: GraphQL
+    url: graphql/telegram-graphql.md
+- aid: telegram:telegram-payments-api
+  name: Telegram Payments API
+  description: Methods for handling Telegram Payments
+  humanURL: https://core.telegram.org/bots/api
+  baseURL: https://api.telegram.org/bot{token}
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/telegram-payments-api-openapi.yml
+  - type: Documentation
+    url: https://core.telegram.org/bots/api
+  - type: GettingStarted
+    url: https://core.telegram.org/bots
+  - type: GitHubRepository
+    url: https://github.com/tdlib/telegram-bot-api
+  - type: Authentication
+    url: https://core.telegram.org/bots/api#authorizing-your-bot
+  - type: ChangeLog
+    url: https://core.telegram.org/bots/api-changelog
+  - type: FAQ
+    url: https://core.telegram.org/bots/faq
+  - type: GraphQL
+    url: graphql/telegram-graphql.md
+- aid: telegram:telegram-stickers-api
+  name: Telegram Stickers API
+  description: Methods for working with sticker sets
+  humanURL: https://core.telegram.org/bots/api
+  baseURL: https://api.telegram.org/bot{token}
+  tags:
+  - Stickers
+  properties:
+  - type: OpenAPI
+    url: openapi/telegram-stickers-api-openapi.yml
+  - type: Documentation
+    url: https://core.telegram.org/bots/api
+  - type: GettingStarted
+    url: https://core.telegram.org/bots
+  - type: GitHubRepository
+    url: https://github.com/tdlib/telegram-bot-api
+  - type: Authentication
+    url: https://core.telegram.org/bots/api#authorizing-your-bot
+  - type: ChangeLog
+    url: https://core.telegram.org/bots/api-changelog
+  - type: FAQ
+    url: https://core.telegram.org/bots/faq
+  - type: GraphQL
+    url: graphql/telegram-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/telegram-agentic-access.yml
