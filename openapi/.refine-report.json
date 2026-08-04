@@ -1,0 +1,30 @@
+{
+  "provider": "telegram",
+  "sources": [
+    "telegram-bot-info-api-openapi.yml",
+    "telegram-chat-management-api-openapi.yml",
+    "telegram-getting-updates-api-openapi.yml",
+    "telegram-invites-api-openapi.yml",
+    "telegram-member-management-api-openapi.yml",
+    "telegram-message-editing-api-openapi.yml",
+    "telegram-messaging-api-openapi.yml",
+    "telegram-payments-api-openapi.yml",
+    "telegram-stickers-api-openapi.yml"
+  ],
+  "outputs": [
+    "telegram-bot-info-api-openapi.yml",
+    "telegram-chat-management-api-openapi.yml",
+    "telegram-getting-updates-api-openapi.yml",
+    "telegram-invites-api-openapi.yml",
+    "telegram-member-management-api-openapi.yml",
+    "telegram-message-editing-api-openapi.yml",
+    "telegram-messaging-api-openapi.yml",
+    "telegram-payments-api-openapi.yml",
+    "telegram-stickers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
