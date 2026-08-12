@@ -277,6 +277,9 @@ apis:
   - type: GraphQL
     url: graphql/telegram-graphql.md
 common:
+- type: License
+  name: BSL-1.0
+  url: https://github.com/tdlib/td/blob/master/LICENSE
 - type: AgenticAccess
   url: agentic-access/telegram-agentic-access.yml
 - type: DomainSecurity
