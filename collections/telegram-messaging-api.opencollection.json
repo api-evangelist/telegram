@@ -1,0 +1,221 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telegram Bot Bot Info Messaging API",
+    "version": "9.5"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messaging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendMessage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send text messages."
+        },
+        {
+          "info": {
+            "name": "Forward Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/forwardMessage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Forward messages of any kind."
+        },
+        {
+          "info": {
+            "name": "Copy Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/copyMessage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copy messages of any kind without the forward marker."
+        },
+        {
+          "info": {
+            "name": "Send Photo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendPhoto",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send photos."
+        },
+        {
+          "info": {
+            "name": "Send Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendDocument",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send general files."
+        },
+        {
+          "info": {
+            "name": "Send Audio",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendAudio",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send audio files as a playable music track."
+        },
+        {
+          "info": {
+            "name": "Send Video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendVideo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send video files."
+        },
+        {
+          "info": {
+            "name": "Send Voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendVoice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send audio files as a voice message."
+        },
+        {
+          "info": {
+            "name": "Send Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendLocation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a point on the map."
+        },
+        {
+          "info": {
+            "name": "Send Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendContact",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send phone contacts."
+        },
+        {
+          "info": {
+            "name": "Send Poll",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendPoll",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a native poll."
+        },
+        {
+          "info": {
+            "name": "Send Dice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendDice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send an animated emoji that will display a random value."
+        },
+        {
+          "info": {
+            "name": "Answer Callback Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/answerCallbackQuery",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send answers to callback queries sent from inline keyboards."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

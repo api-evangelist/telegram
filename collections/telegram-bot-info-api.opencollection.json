@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telegram Bot Bot Info API",
+    "version": "9.5"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bot Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Bot Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/getMe"
+          },
+          "docs": "A simple method for testing your bot authentication token. Returns basic information about the bot in the form of a User object."
+        },
+        {
+          "info": {
+            "name": "Get User Profile Photos",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/getUserProfilePhotos",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a list of profile pictures for a user."
+        },
+        {
+          "info": {
+            "name": "Get File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/getFile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get basic info about a file and prepare it for downloading."
+        },
+        {
+          "info": {
+            "name": "Set My Commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/setMyCommands",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change the list of the bot commands."
+        },
+        {
+          "info": {
+            "name": "Get My Commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/getMyCommands",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the current list of the bot commands."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,397 @@
+{
+  "item": [
+    {
+      "id": "ff95e866-3517-4955-ae04-fb384eed3bf5",
+      "name": "Message Editing",
+      "description": {
+        "content": "Methods for editing and deleting messages",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "488a55e8-1b6a-423b-8df3-2ec88d6c1500",
+          "name": "Edit Message Text",
+          "request": {
+            "name": "Edit Message Text",
+            "description": {
+              "content": "Edit text and game messages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editMessageText"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\",\n  \"chat_id\": \"<integer>\",\n  \"message_id\": \"<integer>\",\n  \"inline_message_id\": \"<string>\",\n  \"parse_mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "872f1e9b-adc8-4269-ab24-d17fbb453d02",
+              "name": "Edited message object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editMessageText"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\",\n  \"chat_id\": \"<integer>\",\n  \"message_id\": \"<integer>\",\n  \"inline_message_id\": \"<string>\",\n  \"parse_mode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"result\": {\n    \"message_id\": 1203,\n    \"date\": 1911,\n    \"chat\": {\n      \"id\": 8769,\n      \"type\": \"supergroup\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4684\n    },\n    \"from\": {\n      \"id\": 8372,\n      \"is_bot\": true,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0a8ff6d-60ae-404d-b27d-3ea3f56b947e",
+          "name": "Edit Message Caption",
+          "request": {
+            "name": "Edit Message Caption",
+            "description": {
+              "content": "Edit captions of messages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "editMessageCaption"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"message_id\": \"<integer>\",\n  \"caption\": \"<string>\",\n  \"parse_mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3e83e0aa-41ad-4277-8a87-183a2bd605ec",
+              "name": "Edited message object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "editMessageCaption"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"message_id\": \"<integer>\",\n  \"caption\": \"<string>\",\n  \"parse_mode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"result\": {\n    \"message_id\": 1203,\n    \"date\": 1911,\n    \"chat\": {\n      \"id\": 8769,\n      \"type\": \"supergroup\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4684\n    },\n    \"from\": {\n      \"id\": 8372,\n      \"is_bot\": true,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3eb50b78-31bf-46dc-bf65-264d3e5ad354",
+          "name": "Delete Message",
+          "request": {
+            "name": "Delete Message",
+            "description": {
+              "content": "Delete a message, including service messages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deleteMessage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"message_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec6c783b-66b5-4b45-afa3-f1a42bf172a9",
+              "name": "Message deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deleteMessage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"message_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Bot authentication token obtained from @BotFather",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "YOUR_BOT_TOKEN",
+      "key": "token"
+    },
+    {
+      "type": "string",
+      "value": "https://api.telegram.org/bot{{token}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ed8cec8a-1677-49bd-9c92-c6175fdbd2a1",
+    "name": "Telegram Bot Bot Info Message Editing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.\n\nContact Support:\n Name: Telegram Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telegram Bot Bot Info Payments API",
+    "version": "9.5"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/sendInvoice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send invoices."
+        },
+        {
+          "info": {
+            "name": "Answer Shipping Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/answerShippingQuery",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reply to shipping queries."
+        },
+        {
+          "info": {
+            "name": "Answer Pre-Checkout Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/answerPreCheckoutQuery",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Respond to pre-checkout queries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

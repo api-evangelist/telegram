@@ -1,0 +1,1527 @@
+{
+  "item": [
+    {
+      "id": "f14927f6-2511-44cf-9e5a-5f9fe7b9e6b1",
+      "name": "Messaging",
+      "description": {
+        "content": "Methods for sending messages and media",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "74082e92-f84a-40f3-85dc-4a5f70e8467b",
+          "name": "Send Message",
+          "request": {
+            "name": "Send Message",
+            "description": {
+              "content": "Send text messages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendMessage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"text\": \"<string>\",\n  \"parse_mode\": \"<string>\",\n  \"disable_notification\": \"<boolean>\",\n  \"reply_to_message_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "19a65dc7-a3c1-4f4c-8d04-f779928d4a83",
+              "name": "Message sent successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendMessage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"text\": \"<string>\",\n  \"parse_mode\": \"<string>\",\n  \"disable_notification\": \"<boolean>\",\n  \"reply_to_message_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4117934-e8e8-41c9-b5f7-98690fa0cf83",
+          "name": "Forward Message",
+          "request": {
+            "name": "Forward Message",
+            "description": {
+              "content": "Forward messages of any kind.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forwardMessage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"from_chat_id\": \"<integer>\",\n  \"message_id\": \"<integer>\",\n  \"disable_notification\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c51a2d1e-178c-4cc9-8a32-187b59bfcfc9",
+              "name": "Forwarded message object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forwardMessage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"from_chat_id\": \"<integer>\",\n  \"message_id\": \"<integer>\",\n  \"disable_notification\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be1b2e1d-ed96-48c8-af51-a75fbc07a834",
+          "name": "Copy Message",
+          "request": {
+            "name": "Copy Message",
+            "description": {
+              "content": "Copy messages of any kind without the forward marker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "copyMessage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"from_chat_id\": \"<integer>\",\n  \"message_id\": \"<integer>\",\n  \"caption\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa1e16d4-ba22-479d-b304-c35d18cb4566",
+              "name": "Copied message identifier",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "copyMessage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"from_chat_id\": \"<integer>\",\n  \"message_id\": \"<integer>\",\n  \"caption\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 4720\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a839fe09-6bba-421c-82b4-842bb7e3b083",
+          "name": "Send Photo",
+          "request": {
+            "name": "Send Photo",
+            "description": {
+              "content": "Send photos.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendPhoto"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"photo\": \"<string>\",\n  \"caption\": \"<string>\",\n  \"parse_mode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a5d8323-8d2a-4040-b6b2-1bc09a07e3d0",
+              "name": "Photo message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendPhoto"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"photo\": \"<string>\",\n  \"caption\": \"<string>\",\n  \"parse_mode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c018041-aa4a-4ad0-acbf-636c7e8a4763",
+          "name": "Send Document",
+          "request": {
+            "name": "Send Document",
+            "description": {
+              "content": "Send general files.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendDocument"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"document\": \"<string>\",\n  \"caption\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "856b5b83-6b27-4e65-85f3-488dc50b24f6",
+              "name": "Document message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendDocument"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"document\": \"<string>\",\n  \"caption\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c698441a-be02-4355-9fca-a1444b231211",
+          "name": "Send Audio",
+          "request": {
+            "name": "Send Audio",
+            "description": {
+              "content": "Send audio files as a playable music track.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendAudio"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"audio\": \"<string>\",\n  \"caption\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"performer\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36df88d7-4740-4f52-930c-98a32ffb20c3",
+              "name": "Audio message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendAudio"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"audio\": \"<string>\",\n  \"caption\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"performer\": \"<string>\",\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2846a145-3cd1-495b-b1e2-66bfbbdefc96",
+          "name": "Send Video",
+          "request": {
+            "name": "Send Video",
+            "description": {
+              "content": "Send video files.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendVideo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"video\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"width\": \"<integer>\",\n  \"height\": \"<integer>\",\n  \"caption\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2be38e9d-fea0-4c54-860c-3df333535547",
+              "name": "Video message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendVideo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"video\": \"<string>\",\n  \"duration\": \"<integer>\",\n  \"width\": \"<integer>\",\n  \"height\": \"<integer>\",\n  \"caption\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45a03420-3bea-4ee6-8356-5aa2165b2cac",
+          "name": "Send Voice",
+          "request": {
+            "name": "Send Voice",
+            "description": {
+              "content": "Send audio files as a voice message.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendVoice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"voice\": \"<string>\",\n  \"caption\": \"<string>\",\n  \"duration\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b27075da-8fe7-409e-9df2-58df9311039f",
+              "name": "Voice message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendVoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"voice\": \"<string>\",\n  \"caption\": \"<string>\",\n  \"duration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0bb7d850-0dfc-4ec9-9fde-702af0eeba36",
+          "name": "Send Location",
+          "request": {
+            "name": "Send Location",
+            "description": {
+              "content": "Send a point on the map.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendLocation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"latitude\": \"<float>\",\n  \"longitude\": \"<float>\",\n  \"horizontal_accuracy\": \"<number>\",\n  \"live_period\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1377877-a18a-42ab-8024-6cb6e798b9f2",
+              "name": "Location message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendLocation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"latitude\": \"<float>\",\n  \"longitude\": \"<float>\",\n  \"horizontal_accuracy\": \"<number>\",\n  \"live_period\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "425be872-e7b7-4f25-858f-e427603dec02",
+          "name": "Send Contact",
+          "request": {
+            "name": "Send Contact",
+            "description": {
+              "content": "Send phone contacts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendContact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"phone_number\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"vcard\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9ec11de-0bcb-43c3-8a16-e909be2ed9c3",
+              "name": "Contact sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendContact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"phone_number\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"vcard\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df62ccf1-e276-4cf3-acc8-f01ba924414b",
+          "name": "Send Poll",
+          "request": {
+            "name": "Send Poll",
+            "description": {
+              "content": "Send a native poll.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendPoll"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"question\": \"<string>\",\n  \"options\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_anonymous\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"allows_multiple_answers\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed3de19c-8bd4-47ea-b165-1ed215b97be3",
+              "name": "Poll message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendPoll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"question\": \"<string>\",\n  \"options\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_anonymous\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"allows_multiple_answers\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2ae3655-210a-4b72-a006-6533c61ef026",
+          "name": "Send Dice",
+          "request": {
+            "name": "Send Dice",
+            "description": {
+              "content": "Send an animated emoji that will display a random value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendDice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"emoji\": \"🎲\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8f87963-1091-4522-856f-7222168ade28",
+              "name": "Dice message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendDice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"emoji\": \"🎲\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"message_id\": 3133,\n    \"date\": 4458,\n    \"chat\": {\n      \"id\": 8788,\n      \"type\": \"private\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 4157\n    },\n    \"from\": {\n      \"id\": 4720,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8691bd2c-5e11-4860-91b8-00df5e31c4a0",
+          "name": "Answer Callback Query",
+          "request": {
+            "name": "Answer Callback Query",
+            "description": {
+              "content": "Send answers to callback queries sent from inline keyboards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "answerCallbackQuery"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"callback_query_id\": \"<string>\",\n  \"text\": \"<string>\",\n  \"show_alert\": \"<boolean>\",\n  \"url\": \"<string>\",\n  \"cache_time\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "752f40eb-2ddd-448b-abaf-b7d3b0baa13e",
+              "name": "Callback query answered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "answerCallbackQuery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callback_query_id\": \"<string>\",\n  \"text\": \"<string>\",\n  \"show_alert\": \"<boolean>\",\n  \"url\": \"<string>\",\n  \"cache_time\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Bot authentication token obtained from @BotFather",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "YOUR_BOT_TOKEN",
+      "key": "token"
+    },
+    {
+      "type": "string",
+      "value": "https://api.telegram.org/bot{{token}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "47352bca-6475-4556-8ec7-9230285eb142",
+    "name": "Telegram Bot Bot Info Messaging API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.\n\nContact Support:\n Name: Telegram Support",
+      "type": "text/plain"
+    }
+  }
+}

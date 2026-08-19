@@ -1,0 +1,489 @@
+{
+  "item": [
+    {
+      "id": "d82bcdb0-9b6d-4935-a4b3-8919996f436e",
+      "name": "Getting Updates",
+      "description": {
+        "content": "Methods for receiving incoming updates from Telegram",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50b76a12-835b-4b68-b692-933bee0d0754",
+          "name": "Get Updates",
+          "request": {
+            "name": "Get Updates",
+            "description": {
+              "content": "Receive incoming updates using long polling. Returns an array of Update objects. Notes: this method will not work if an outgoing webhook is set up.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getUpdates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"timeout\": \"<integer>\",\n  \"allowed_updates\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f3afe31f-ee29-4a4d-9d10-fb22ae6bb76e",
+              "name": "Array of Update objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getUpdates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"timeout\": \"<integer>\",\n  \"allowed_updates\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": [\n    {\n      \"update_id\": 2306,\n      \"message\": {\n        \"message_id\": 591,\n        \"date\": 9848,\n        \"chat\": {\n          \"id\": 8427,\n          \"type\": \"private\",\n          \"title\": \"string\",\n          \"username\": \"string\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"description\": \"string\",\n          \"invite_link\": \"string\",\n          \"member_count\": 2083\n        },\n        \"from\": {\n          \"id\": 7838,\n          \"is_bot\": true,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"username\": \"string\",\n          \"language_code\": \"string\",\n          \"is_premium\": true\n        },\n        \"text\": \"string\",\n        \"caption\": \"string\"\n      },\n      \"edited_message\": {\n        \"message_id\": 3987,\n        \"date\": 403,\n        \"chat\": {\n          \"id\": 7127,\n          \"type\": \"group\",\n          \"title\": \"string\",\n          \"username\": \"string\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"description\": \"string\",\n          \"invite_link\": \"string\",\n          \"member_count\": 3408\n        },\n        \"from\": {\n          \"id\": 5038,\n          \"is_bot\": true,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"username\": \"string\",\n          \"language_code\": \"string\",\n          \"is_premium\": false\n        },\n        \"text\": \"string\",\n        \"caption\": \"string\"\n      },\n      \"callback_query\": {}\n    },\n    {\n      \"update_id\": 3661,\n      \"message\": {\n        \"message_id\": 532,\n        \"date\": 8868,\n        \"chat\": {\n          \"id\": 4611,\n          \"type\": \"private\",\n          \"title\": \"string\",\n          \"username\": \"string\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"description\": \"string\",\n          \"invite_link\": \"string\",\n          \"member_count\": 3970\n        },\n        \"from\": {\n          \"id\": 9086,\n          \"is_bot\": false,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"username\": \"string\",\n          \"language_code\": \"string\",\n          \"is_premium\": false\n        },\n        \"text\": \"string\",\n        \"caption\": \"string\"\n      },\n      \"edited_message\": {\n        \"message_id\": 3292,\n        \"date\": 3338,\n        \"chat\": {\n          \"id\": 8565,\n          \"type\": \"supergroup\",\n          \"title\": \"string\",\n          \"username\": \"string\",\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"description\": \"string\",\n          \"invite_link\": \"string\",\n          \"member_count\": 115\n        },\n        \"from\": {\n          \"id\": 9709,\n          \"is_bot\": true,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"username\": \"string\",\n          \"language_code\": \"string\",\n          \"is_premium\": true\n        },\n        \"text\": \"string\",\n        \"caption\": \"string\"\n      },\n      \"callback_query\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78cc83f2-bba3-450f-9334-b4fafd06181b",
+          "name": "Set Webhook",
+          "request": {
+            "name": "Set Webhook",
+            "description": {
+              "content": "Specify a URL and receive incoming updates via an outgoing webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "setWebhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"max_connections\": \"<integer>\",\n  \"allowed_updates\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"drop_pending_updates\": \"<boolean>\",\n  \"secret_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "798c5f6b-b2d4-4bf6-8e19-6cd568029fa3",
+              "name": "Webhook set successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "setWebhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"max_connections\": \"<integer>\",\n  \"allowed_updates\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"drop_pending_updates\": \"<boolean>\",\n  \"secret_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dec70982-9e91-49f4-8d2c-182d66c9ab40",
+          "name": "Delete Webhook",
+          "request": {
+            "name": "Delete Webhook",
+            "description": {
+              "content": "Remove webhook integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deleteWebhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"drop_pending_updates\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60b3b902-4efe-4c18-bbb2-a0850a7c3253",
+              "name": "Webhook deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deleteWebhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"drop_pending_updates\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1fc3e3d-5964-456e-9315-a8c50a20c677",
+          "name": "Get Webhook Info",
+          "request": {
+            "name": "Get Webhook Info",
+            "description": {
+              "content": "Get current webhook status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getWebhookInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e4ae3c0-465b-4c42-a281-6d3cda77b652",
+              "name": "Webhook info object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getWebhookInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"result\": {\n    \"url\": \"string\",\n    \"has_custom_certificate\": false,\n    \"pending_update_count\": 6685,\n    \"ip_address\": \"string\",\n    \"last_error_date\": 9345,\n    \"last_error_message\": \"string\",\n    \"max_connections\": 9010,\n    \"allowed_updates\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Bot authentication token obtained from @BotFather",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "YOUR_BOT_TOKEN",
+      "key": "token"
+    },
+    {
+      "type": "string",
+      "value": "https://api.telegram.org/bot{{token}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "673f91a8-4b39-4cd0-9638-981febde12c7",
+    "name": "Telegram Bot Bot Info Getting Updates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.\n\nContact Support:\n Name: Telegram Support",
+      "type": "text/plain"
+    }
+  }
+}

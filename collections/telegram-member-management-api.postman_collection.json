@@ -1,0 +1,849 @@
+{
+  "item": [
+    {
+      "id": "f1cd110e-27b4-432c-9b37-06f25b0cbecc",
+      "name": "Member Management",
+      "description": {
+        "content": "Methods for managing chat members and administrators",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "289b2ca3-9ff3-4cd5-97ed-e2b3a051c50c",
+          "name": "Ban Chat Member",
+          "request": {
+            "name": "Ban Chat Member",
+            "description": {
+              "content": "Ban a user in a group, a supergroup or a channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "banChatMember"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"until_date\": \"<integer>\",\n  \"revoke_messages\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85bb6329-a2ef-4ba2-a4cf-b722560241d3",
+              "name": "User banned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "banChatMember"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"until_date\": \"<integer>\",\n  \"revoke_messages\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7068bed-d693-49b7-9f01-479fcc4fe4a6",
+          "name": "Unban Chat Member",
+          "request": {
+            "name": "Unban Chat Member",
+            "description": {
+              "content": "Unban a previously banned user in a supergroup or channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unbanChatMember"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"only_if_banned\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a146560-8f96-44ee-acb3-4bd639fd7115",
+              "name": "User unbanned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unbanChatMember"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"only_if_banned\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3133398-85ac-45f0-8e89-02ac7a11c4b2",
+          "name": "Restrict Chat Member",
+          "request": {
+            "name": "Restrict Chat Member",
+            "description": {
+              "content": "Restrict a user in a supergroup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "restrictChatMember"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"permissions\": {\n    \"can_send_messages\": \"<boolean>\",\n    \"can_send_audios\": \"<boolean>\",\n    \"can_send_documents\": \"<boolean>\",\n    \"can_send_photos\": \"<boolean>\",\n    \"can_send_videos\": \"<boolean>\",\n    \"can_send_polls\": \"<boolean>\",\n    \"can_send_other_messages\": \"<boolean>\",\n    \"can_add_web_page_previews\": \"<boolean>\",\n    \"can_change_info\": \"<boolean>\",\n    \"can_invite_users\": \"<boolean>\",\n    \"can_pin_messages\": \"<boolean>\"\n  },\n  \"until_date\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "adc4d1d7-9a5b-4d41-ab2c-e98c3cfa405d",
+              "name": "User restrictions updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "restrictChatMember"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"permissions\": {\n    \"can_send_messages\": \"<boolean>\",\n    \"can_send_audios\": \"<boolean>\",\n    \"can_send_documents\": \"<boolean>\",\n    \"can_send_photos\": \"<boolean>\",\n    \"can_send_videos\": \"<boolean>\",\n    \"can_send_polls\": \"<boolean>\",\n    \"can_send_other_messages\": \"<boolean>\",\n    \"can_add_web_page_previews\": \"<boolean>\",\n    \"can_change_info\": \"<boolean>\",\n    \"can_invite_users\": \"<boolean>\",\n    \"can_pin_messages\": \"<boolean>\"\n  },\n  \"until_date\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fac4a7ff-25e9-49b5-ab05-ca6836ce4256",
+          "name": "Promote Chat Member",
+          "request": {
+            "name": "Promote Chat Member",
+            "description": {
+              "content": "Promote or demote a user in a supergroup or a channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "promoteChatMember"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"can_change_info\": \"<boolean>\",\n  \"can_post_messages\": \"<boolean>\",\n  \"can_edit_messages\": \"<boolean>\",\n  \"can_delete_messages\": \"<boolean>\",\n  \"can_restrict_members\": \"<boolean>\",\n  \"can_promote_members\": \"<boolean>\",\n  \"can_manage_chat\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bda94c9b-45a2-4510-9723-698f2f52c36e",
+              "name": "Administrator rights updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "promoteChatMember"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"can_change_info\": \"<boolean>\",\n  \"can_post_messages\": \"<boolean>\",\n  \"can_edit_messages\": \"<boolean>\",\n  \"can_delete_messages\": \"<boolean>\",\n  \"can_restrict_members\": \"<boolean>\",\n  \"can_promote_members\": \"<boolean>\",\n  \"can_manage_chat\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b59abcf-ec48-4cea-bb59-954db61bc909",
+          "name": "Set Chat Administrator Custom Title",
+          "request": {
+            "name": "Set Chat Administrator Custom Title",
+            "description": {
+              "content": "Set a custom title for an administrator in a supergroup promoted by the bot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "setChatAdministratorCustomTitle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"custom_title\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e532a4f0-ae32-476b-a81a-4d7f792aec12",
+              "name": "Custom title set successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "setChatAdministratorCustomTitle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\",\n  \"custom_title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d2af59f-420f-4384-ace2-c9f3ab2a48c3",
+          "name": "Approve Chat Join Request",
+          "request": {
+            "name": "Approve Chat Join Request",
+            "description": {
+              "content": "Approve a chat join request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "approveChatJoinRequest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7837432e-2ee9-4b3c-b0b0-d9e0cdb65d25",
+              "name": "Join request approved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "approveChatJoinRequest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "878564d6-6073-4393-ae27-e9696b0b5f6b",
+          "name": "Decline Chat Join Request",
+          "request": {
+            "name": "Decline Chat Join Request",
+            "description": {
+              "content": "Decline a chat join request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "declineChatJoinRequest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a55ac31-e310-4aa4-9422-423aa85d9bd2",
+              "name": "Join request declined",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "declineChatJoinRequest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"user_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Bot authentication token obtained from @BotFather",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "YOUR_BOT_TOKEN",
+      "key": "token"
+    },
+    {
+      "type": "string",
+      "value": "https://api.telegram.org/bot{{token}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "802b71bd-1dcf-442f-8ffa-824977e259b9",
+    "name": "Telegram Bot Bot Info Member Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.\n\nContact Support:\n Name: Telegram Support",
+      "type": "text/plain"
+    }
+  }
+}

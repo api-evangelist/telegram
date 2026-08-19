@@ -1,0 +1,397 @@
+{
+  "item": [
+    {
+      "id": "77849cea-2092-4f11-9690-6ce17140764e",
+      "name": "Invites",
+      "description": {
+        "content": "Methods for managing chat invite links",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1550ba3e-0444-431c-bebb-367a032470e1",
+          "name": "Export Chat Invite Link",
+          "request": {
+            "name": "Export Chat Invite Link",
+            "description": {
+              "content": "Generate a new primary invite link for a chat.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exportChatInviteLink"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ac648afb-82d1-4f3c-bcdc-57a558f029d2",
+              "name": "New invite link as string",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exportChatInviteLink"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6166d8d-fb08-489b-9ea0-8e74649ad984",
+          "name": "Create Chat Invite Link",
+          "request": {
+            "name": "Create Chat Invite Link",
+            "description": {
+              "content": "Create an additional invite link for a chat.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "createChatInviteLink"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"expire_date\": \"<integer>\",\n  \"member_limit\": \"<integer>\",\n  \"creates_join_request\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba8861f1-4c89-473f-8690-fea6238acfce",
+              "name": "New invite link object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "createChatInviteLink"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"expire_date\": \"<integer>\",\n  \"member_limit\": \"<integer>\",\n  \"creates_join_request\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"invite_link\": \"string\",\n    \"creator\": {\n      \"id\": 5741,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": true\n    },\n    \"creates_join_request\": true,\n    \"is_primary\": false,\n    \"is_revoked\": false,\n    \"name\": \"string\",\n    \"expire_date\": 2900,\n    \"member_limit\": 2050,\n    \"pending_join_request_count\": 7136\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12a2162e-5e4c-4cc9-9416-2734195944b5",
+          "name": "Revoke Chat Invite Link",
+          "request": {
+            "name": "Revoke Chat Invite Link",
+            "description": {
+              "content": "Revoke an invite link created by the bot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "revokeChatInviteLink"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"invite_link\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc8568f7-888e-4eed-9716-692619edfec3",
+              "name": "Revoked invite link object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "revokeChatInviteLink"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"invite_link\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true,\n  \"result\": {\n    \"invite_link\": \"string\",\n    \"creator\": {\n      \"id\": 5741,\n      \"is_bot\": false,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": true\n    },\n    \"creates_join_request\": true,\n    \"is_primary\": false,\n    \"is_revoked\": false,\n    \"name\": \"string\",\n    \"expire_date\": 2900,\n    \"member_limit\": 2050,\n    \"pending_join_request_count\": 7136\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Bot authentication token obtained from @BotFather",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "YOUR_BOT_TOKEN",
+      "key": "token"
+    },
+    {
+      "type": "string",
+      "value": "https://api.telegram.org/bot{{token}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3d8986ee-905d-4ace-bcde-772c7c5a36c5",
+    "name": "Telegram Bot Bot Info Invites API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.\n\nContact Support:\n Name: Telegram Support",
+      "type": "text/plain"
+    }
+  }
+}

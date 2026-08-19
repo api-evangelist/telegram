@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telegram Bot Bot Info Member Management API",
+    "version": "9.5"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Member Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ban Chat Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/banChatMember",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ban a user in a group, a supergroup or a channel."
+        },
+        {
+          "info": {
+            "name": "Unban Chat Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/unbanChatMember",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unban a previously banned user in a supergroup or channel."
+        },
+        {
+          "info": {
+            "name": "Restrict Chat Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/restrictChatMember",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restrict a user in a supergroup."
+        },
+        {
+          "info": {
+            "name": "Promote Chat Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/promoteChatMember",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Promote or demote a user in a supergroup or a channel."
+        },
+        {
+          "info": {
+            "name": "Set Chat Administrator Custom Title",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/setChatAdministratorCustomTitle",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set a custom title for an administrator in a supergroup promoted by the bot."
+        },
+        {
+          "info": {
+            "name": "Approve Chat Join Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/approveChatJoinRequest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approve a chat join request."
+        },
+        {
+          "info": {
+            "name": "Decline Chat Join Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/declineChatJoinRequest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Decline a chat join request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

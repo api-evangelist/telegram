@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telegram Bot Bot Info Invites API",
+    "version": "9.5"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export Chat Invite Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/exportChatInviteLink",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a new primary invite link for a chat."
+        },
+        {
+          "info": {
+            "name": "Create Chat Invite Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/createChatInviteLink",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an additional invite link for a chat."
+        },
+        {
+          "info": {
+            "name": "Revoke Chat Invite Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/revokeChatInviteLink",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke an invite link created by the bot."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

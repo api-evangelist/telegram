@@ -1,0 +1,397 @@
+{
+  "item": [
+    {
+      "id": "d03d9924-171f-45ad-b9c0-02942fc578ea",
+      "name": "Payments",
+      "description": {
+        "content": "Methods for handling Telegram Payments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b8ce9384-ba7b-4e6d-8605-3dc766b693a3",
+          "name": "Send Invoice",
+          "request": {
+            "name": "Send Invoice",
+            "description": {
+              "content": "Send invoices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sendInvoice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"prices\": [\n    {\n      \"label\": \"<string>\",\n      \"amount\": \"<integer>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"amount\": \"<integer>\"\n    }\n  ],\n  \"provider_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82f7d153-a4f5-4e1d-a1b1-85aa8809771b",
+              "name": "Invoice message sent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendInvoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chat_id\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"prices\": [\n    {\n      \"label\": \"<string>\",\n      \"amount\": \"<integer>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"amount\": \"<integer>\"\n    }\n  ],\n  \"provider_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"result\": {\n    \"message_id\": 8860,\n    \"date\": 5915,\n    \"chat\": {\n      \"id\": 9951,\n      \"type\": \"supergroup\",\n      \"title\": \"string\",\n      \"username\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"description\": \"string\",\n      \"invite_link\": \"string\",\n      \"member_count\": 2601\n    },\n    \"from\": {\n      \"id\": 3017,\n      \"is_bot\": true,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"username\": \"string\",\n      \"language_code\": \"string\",\n      \"is_premium\": false\n    },\n    \"text\": \"string\",\n    \"caption\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da1a57c9-c849-46ab-bc86-b5d480c29d19",
+          "name": "Answer Shipping Query",
+          "request": {
+            "name": "Answer Shipping Query",
+            "description": {
+              "content": "Reply to shipping queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "answerShippingQuery"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shipping_query_id\": \"<string>\",\n  \"ok\": \"<boolean>\",\n  \"shipping_options\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"error_message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a2b891d-c263-4358-b604-57f1e8694c66",
+              "name": "Shipping query answered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "answerShippingQuery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipping_query_id\": \"<string>\",\n  \"ok\": \"<boolean>\",\n  \"shipping_options\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"error_message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"result\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72d23640-55c1-4341-b47a-cd7d85a5f5c1",
+          "name": "Answer Pre-Checkout Query",
+          "request": {
+            "name": "Answer Pre-Checkout Query",
+            "description": {
+              "content": "Respond to pre-checkout queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "answerPreCheckoutQuery"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Bot authentication token obtained from @BotFather",
+                  "type": "any",
+                  "value": "{{token}}",
+                  "key": "token"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pre_checkout_query_id\": \"<string>\",\n  \"ok\": \"<boolean>\",\n  \"error_message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0970babc-e695-47cf-9d02-a07d9cbb97a0",
+              "name": "Pre-checkout query answered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "answerPreCheckoutQuery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Bot authentication token obtained from @BotFather",
+                      "type": "any",
+                      "value": "{{token}}",
+                      "key": "token"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pre_checkout_query_id\": \"<string>\",\n  \"ok\": \"<boolean>\",\n  \"error_message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": false,\n  \"result\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Bot authentication token obtained from @BotFather",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "YOUR_BOT_TOKEN",
+      "key": "token"
+    },
+    {
+      "type": "string",
+      "value": "https://api.telegram.org/bot{{token}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b7b1cc39-66bc-4730-b6d0-4cf02ad93aad",
+    "name": "Telegram Bot Bot Info Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.\n\nContact Support:\n Name: Telegram Support",
+      "type": "text/plain"
+    }
+  }
+}

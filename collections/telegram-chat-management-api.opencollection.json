@@ -1,0 +1,202 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telegram Bot Bot Info Chat Management API",
+    "version": "9.5"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chat Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Chat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/getChat",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get up-to-date information about the chat."
+        },
+        {
+          "info": {
+            "name": "Get Chat Administrators",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/getChatAdministrators",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a list of administrators in a chat."
+        },
+        {
+          "info": {
+            "name": "Get Chat Member Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/getChatMemberCount",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the number of members in a chat."
+        },
+        {
+          "info": {
+            "name": "Get Chat Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/getChatMember",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get information about a member of a chat."
+        },
+        {
+          "info": {
+            "name": "Leave Chat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/leaveChat",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this method for your bot to leave a group, supergroup or channel."
+        },
+        {
+          "info": {
+            "name": "Set Chat Photo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/setChatPhoto",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "chat_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "photo",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Set a new profile photo for the chat."
+        },
+        {
+          "info": {
+            "name": "Delete Chat Photo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/deleteChatPhoto",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a chat photo."
+        },
+        {
+          "info": {
+            "name": "Set Chat Title",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/setChatTitle",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change the title of a chat."
+        },
+        {
+          "info": {
+            "name": "Set Chat Description",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/setChatDescription",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change the description of a group, a supergroup or a channel."
+        },
+        {
+          "info": {
+            "name": "Pin Chat Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/pinChatMessage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a message to the list of pinned messages in a chat."
+        },
+        {
+          "info": {
+            "name": "Unpin Chat Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telegram.org/bot{token}/unpinChatMessage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove a message from the list of pinned messages in a chat."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
