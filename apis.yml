@@ -26,6 +26,13 @@ tags:
 - Bots
 - Chat
 - Messaging
+- Notification
+- Payments
+- Telegram
+tags_raw:
+- Bots
+- Chat
+- Messaging
 - Notifications
 - Payments
 - Telegram
@@ -45,6 +52,12 @@ apis:
   baseURL: https://core.telegram.org/tdlib
   version: '1.8'
   tags:
+  - Client Library
+  - Cross-Platform
+  - MTProto
+  - Open-Source
+  - Telegram
+  tags_raw:
   - Client Library
   - Cross-Platform
   - MTProto
