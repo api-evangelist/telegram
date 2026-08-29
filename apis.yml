@@ -6,6 +6,20 @@ description: Telegram is a cloud-based instant messaging and voice-over-IP servi
   The platform supports text messages, media sharing, payments, inline keyboards,
   inline queries, webhooks, and live location sharing.
 type: Index
+deliveryModel:
+  model: open-core
+  license: BSL-1.0
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -290,6 +304,8 @@ apis:
   - type: GraphQL
     url: graphql/telegram-graphql.md
 common:
+- type: IssueTracker
+  url: https://github.com/tdlib/td/issues
 - type: License
   name: BSL-1.0
   url: https://github.com/tdlib/td/blob/master/LICENSE
