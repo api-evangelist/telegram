@@ -305,6 +305,8 @@ apis:
   - type: GraphQL
     url: graphql/telegram-graphql.md
 common:
+- type: Website
+  url: https://www.telegram.org/
 - type: IssueTracker
   url: https://github.com/tdlib/td/issues
 - type: License
