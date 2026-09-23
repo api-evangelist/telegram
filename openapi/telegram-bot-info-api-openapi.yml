@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Telegram Bot Bot Info API
-  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.
+  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot/METHOD_NAME.
   version: '9.5'
   contact:
     name: Telegram Support
@@ -157,6 +157,20 @@ paths:
                 $ref: '#/components/schemas/BotCommandsResponse'
 components:
   schemas:
+    FileResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/File'
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
     BotCommand:
       type: object
       properties:
@@ -197,29 +211,6 @@ components:
       - id
       - is_bot
       - first_name
-    UserProfilePhotos:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of profile pictures the target user has
-        photos:
-          type: array
-          items:
-            type: array
-            items:
-              type: object
-          description: Requested profile pictures (in up to 4 sizes each)
-      required:
-      - total_count
-      - photos
-    UserResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/User'
     UserProfilePhotosResponse:
       type: object
       properties:
@@ -227,22 +218,6 @@ components:
           type: boolean
         result:
           $ref: '#/components/schemas/UserProfilePhotos'
-    BooleanResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
-    BotCommandsResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/BotCommand'
     File:
       type: object
       properties:
@@ -261,13 +236,38 @@ components:
       required:
       - file_id
       - file_unique_id
-    FileResponse:
+    UserResponse:
       type: object
       properties:
         ok:
           type: boolean
         result:
-          $ref: '#/components/schemas/File'
+          $ref: '#/components/schemas/User'
+    UserProfilePhotos:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of profile pictures the target user has
+        photos:
+          type: array
+          items:
+            type: array
+            items:
+              type: object
+          description: Requested profile pictures (in up to 4 sizes each)
+      required:
+      - total_count
+      - photos
+    BotCommandsResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BotCommand'
   securitySchemes:
     BotToken:
       type: apiKey

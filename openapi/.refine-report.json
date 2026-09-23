@@ -1,15 +1,7 @@
 {
   "provider": "telegram",
   "sources": [
-    "telegram-bot-info-api-openapi.yml",
-    "telegram-chat-management-api-openapi.yml",
-    "telegram-getting-updates-api-openapi.yml",
-    "telegram-invites-api-openapi.yml",
-    "telegram-member-management-api-openapi.yml",
-    "telegram-message-editing-api-openapi.yml",
-    "telegram-messaging-api-openapi.yml",
-    "telegram-payments-api-openapi.yml",
-    "telegram-stickers-api-openapi.yml"
+    "_original/telegram-bot-openapi.yml"
   ],
   "outputs": [
     "telegram-bot-info-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "telegram-bot-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "telegram-bot-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telegram-chat-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telegram-getting-updates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telegram-invites-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telegram-member-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telegram-message-editing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telegram-messaging-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telegram-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telegram-stickers-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

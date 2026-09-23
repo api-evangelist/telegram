@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telegram Bot Bot Info Invites API
-  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.
+  title: Telegram Bot Invites API
+  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot/METHOD_NAME.
   version: '9.5'
   contact:
     name: Telegram Support
@@ -125,6 +125,13 @@ paths:
                 $ref: '#/components/schemas/ChatInviteLinkResponse'
 components:
   schemas:
+    ChatInviteLinkResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/ChatInviteLink'
     StringResponse:
       type: object
       properties:
@@ -195,13 +202,6 @@ components:
       - creates_join_request
       - is_primary
       - is_revoked
-    ChatInviteLinkResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/ChatInviteLink'
   securitySchemes:
     BotToken:
       type: apiKey

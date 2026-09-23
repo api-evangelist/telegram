@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telegram Bot Bot Info Getting Updates API
-  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot<token>/METHOD_NAME.
+  title: Telegram Bot Getting Updates API
+  description: The Telegram Bot API is an HTTP-based interface created for developers keen on building bots for Telegram. Bots can receive messages, send messages, manage chats, handle payments, work with stickers, and much more. All methods are HTTPS POST requests to https://api.telegram.org/bot/METHOD_NAME.
   version: '9.5'
   contact:
     name: Telegram Support
@@ -152,34 +152,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Update'
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for this user or bot
-        is_bot:
-          type: boolean
-          description: True if this user is a bot
-        first_name:
-          type: string
-          description: User's or bot's first name
-        last_name:
-          type: string
-          description: User's or bot's last name
-        username:
-          type: string
-          description: User's or bot's username
-        language_code:
-          type: string
-          description: IETF language tag of the user's language
-        is_premium:
-          type: boolean
-          description: True if this user is a Telegram Premium user
-      required:
-      - id
-      - is_bot
-      - first_name
     Chat:
       type: object
       properties:
@@ -225,13 +197,49 @@ components:
           type: boolean
         result:
           type: boolean
-    WebhookInfoResponse:
+    User:
       type: object
       properties:
-        ok:
+        id:
+          type: integer
+          description: Unique identifier for this user or bot
+        is_bot:
           type: boolean
-        result:
-          $ref: '#/components/schemas/WebhookInfo'
+          description: True if this user is a bot
+        first_name:
+          type: string
+          description: User's or bot's first name
+        last_name:
+          type: string
+          description: User's or bot's last name
+        username:
+          type: string
+          description: User's or bot's username
+        language_code:
+          type: string
+          description: IETF language tag of the user's language
+        is_premium:
+          type: boolean
+          description: True if this user is a Telegram Premium user
+      required:
+      - id
+      - is_bot
+      - first_name
+    Update:
+      type: object
+      properties:
+        update_id:
+          type: integer
+          description: The update's unique identifier
+        message:
+          $ref: '#/components/schemas/Message'
+        edited_message:
+          $ref: '#/components/schemas/Message'
+        callback_query:
+          type: object
+          description: New incoming callback query
+      required:
+      - update_id
     Message:
       type: object
       properties:
@@ -288,21 +296,13 @@ components:
       - url
       - has_custom_certificate
       - pending_update_count
-    Update:
+    WebhookInfoResponse:
       type: object
       properties:
-        update_id:
-          type: integer
-          description: The update's unique identifier
-        message:
-          $ref: '#/components/schemas/Message'
-        edited_message:
-          $ref: '#/components/schemas/Message'
-        callback_query:
-          type: object
-          description: New incoming callback query
-      required:
-      - update_id
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/WebhookInfo'
   securitySchemes:
     BotToken:
       type: apiKey
