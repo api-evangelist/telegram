@@ -70,7 +70,7 @@ apis:
   - Client Library
   - Cross-Platform
   - MTProto
-  - Open-Source
+  - Open Source
   - Telegram
   tags_raw:
   - Client Library
@@ -78,6 +78,7 @@ apis:
   - MTProto
   - Open Source
   - Telegram
+  - Open-Source
   properties:
   - type: Documentation
     url: https://core.telegram.org/tdlib
@@ -110,8 +111,6 @@ apis:
     url: https://core.telegram.org/bots/api-changelog
   - type: FAQ
     url: https://core.telegram.org/bots/faq
-  - type: GraphQL
-    url: graphql/telegram-graphql.md
 - aid: telegram:telegram-chat-management-api
   name: Telegram Chat Management API
   description: Methods for managing chats and chat settings
@@ -134,8 +133,6 @@ apis:
     url: https://core.telegram.org/bots/api-changelog
   - type: FAQ
     url: https://core.telegram.org/bots/faq
-  - type: GraphQL
-    url: graphql/telegram-graphql.md
 - aid: telegram:telegram-getting-updates-api
   name: Telegram Getting Updates API
   description: Methods for receiving incoming updates from Telegram
@@ -158,8 +155,6 @@ apis:
     url: https://core.telegram.org/bots/api-changelog
   - type: FAQ
     url: https://core.telegram.org/bots/faq
-  - type: GraphQL
-    url: graphql/telegram-graphql.md
 - aid: telegram:telegram-invites-api
   name: Telegram Invites API
   description: Methods for managing chat invite links
@@ -182,8 +177,6 @@ apis:
     url: https://core.telegram.org/bots/api-changelog
   - type: FAQ
     url: https://core.telegram.org/bots/faq
-  - type: GraphQL
-    url: graphql/telegram-graphql.md
 - aid: telegram:telegram-member-management-api
   name: Telegram Member Management API
   description: Methods for managing chat members and administrators
@@ -206,8 +199,6 @@ apis:
     url: https://core.telegram.org/bots/api-changelog
   - type: FAQ
     url: https://core.telegram.org/bots/faq
-  - type: GraphQL
-    url: graphql/telegram-graphql.md
 - aid: telegram:telegram-message-editing-api
   name: Telegram Message Editing API
   description: Methods for editing and deleting messages
@@ -230,8 +221,6 @@ apis:
     url: https://core.telegram.org/bots/api-changelog
   - type: FAQ
     url: https://core.telegram.org/bots/faq
-  - type: GraphQL
-    url: graphql/telegram-graphql.md
 - aid: telegram:telegram-messaging-api
   name: Telegram Messaging API
   description: Methods for sending messages and media
@@ -254,8 +243,6 @@ apis:
     url: https://core.telegram.org/bots/api-changelog
   - type: FAQ
     url: https://core.telegram.org/bots/faq
-  - type: GraphQL
-    url: graphql/telegram-graphql.md
 - aid: telegram:telegram-payments-api
   name: Telegram Payments API
   description: Methods for handling Telegram Payments
@@ -278,8 +265,6 @@ apis:
     url: https://core.telegram.org/bots/api-changelog
   - type: FAQ
     url: https://core.telegram.org/bots/faq
-  - type: GraphQL
-    url: graphql/telegram-graphql.md
 - aid: telegram:telegram-stickers-api
   name: Telegram Stickers API
   description: Methods for working with sticker sets
@@ -302,8 +287,6 @@ apis:
     url: https://core.telegram.org/bots/api-changelog
   - type: FAQ
     url: https://core.telegram.org/bots/faq
-  - type: GraphQL
-    url: graphql/telegram-graphql.md
 common:
 - type: Website
   url: https://www.telegram.org/
