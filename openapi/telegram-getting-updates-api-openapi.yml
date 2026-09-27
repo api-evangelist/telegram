@@ -143,6 +143,39 @@ paths:
                 $ref: '#/components/schemas/WebhookInfoResponse'
 components:
   schemas:
+    WebhookInfo:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Webhook URL, may be empty if webhook is not set up
+        has_custom_certificate:
+          type: boolean
+          description: True if a custom certificate was provided
+        pending_update_count:
+          type: integer
+          description: Number of updates awaiting delivery
+        ip_address:
+          type: string
+          description: Currently used webhook IP address
+        last_error_date:
+          type: integer
+          description: Unix time for the most recent error
+        last_error_message:
+          type: string
+          description: Error message in human-readable format for the most recent webhook error
+        max_connections:
+          type: integer
+          description: Maximum allowed number of simultaneous HTTPS connections
+        allowed_updates:
+          type: array
+          items:
+            type: string
+          description: List of update types the bot is subscribed to
+      required:
+      - url
+      - has_custom_certificate
+      - pending_update_count
     UpdatesResponse:
       type: object
       properties:
@@ -152,6 +185,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Update'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this user or bot
+        is_bot:
+          type: boolean
+          description: True if this user is a bot
+        first_name:
+          type: string
+          description: User's or bot's first name
+        last_name:
+          type: string
+          description: User's or bot's last name
+        username:
+          type: string
+          description: User's or bot's username
+        language_code:
+          type: string
+          description: IETF language tag of the user's language
+        is_premium:
+          type: boolean
+          description: True if this user is a Telegram Premium user
+      required:
+      - id
+      - is_bot
+      - first_name
     Chat:
       type: object
       properties:
@@ -190,56 +251,6 @@ components:
       required:
       - id
       - type
-    BooleanResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for this user or bot
-        is_bot:
-          type: boolean
-          description: True if this user is a bot
-        first_name:
-          type: string
-          description: User's or bot's first name
-        last_name:
-          type: string
-          description: User's or bot's last name
-        username:
-          type: string
-          description: User's or bot's username
-        language_code:
-          type: string
-          description: IETF language tag of the user's language
-        is_premium:
-          type: boolean
-          description: True if this user is a Telegram Premium user
-      required:
-      - id
-      - is_bot
-      - first_name
-    Update:
-      type: object
-      properties:
-        update_id:
-          type: integer
-          description: The update's unique identifier
-        message:
-          $ref: '#/components/schemas/Message'
-        edited_message:
-          $ref: '#/components/schemas/Message'
-        callback_query:
-          type: object
-          description: New incoming callback query
-      required:
-      - update_id
     Message:
       type: object
       properties:
@@ -263,39 +274,6 @@ components:
       - message_id
       - date
       - chat
-    WebhookInfo:
-      type: object
-      properties:
-        url:
-          type: string
-          description: Webhook URL, may be empty if webhook is not set up
-        has_custom_certificate:
-          type: boolean
-          description: True if a custom certificate was provided
-        pending_update_count:
-          type: integer
-          description: Number of updates awaiting delivery
-        ip_address:
-          type: string
-          description: Currently used webhook IP address
-        last_error_date:
-          type: integer
-          description: Unix time for the most recent error
-        last_error_message:
-          type: string
-          description: Error message in human-readable format for the most recent webhook error
-        max_connections:
-          type: integer
-          description: Maximum allowed number of simultaneous HTTPS connections
-        allowed_updates:
-          type: array
-          items:
-            type: string
-          description: List of update types the bot is subscribed to
-      required:
-      - url
-      - has_custom_certificate
-      - pending_update_count
     WebhookInfoResponse:
       type: object
       properties:
@@ -303,6 +281,28 @@ components:
           type: boolean
         result:
           $ref: '#/components/schemas/WebhookInfo'
+    Update:
+      type: object
+      properties:
+        update_id:
+          type: integer
+          description: The update's unique identifier
+        message:
+          $ref: '#/components/schemas/Message'
+        edited_message:
+          $ref: '#/components/schemas/Message'
+        callback_query:
+          type: object
+          description: New incoming callback query
+      required:
+      - update_id
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
   securitySchemes:
     BotToken:
       type: apiKey

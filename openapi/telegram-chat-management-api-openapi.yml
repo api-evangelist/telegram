@@ -359,6 +359,75 @@ paths:
                 $ref: '#/components/schemas/BooleanResponse'
 components:
   schemas:
+    ChatResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/Chat'
+    ChatMemberResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/ChatMember'
+    ChatMember:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - creator
+          - administrator
+          - member
+          - restricted
+          - left
+          - kicked
+          description: The member's status in the chat
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - status
+      - user
+    ChatMembersResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatMember'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this user or bot
+        is_bot:
+          type: boolean
+          description: True if this user is a bot
+        first_name:
+          type: string
+          description: User's or bot's first name
+        last_name:
+          type: string
+          description: User's or bot's last name
+        username:
+          type: string
+          description: User's or bot's username
+        language_code:
+          type: string
+          description: IETF language tag of the user's language
+        is_premium:
+          type: boolean
+          description: True if this user is a Telegram Premium user
+      required:
+      - id
+      - is_bot
+      - first_name
     Chat:
       type: object
       properties:
@@ -397,55 +466,6 @@ components:
       required:
       - id
       - type
-    BooleanResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for this user or bot
-        is_bot:
-          type: boolean
-          description: True if this user is a bot
-        first_name:
-          type: string
-          description: User's or bot's first name
-        last_name:
-          type: string
-          description: User's or bot's last name
-        username:
-          type: string
-          description: User's or bot's username
-        language_code:
-          type: string
-          description: IETF language tag of the user's language
-        is_premium:
-          type: boolean
-          description: True if this user is a Telegram Premium user
-      required:
-      - id
-      - is_bot
-      - first_name
-    ChatResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/Chat'
-    ChatMemberResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/ChatMember'
     IntegerResponse:
       type: object
       properties:
@@ -453,33 +473,13 @@ components:
           type: boolean
         result:
           type: integer
-    ChatMember:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - creator
-          - administrator
-          - member
-          - restricted
-          - left
-          - kicked
-          description: The member's status in the chat
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-      - status
-      - user
-    ChatMembersResponse:
+    BooleanResponse:
       type: object
       properties:
         ok:
           type: boolean
         result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChatMember'
+          type: boolean
   securitySchemes:
     BotToken:
       type: apiKey

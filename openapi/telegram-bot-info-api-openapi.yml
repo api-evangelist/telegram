@@ -164,13 +164,22 @@ components:
           type: boolean
         result:
           $ref: '#/components/schemas/File'
-    BooleanResponse:
+    UserProfilePhotos:
       type: object
       properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
+        total_count:
+          type: integer
+          description: Total number of profile pictures the target user has
+        photos:
+          type: array
+          items:
+            type: array
+            items:
+              type: object
+          description: Requested profile pictures (in up to 4 sizes each)
+      required:
+      - total_count
+      - photos
     BotCommand:
       type: object
       properties:
@@ -183,6 +192,31 @@ components:
       required:
       - command
       - description
+    UserProfilePhotosResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/UserProfilePhotos'
+    File:
+      type: object
+      properties:
+        file_id:
+          type: string
+          description: Identifier for this file, which can be used to download or reuse the file
+        file_unique_id:
+          type: string
+          description: Unique identifier for this file (stable across bots)
+        file_size:
+          type: integer
+          description: File size in bytes
+        file_path:
+          type: string
+          description: File path. Use https://api.telegram.org/file/bot<token>/<file_path> to get the file.
+      required:
+      - file_id
+      - file_unique_id
     User:
       type: object
       properties:
@@ -211,54 +245,6 @@ components:
       - id
       - is_bot
       - first_name
-    UserProfilePhotosResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/UserProfilePhotos'
-    File:
-      type: object
-      properties:
-        file_id:
-          type: string
-          description: Identifier for this file, which can be used to download or reuse the file
-        file_unique_id:
-          type: string
-          description: Unique identifier for this file (stable across bots)
-        file_size:
-          type: integer
-          description: File size in bytes
-        file_path:
-          type: string
-          description: File path. Use https://api.telegram.org/file/bot<token>/<file_path> to get the file.
-      required:
-      - file_id
-      - file_unique_id
-    UserResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/User'
-    UserProfilePhotos:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of profile pictures the target user has
-        photos:
-          type: array
-          items:
-            type: array
-            items:
-              type: object
-          description: Requested profile pictures (in up to 4 sizes each)
-      required:
-      - total_count
-      - photos
     BotCommandsResponse:
       type: object
       properties:
@@ -268,6 +254,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BotCommand'
+    UserResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/User'
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
   securitySchemes:
     BotToken:
       type: apiKey

@@ -132,13 +132,6 @@ components:
           type: boolean
         result:
           $ref: '#/components/schemas/ChatInviteLink'
-    StringResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: string
     User:
       type: object
       properties:
@@ -167,6 +160,13 @@ components:
       - id
       - is_bot
       - first_name
+    StringResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: string
     ChatInviteLink:
       type: object
       properties:
