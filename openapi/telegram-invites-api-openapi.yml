@@ -125,6 +125,41 @@ paths:
                 $ref: '#/components/schemas/ChatInviteLinkResponse'
 components:
   schemas:
+    ChatInviteLink:
+      type: object
+      properties:
+        invite_link:
+          type: string
+          description: The invite link
+        creator:
+          $ref: '#/components/schemas/User'
+        creates_join_request:
+          type: boolean
+          description: True if users joining via the link need to be approved
+        is_primary:
+          type: boolean
+          description: True if the link is primary
+        is_revoked:
+          type: boolean
+          description: True if the link is revoked
+        name:
+          type: string
+          description: Invite link name
+        expire_date:
+          type: integer
+          description: Point in time when the link will expire or has been expired
+        member_limit:
+          type: integer
+          description: Maximum number of users that can be chat members
+        pending_join_request_count:
+          type: integer
+          description: Number of pending join requests
+      required:
+      - invite_link
+      - creator
+      - creates_join_request
+      - is_primary
+      - is_revoked
     ChatInviteLinkResponse:
       type: object
       properties:
@@ -167,41 +202,6 @@ components:
           type: boolean
         result:
           type: string
-    ChatInviteLink:
-      type: object
-      properties:
-        invite_link:
-          type: string
-          description: The invite link
-        creator:
-          $ref: '#/components/schemas/User'
-        creates_join_request:
-          type: boolean
-          description: True if users joining via the link need to be approved
-        is_primary:
-          type: boolean
-          description: True if the link is primary
-        is_revoked:
-          type: boolean
-          description: True if the link is revoked
-        name:
-          type: string
-          description: Invite link name
-        expire_date:
-          type: integer
-          description: Point in time when the link will expire or has been expired
-        member_limit:
-          type: integer
-          description: Maximum number of users that can be chat members
-        pending_join_request_count:
-          type: integer
-          description: Number of pending join requests
-      required:
-      - invite_link
-      - creator
-      - creates_join_request
-      - is_primary
-      - is_revoked
   securitySchemes:
     BotToken:
       type: apiKey

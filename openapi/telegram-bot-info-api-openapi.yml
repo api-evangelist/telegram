@@ -157,13 +157,13 @@ paths:
                 $ref: '#/components/schemas/BotCommandsResponse'
 components:
   schemas:
-    FileResponse:
+    BooleanResponse:
       type: object
       properties:
         ok:
           type: boolean
         result:
-          $ref: '#/components/schemas/File'
+          type: boolean
     UserProfilePhotos:
       type: object
       properties:
@@ -180,6 +180,15 @@ components:
       required:
       - total_count
       - photos
+    BotCommandsResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BotCommand'
     BotCommand:
       type: object
       properties:
@@ -192,13 +201,13 @@ components:
       required:
       - command
       - description
-    UserProfilePhotosResponse:
+    FileResponse:
       type: object
       properties:
         ok:
           type: boolean
         result:
-          $ref: '#/components/schemas/UserProfilePhotos'
+          $ref: '#/components/schemas/File'
     File:
       type: object
       properties:
@@ -245,15 +254,13 @@ components:
       - id
       - is_bot
       - first_name
-    BotCommandsResponse:
+    UserProfilePhotosResponse:
       type: object
       properties:
         ok:
           type: boolean
         result:
-          type: array
-          items:
-            $ref: '#/components/schemas/BotCommand'
+          $ref: '#/components/schemas/UserProfilePhotos'
     UserResponse:
       type: object
       properties:
@@ -261,13 +268,6 @@ components:
           type: boolean
         result:
           $ref: '#/components/schemas/User'
-    BooleanResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
   securitySchemes:
     BotToken:
       type: apiKey

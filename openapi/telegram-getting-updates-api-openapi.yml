@@ -143,6 +143,20 @@ paths:
                 $ref: '#/components/schemas/WebhookInfoResponse'
 components:
   schemas:
+    WebhookInfoResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/WebhookInfo'
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
     WebhookInfo:
       type: object
       properties:
@@ -176,43 +190,44 @@ components:
       - url
       - has_custom_certificate
       - pending_update_count
-    UpdatesResponse:
+    Update:
       type: object
       properties:
-        ok:
-          type: boolean
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Update'
-    User:
-      type: object
-      properties:
-        id:
+        update_id:
           type: integer
-          description: Unique identifier for this user or bot
-        is_bot:
-          type: boolean
-          description: True if this user is a bot
-        first_name:
-          type: string
-          description: User's or bot's first name
-        last_name:
-          type: string
-          description: User's or bot's last name
-        username:
-          type: string
-          description: User's or bot's username
-        language_code:
-          type: string
-          description: IETF language tag of the user's language
-        is_premium:
-          type: boolean
-          description: True if this user is a Telegram Premium user
+          description: The update's unique identifier
+        message:
+          $ref: '#/components/schemas/Message'
+        edited_message:
+          $ref: '#/components/schemas/Message'
+        callback_query:
+          type: object
+          description: New incoming callback query
       required:
-      - id
-      - is_bot
-      - first_name
+      - update_id
+    Message:
+      type: object
+      properties:
+        message_id:
+          type: integer
+          description: Unique message identifier inside a chat
+        from:
+          $ref: '#/components/schemas/User'
+        chat:
+          $ref: '#/components/schemas/Chat'
+        date:
+          type: integer
+          description: Date the message was sent in Unix time
+        text:
+          type: string
+          description: For text messages, the actual UTF-8 text of the message
+        caption:
+          type: string
+          description: Caption for the animation, audio, document, photo, video or voice
+      required:
+      - message_id
+      - date
+      - chat
     Chat:
       type: object
       properties:
@@ -251,58 +266,43 @@ components:
       required:
       - id
       - type
-    Message:
-      type: object
-      properties:
-        message_id:
-          type: integer
-          description: Unique message identifier inside a chat
-        from:
-          $ref: '#/components/schemas/User'
-        chat:
-          $ref: '#/components/schemas/Chat'
-        date:
-          type: integer
-          description: Date the message was sent in Unix time
-        text:
-          type: string
-          description: For text messages, the actual UTF-8 text of the message
-        caption:
-          type: string
-          description: Caption for the animation, audio, document, photo, video or voice
-      required:
-      - message_id
-      - date
-      - chat
-    WebhookInfoResponse:
+    UpdatesResponse:
       type: object
       properties:
         ok:
           type: boolean
         result:
-          $ref: '#/components/schemas/WebhookInfo'
-    Update:
+          type: array
+          items:
+            $ref: '#/components/schemas/Update'
+    User:
       type: object
       properties:
-        update_id:
+        id:
           type: integer
-          description: The update's unique identifier
-        message:
-          $ref: '#/components/schemas/Message'
-        edited_message:
-          $ref: '#/components/schemas/Message'
-        callback_query:
-          type: object
-          description: New incoming callback query
+          description: Unique identifier for this user or bot
+        is_bot:
+          type: boolean
+          description: True if this user is a bot
+        first_name:
+          type: string
+          description: User's or bot's first name
+        last_name:
+          type: string
+          description: User's or bot's last name
+        username:
+          type: string
+          description: User's or bot's username
+        language_code:
+          type: string
+          description: IETF language tag of the user's language
+        is_premium:
+          type: boolean
+          description: True if this user is a Telegram Premium user
       required:
-      - update_id
-    BooleanResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
+      - id
+      - is_bot
+      - first_name
   securitySchemes:
     BotToken:
       type: apiKey
