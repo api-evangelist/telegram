@@ -143,53 +143,6 @@ paths:
                 $ref: '#/components/schemas/WebhookInfoResponse'
 components:
   schemas:
-    WebhookInfoResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/WebhookInfo'
-    BooleanResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
-    WebhookInfo:
-      type: object
-      properties:
-        url:
-          type: string
-          description: Webhook URL, may be empty if webhook is not set up
-        has_custom_certificate:
-          type: boolean
-          description: True if a custom certificate was provided
-        pending_update_count:
-          type: integer
-          description: Number of updates awaiting delivery
-        ip_address:
-          type: string
-          description: Currently used webhook IP address
-        last_error_date:
-          type: integer
-          description: Unix time for the most recent error
-        last_error_message:
-          type: string
-          description: Error message in human-readable format for the most recent webhook error
-        max_connections:
-          type: integer
-          description: Maximum allowed number of simultaneous HTTPS connections
-        allowed_updates:
-          type: array
-          items:
-            type: string
-          description: List of update types the bot is subscribed to
-      required:
-      - url
-      - has_custom_certificate
-      - pending_update_count
     Update:
       type: object
       properties:
@@ -205,29 +158,13 @@ components:
           description: New incoming callback query
       required:
       - update_id
-    Message:
+    BooleanResponse:
       type: object
       properties:
-        message_id:
-          type: integer
-          description: Unique message identifier inside a chat
-        from:
-          $ref: '#/components/schemas/User'
-        chat:
-          $ref: '#/components/schemas/Chat'
-        date:
-          type: integer
-          description: Date the message was sent in Unix time
-        text:
-          type: string
-          description: For text messages, the actual UTF-8 text of the message
-        caption:
-          type: string
-          description: Caption for the animation, audio, document, photo, video or voice
-      required:
-      - message_id
-      - date
-      - chat
+        ok:
+          type: boolean
+        result:
+          type: boolean
     Chat:
       type: object
       properties:
@@ -275,6 +212,69 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Update'
+    Message:
+      type: object
+      properties:
+        message_id:
+          type: integer
+          description: Unique message identifier inside a chat
+        from:
+          $ref: '#/components/schemas/User'
+        chat:
+          $ref: '#/components/schemas/Chat'
+        date:
+          type: integer
+          description: Date the message was sent in Unix time
+        text:
+          type: string
+          description: For text messages, the actual UTF-8 text of the message
+        caption:
+          type: string
+          description: Caption for the animation, audio, document, photo, video or voice
+      required:
+      - message_id
+      - date
+      - chat
+    WebhookInfoResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/WebhookInfo'
+    WebhookInfo:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Webhook URL, may be empty if webhook is not set up
+        has_custom_certificate:
+          type: boolean
+          description: True if a custom certificate was provided
+        pending_update_count:
+          type: integer
+          description: Number of updates awaiting delivery
+        ip_address:
+          type: string
+          description: Currently used webhook IP address
+        last_error_date:
+          type: integer
+          description: Unix time for the most recent error
+        last_error_message:
+          type: string
+          description: Error message in human-readable format for the most recent webhook error
+        max_connections:
+          type: integer
+          description: Maximum allowed number of simultaneous HTTPS connections
+        allowed_updates:
+          type: array
+          items:
+            type: string
+          description: List of update types the bot is subscribed to
+      required:
+      - url
+      - has_custom_certificate
+      - pending_update_count
     User:
       type: object
       properties:

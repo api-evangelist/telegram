@@ -359,15 +359,6 @@ paths:
                 $ref: '#/components/schemas/BooleanResponse'
 components:
   schemas:
-    ChatMembersResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ChatMember'
     BooleanResponse:
       type: object
       properties:
@@ -375,31 +366,6 @@ components:
           type: boolean
         result:
           type: boolean
-    ChatMemberResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/ChatMember'
-    ChatMember:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - creator
-          - administrator
-          - member
-          - restricted
-          - left
-          - kicked
-          description: The member's status in the chat
-        user:
-          $ref: '#/components/schemas/User'
-      required:
-      - status
-      - user
     Chat:
       type: object
       properties:
@@ -438,6 +404,47 @@ components:
       required:
       - id
       - type
+    ChatResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/Chat'
+    ChatMember:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - creator
+          - administrator
+          - member
+          - restricted
+          - left
+          - kicked
+          description: The member's status in the chat
+        user:
+          $ref: '#/components/schemas/User'
+      required:
+      - status
+      - user
+    ChatMemberResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/ChatMember'
+    ChatMembersResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatMember'
     IntegerResponse:
       type: object
       properties:
@@ -473,13 +480,6 @@ components:
       - id
       - is_bot
       - first_name
-    ChatResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/Chat'
   securitySchemes:
     BotToken:
       type: apiKey

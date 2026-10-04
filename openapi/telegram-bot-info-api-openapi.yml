@@ -157,29 +157,6 @@ paths:
                 $ref: '#/components/schemas/BotCommandsResponse'
 components:
   schemas:
-    BooleanResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
-    UserProfilePhotos:
-      type: object
-      properties:
-        total_count:
-          type: integer
-          description: Total number of profile pictures the target user has
-        photos:
-          type: array
-          items:
-            type: array
-            items:
-              type: object
-          description: Requested profile pictures (in up to 4 sizes each)
-      required:
-      - total_count
-      - photos
     BotCommandsResponse:
       type: object
       properties:
@@ -201,13 +178,13 @@ components:
       required:
       - command
       - description
-    FileResponse:
+    UserResponse:
       type: object
       properties:
         ok:
           type: boolean
         result:
-          $ref: '#/components/schemas/File'
+          $ref: '#/components/schemas/User'
     File:
       type: object
       properties:
@@ -226,6 +203,43 @@ components:
       required:
       - file_id
       - file_unique_id
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
+    FileResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/File'
+    UserProfilePhotos:
+      type: object
+      properties:
+        total_count:
+          type: integer
+          description: Total number of profile pictures the target user has
+        photos:
+          type: array
+          items:
+            type: array
+            items:
+              type: object
+          description: Requested profile pictures (in up to 4 sizes each)
+      required:
+      - total_count
+      - photos
+    UserProfilePhotosResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/UserProfilePhotos'
     User:
       type: object
       properties:
@@ -254,20 +268,6 @@ components:
       - id
       - is_bot
       - first_name
-    UserProfilePhotosResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/UserProfilePhotos'
-    UserResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/User'
   securitySchemes:
     BotToken:
       type: apiKey

@@ -557,13 +557,6 @@ paths:
                 $ref: '#/components/schemas/BooleanResponse'
 components:
   schemas:
-    MessageResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/Message'
     BooleanResponse:
       type: object
       properties:
@@ -581,29 +574,6 @@ components:
           properties:
             message_id:
               type: integer
-    Message:
-      type: object
-      properties:
-        message_id:
-          type: integer
-          description: Unique message identifier inside a chat
-        from:
-          $ref: '#/components/schemas/User'
-        chat:
-          $ref: '#/components/schemas/Chat'
-        date:
-          type: integer
-          description: Date the message was sent in Unix time
-        text:
-          type: string
-          description: For text messages, the actual UTF-8 text of the message
-        caption:
-          type: string
-          description: Caption for the animation, audio, document, photo, video or voice
-      required:
-      - message_id
-      - date
-      - chat
     Chat:
       type: object
       properties:
@@ -642,6 +612,36 @@ components:
       required:
       - id
       - type
+    MessageResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/Message'
+    Message:
+      type: object
+      properties:
+        message_id:
+          type: integer
+          description: Unique message identifier inside a chat
+        from:
+          $ref: '#/components/schemas/User'
+        chat:
+          $ref: '#/components/schemas/Chat'
+        date:
+          type: integer
+          description: Date the message was sent in Unix time
+        text:
+          type: string
+          description: For text messages, the actual UTF-8 text of the message
+        caption:
+          type: string
+          description: Caption for the animation, audio, document, photo, video or voice
+      required:
+      - message_id
+      - date
+      - chat
     User:
       type: object
       properties:
