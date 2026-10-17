@@ -143,6 +143,13 @@ paths:
                 $ref: '#/components/schemas/WebhookInfoResponse'
 components:
   schemas:
+    WebhookInfoResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/WebhookInfo'
     Update:
       type: object
       properties:
@@ -158,60 +165,6 @@ components:
           description: New incoming callback query
       required:
       - update_id
-    BooleanResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
-    Chat:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for this chat
-        type:
-          type: string
-          enum:
-          - private
-          - group
-          - supergroup
-          - channel
-          description: Type of chat
-        title:
-          type: string
-          description: Title for supergroups, channels and group chats
-        username:
-          type: string
-          description: Username for private chats, supergroups and channels
-        first_name:
-          type: string
-          description: First name of the other party in a private chat
-        last_name:
-          type: string
-          description: Last name of the other party in a private chat
-        description:
-          type: string
-          description: Description for groups, supergroups and channel chats
-        invite_link:
-          type: string
-          description: Primary invite link for the chat
-        member_count:
-          type: integer
-          description: Number of members in a chat
-      required:
-      - id
-      - type
-    UpdatesResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Update'
     Message:
       type: object
       properties:
@@ -235,13 +188,13 @@ components:
       - message_id
       - date
       - chat
-    WebhookInfoResponse:
+    BooleanResponse:
       type: object
       properties:
         ok:
           type: boolean
         result:
-          $ref: '#/components/schemas/WebhookInfo'
+          type: boolean
     WebhookInfo:
       type: object
       properties:
@@ -303,6 +256,53 @@ components:
       - id
       - is_bot
       - first_name
+    UpdatesResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Update'
+    Chat:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for this chat
+        type:
+          type: string
+          enum:
+          - private
+          - group
+          - supergroup
+          - channel
+          description: Type of chat
+        title:
+          type: string
+          description: Title for supergroups, channels and group chats
+        username:
+          type: string
+          description: Username for private chats, supergroups and channels
+        first_name:
+          type: string
+          description: First name of the other party in a private chat
+        last_name:
+          type: string
+          description: Last name of the other party in a private chat
+        description:
+          type: string
+          description: Description for groups, supergroups and channel chats
+        invite_link:
+          type: string
+          description: Primary invite link for the chat
+        member_count:
+          type: integer
+          description: Number of members in a chat
+      required:
+      - id
+      - type
   securitySchemes:
     BotToken:
       type: apiKey

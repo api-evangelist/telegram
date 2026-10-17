@@ -157,15 +157,20 @@ paths:
                 $ref: '#/components/schemas/BotCommandsResponse'
 components:
   schemas:
-    BotCommandsResponse:
+    UserProfilePhotosResponse:
       type: object
       properties:
         ok:
           type: boolean
         result:
-          type: array
-          items:
-            $ref: '#/components/schemas/BotCommand'
+          $ref: '#/components/schemas/UserProfilePhotos'
+    UserResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/User'
     BotCommand:
       type: object
       properties:
@@ -178,13 +183,6 @@ components:
       required:
       - command
       - description
-    UserResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/User'
     File:
       type: object
       properties:
@@ -203,13 +201,6 @@ components:
       required:
       - file_id
       - file_unique_id
-    BooleanResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
     FileResponse:
       type: object
       properties:
@@ -217,6 +208,13 @@ components:
           type: boolean
         result:
           $ref: '#/components/schemas/File'
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
     UserProfilePhotos:
       type: object
       properties:
@@ -233,13 +231,6 @@ components:
       required:
       - total_count
       - photos
-    UserProfilePhotosResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/UserProfilePhotos'
     User:
       type: object
       properties:
@@ -268,6 +259,15 @@ components:
       - id
       - is_bot
       - first_name
+    BotCommandsResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BotCommand'
   securitySchemes:
     BotToken:
       type: apiKey

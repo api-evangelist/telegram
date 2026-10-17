@@ -160,20 +160,6 @@ components:
       - creates_join_request
       - is_primary
       - is_revoked
-    StringResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: string
-    ChatInviteLinkResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          $ref: '#/components/schemas/ChatInviteLink'
     User:
       type: object
       properties:
@@ -202,6 +188,20 @@ components:
       - id
       - is_bot
       - first_name
+    ChatInviteLinkResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/ChatInviteLink'
+    StringResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: string
   securitySchemes:
     BotToken:
       type: apiKey

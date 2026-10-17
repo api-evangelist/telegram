@@ -289,13 +289,6 @@ paths:
                 $ref: '#/components/schemas/BooleanResponse'
 components:
   schemas:
-    BooleanResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-        result:
-          type: boolean
     ChatPermissions:
       type: object
       properties:
@@ -332,6 +325,13 @@ components:
         can_pin_messages:
           type: boolean
           description: True if the user is allowed to pin messages
+    BooleanResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+        result:
+          type: boolean
   securitySchemes:
     BotToken:
       type: apiKey
