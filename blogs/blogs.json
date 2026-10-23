@@ -10,13 +10,10 @@
     },
     {
       "source": "https://downdetector.com/status/telegram/",
-      "feed_url": "https://downdetector.com/status/telegram/",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-10-10T13:15:00Z",
+  "fetched": "2026-10-17T14:53:57Z",
   "post_count": 0,
   "agent_pulled": "2026-07-04"
 }
