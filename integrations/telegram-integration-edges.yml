@@ -148,6 +148,31 @@ edges:
     detected: '2026-10-22'
   detected_by: sweep-openapi-directory-apis-guru.py
   first_seen: '2026-10-22'
+- partner_name: IFTTT
+  partner: ifttt
+  partner_match: aggregator
+  type: marketplace
+  marketplace: ifttt-services
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://ifttt.com/telegram
+  category: null
+  contract_reference:
+    register: IFTTT service directory (ifttt.com/explore/services; ifttt.com/<service>)
+    spec_file: null
+    role: ipaas-connector:ifttt
+    registered_name: Telegram
+    matched_domain: telegram.org
+    matched_by: domain+name-among-holders
+    app_slug: telegram
+    ifttt_category: Social media
+    builder: unknown (the service page does not say who built it)
+    detected_by: sweep-ifttt-services.py
+    detected: '2026-10-23'
+    signal_note: one edge per (provider, platform); triggers, actions and applet counts are context, never read
+  detected_by: sweep-ifttt-services.py
+  first_seen: '2026-10-23'
 method: searched
 checked:
 - https://zapier.com/api/v4/apps/
@@ -157,5 +182,8 @@ checked:
 - https://flathub.org/api/v2/appstream/<app-id>
 - https://api.apis.guru/v2/list.json
 - https://api.apis.guru/v2/providers.json
+- https://ifttt.com/explore/services
+- https://ifttt.com/sitemap_services.xml
+- https://ifttt.com/telegram
 source:
 - https://zapier.com/api/v4/apps/
