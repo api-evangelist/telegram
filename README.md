@@ -1,4 +1,4 @@
-# Telegram (telegram)
+# Telegram
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,95 +66,180 @@
 
 Telegram is a cloud-based instant messaging and voice-over-IP service that provides a comprehensive Bot API for developers to build bots, automate workflows, send notifications, and create interactive experiences on the Telegram platform. The platform supports text messages, media sharing, payments, inline keyboards, inline queries, webhooks, and live location sharing.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/telegram/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/telegram/refs/heads/main/apis.yml)
+**Areas:** Bots · Chat · Messaging · Notification · Payments · Telegram
 
-## Scope
+## Telegram on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Telegram is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/telegram/](https://apis.io/providers/telegram/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (10)
 
-- Bots
-- Chat
-- Messaging
-- Notifications
-- Payments
-- Telegram
+- [Telegram TDLib (Telegram Database Library)](https://apis.io/apis/telegram/telegram-tdlib/) — TDLib is a cross-platform, fully functional Telegram client library for third-party developers. TDLib takes care of all network implementation details,…
+- [Telegram Bot Info API](https://apis.io/apis/telegram/telegram-bot-info-api/) — Methods for getting and setting bot information
+- [Telegram Chat Management API](https://apis.io/apis/telegram/telegram-chat-management-api/) — Methods for managing chats and chat settings
+- [Telegram Getting Updates API](https://apis.io/apis/telegram/telegram-getting-updates-api/) — Methods for receiving incoming updates from Telegram
+- [Telegram Invites API](https://apis.io/apis/telegram/telegram-invites-api/) — Methods for managing chat invite links
+- [Telegram Member Management API](https://apis.io/apis/telegram/telegram-member-management-api/) — Methods for managing chat members and administrators
+- [Telegram Message Editing API](https://apis.io/apis/telegram/telegram-message-editing-api/) — Methods for editing and deleting messages
+- [Telegram Messaging API](https://apis.io/apis/telegram/telegram-messaging-api/) — Methods for sending messages and media
+- [Telegram Payments API](https://apis.io/apis/telegram/telegram-payments-api/) — Methods for handling Telegram Payments
+- [Telegram Stickers API](https://apis.io/apis/telegram/telegram-stickers-api/) — Methods for working with sticker sets
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-02-12
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Telegram Bot API
+GraphQL schemas.
 
-The Telegram Bot API is an HTTP-based interface for building bots on Telegram. Bots are small programs that run inside Telegram and can do virtually anything — teach, play, search, broadcast, remind, connect, integrate with other services, or serve as front ends for businesses and services of all kinds. The Bot API provides methods for sending messages, managing chats, handling payments, working with stickers, managing webhooks, and much more.
+- [Moved to /providers/telegram/](https://apis.io/graphqls/telegram/telegram-graphql/)
 
-- **Human URL:** [https://core.telegram.org/bots/api](https://core.telegram.org/bots/api)
-- **Base URL:** `https://api.telegram.org/bot{token}`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Bot Development
-- Bots
-- Chat Management
-- Messaging
-- Notifications
-- Payments
-- Telegram
-- Webhooks
+- [Telegram Agentic Access](https://apis.io/agentic-access/telegram/telegram-agentic-access/)
 
-#### Properties
+#### JSON Schema (2)
 
-- [Documentation](https://core.telegram.org/bots/api)
-- [Getting Started](https://core.telegram.org/bots)
-- [OpenAPI](openapi/telegram-bot-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/telegram-bot.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/telegram-bot.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub Repository](https://github.com/tdlib/telegram-bot-api)
-- [Authentication](https://core.telegram.org/bots/api#authorizing-your-bot)
-- [Changelog](https://core.telegram.org/bots/api-changelog)
-- [F A Q](https://core.telegram.org/bots/faq)
+The data models the API reads and writes.
 
-### Telegram TDLib (Telegram Database Library)
+- [Telegram Message](https://apis.io/schemas/telegram/telegram-message/)
+- [Telegram Update](https://apis.io/schemas/telegram/telegram-update/)
 
-TDLib is a cross-platform, fully functional Telegram client library for third-party developers. TDLib takes care of all network implementation details, encryption and local data storage, allowing developers to build custom Telegram clients. It is open source, written in C++, and compatible with virtually any programming language through bindings.
+#### JSON Structure (1)
 
-- **Human URL:** [https://core.telegram.org/tdlib](https://core.telegram.org/tdlib)
-- **Base URL:** `https://core.telegram.org/tdlib`
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Telegram Message Structure](https://apis.io/json-structure/telegram/telegram-message-structure/)
 
-- Client Library
-- Cross-Platform
-- MTProto
-- Open Source
-- Telegram
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://core.telegram.org/tdlib)
-- [Getting Started](https://core.telegram.org/tdlib/getting-started)
-- [GitHub Repository](https://github.com/tdlib/td)
-- [Postman Collection](collections/telegram-bot.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/telegram-bot.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Telegram Context](https://apis.io/jsonld/telegram/telegram-context/)
 
-## Common Properties
+#### Vocabulary (1)
 
-- [LinkedIn](https://www.linkedin.com/company/telegram-messenger)
-- [Authentication](https://core.telegram.org/bots/api#authorizing-your-bot)
-- [Terms of Service](https://telegram.org/tos)
-- [Privacy Policy](https://telegram.org/privacy)
-- [Developer  Portal](https://core.telegram.org)
-- [Status Page](https://downdetector.com/status/telegram/)
+The provider's domain terms, defined.
+
+- [Telegram Vocabulary](https://apis.io/vocabularies/telegram/telegram-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Telegram Get Updates Example](https://apis.io/examples/telegram/telegram-get-updates-example/)
+- [Telegram Send Message Example](https://apis.io/examples/telegram/telegram-send-message-example/)
+- [Telegram Send Poll Example](https://apis.io/examples/telegram/telegram-send-poll-example/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Telegram Bot API](https://apis.io/collections/telegram/open-telegram-bot/)
+- [Telegram Bot Bot Info API](https://apis.io/collections/telegram/open-telegram-bot-info-api/)
+- [Telegram Bot Bot Info Chat Management API](https://apis.io/collections/telegram/open-telegram-chat-management-api/)
+- [Telegram Bot Bot Info Getting Updates API](https://apis.io/collections/telegram/open-telegram-getting-updates-api/)
+- [Telegram Bot Bot Info Invites API](https://apis.io/collections/telegram/open-telegram-invites-api/)
+- [Telegram Bot Bot Info Member Management API](https://apis.io/collections/telegram/open-telegram-member-management-api/)
+- [Telegram Bot Bot Info Message Editing API](https://apis.io/collections/telegram/open-telegram-message-editing-api/)
+- [Telegram Bot Bot Info Messaging API](https://apis.io/collections/telegram/open-telegram-messaging-api/)
+- [Telegram Bot Bot Info Payments API](https://apis.io/collections/telegram/open-telegram-payments-api/)
+- [Telegram Bot Bot Info Stickers API](https://apis.io/collections/telegram/open-telegram-stickers-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Telegram — bot rules](https://apis.io/rules/telegram/telegram-bot-rules/)
+- [Telegram — jsonschema rules](https://apis.io/rules/telegram/telegram-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Telegram Authentication](https://apis.io/security/telegram/telegram-authentication/)
+- [Telegram Domain Security](https://apis.io/security/telegram/telegram-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Telegram Plans Pricing](https://apis.io/plans/telegram/telegram-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Telegram Rate Limits](https://apis.io/rate-limits/telegram/telegram-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Telegram Finops](https://apis.io/finops/telegram/telegram-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.telegram.org/)
 - [Blog](https://telegram.org/blog)
-- [Git Hub](https://github.com/tdlib)
+- [Terms of service](https://telegram.org/tos)
+- [Privacy policy](https://telegram.org/privacy)
+- [Status](https://downdetector.com/status/telegram/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 38.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 56.5 |
+| Contract governance | 13.6 |
+| Operational transparency | 44.7 |
+| Developer ergonomics | 42.9 |
+| Access clarity | 28.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.3** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/telegram/](https://apis.io/providers/telegram/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Telegram: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/telegram/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
